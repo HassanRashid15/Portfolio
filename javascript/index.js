@@ -148,6 +148,90 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Experience Tabs Functionality
+function initExperienceTabs() {
+    const experienceItems = document.querySelectorAll('.experience-item');
+    const experienceDetails = document.querySelectorAll('.experience-details');
+    const activeLine = document.getElementById('active-line');
+    
+    if (!experienceItems.length || !experienceDetails.length || !activeLine) {
+        return;
+    }
+    
+    // Set initial active state
+    const activeItem = document.querySelector('.experience-item.active');
+    if (activeItem) {
+        console.log('Initial active item:', activeItem.getAttribute('data-company'));
+        updateActiveLine(activeItem);
+    }
+    
+    experienceItems.forEach((item, index) => {
+        // Add click event listener
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const company = item.getAttribute('data-company');
+            console.log('Clicked on:', company);
+            
+            // Remove active class from all items
+            experienceItems.forEach(i => {
+                i.classList.remove('active');
+                const text = i.querySelector('span');
+                if (text) {
+                    text.classList.remove('text-purple-600', 'font-medium');
+                    text.classList.add('text-gray-600');
+                }
+            });
+            
+            // Add active class to clicked item
+            item.classList.add('active');
+            const text = item.querySelector('span');
+            if (text) {
+                text.classList.remove('text-gray-600');
+                text.classList.add('text-purple-600', 'font-medium');
+            }
+            
+            // Hide all experience details
+            experienceDetails.forEach(detail => {
+                detail.classList.add('hidden');
+            });
+            
+            // Show selected experience details
+            const selectedDetails = document.getElementById(`${company}-details`);
+            if (selectedDetails) {
+                selectedDetails.classList.remove('hidden');
+            }
+            
+            // Update active line
+            updateActiveLine(item);
+        });
+    });
+    
+    function updateActiveLine(activeItem) {
+        const container = activeItem.closest('.space-y-8');
+        const items = container.querySelectorAll('.experience-item');
+        const activeIndex = Array.from(items).indexOf(activeItem);
+        
+        // Calculate position based on item index
+        // space-y-8 = 32px gap between items, py-2 = 16px padding (8px top + 8px bottom)
+        const itemHeight = 48; // Height of each item including padding and text
+        const gapHeight = 32; // space-y-8 gap between items
+        const lineTop = activeIndex * (itemHeight + gapHeight);
+        const lineHeight = itemHeight;
+        
+        activeLine.style.top = `${lineTop}px`;
+        activeLine.style.height = `${lineHeight}px`;
+        
+        console.log('Active line updated:', {
+            company: activeItem.getAttribute('data-company'),
+            activeIndex,
+            lineTop,
+            lineHeight
+        });
+    }
+}
+
 // Footer Component
 class FooterComponent {
     constructor(currentPage = 'home') {
@@ -266,6 +350,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize progress line animation
     initProgressLineAnimation();
+    
+    // Initialize experience tabs
+    setTimeout(() => {
+        initExperienceTabs();
+    }, 100);
     
 });
 
