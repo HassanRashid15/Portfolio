@@ -640,23 +640,37 @@ function showProjectModal(projectId) {
     document.getElementById('modal-client-name').textContent = project.clientName;
     document.getElementById('modal-description').textContent = project.description;
     
-    // Update screenshot background
+    // Update screenshot with actual project image and mockup from projects.js
     const screenshot = document.getElementById('modal-screenshot');
-    if (screenshot) {
-        screenshot.style.background = project.screenshot;
+    if (screenshot && typeof projectData !== 'undefined' && projectData[projectId]) {
+        const projectDataItem = projectData[projectId];
+        screenshot.innerHTML = `
+            <div class="relative h-full rounded-xl overflow-hidden">
+                ${projectDataItem.image ? `
+                    <img src="${projectDataItem.image}" 
+                         alt="${projectDataItem.title}" 
+                         class="w-full h-full object-cover"
+                         loading="lazy">
+                ` : `
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
+                `}
+              
+        `;
     }
     
-    // Update detail link
+    // Update detail link with correct URL parameter format
     const detailLink = document.getElementById('modal-detail-link');
     if (detailLink) {
-        detailLink.href = `project-detail.html?project=${projectId}`;
+        const detailUrl = `project-detail.html?id=${projectId}`;
+        detailLink.href = detailUrl;
+        
         // Remove any existing click handlers and add new one
         detailLink.onclick = function(e) {
             e.preventDefault();
             // Close modal first
             hideProjectModal();
-            // Navigate to detail page
-            window.location.href = `project-detail.html?project=${projectId}`;
+            // Navigate to detail page with correct URL format
+            window.location.href = detailUrl;
         };
     }
     
@@ -783,5 +797,202 @@ function initWhatsAppButton() {
         console.log('WhatsApp button clicked');
     });
 }
+
+// Mobile Tab Functionality
+function initMobileTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button-mobile');
+    const tabContents = document.querySelectorAll('.experience-details-mobile');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Hide all tab contents
+            tabContents.forEach(content => content.classList.add('hidden'));
+            // Show target tab content
+            const targetContent = document.getElementById(`${targetTab}-details-mobile`);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+        });
+    });
+}
+
+// Import project data from projects.js
+// Note: In a real application, you would use ES6 modules or fetch the data
+// For now, we'll access the global projectData from projects.js
+
+// Function to load random projects for home page
+function loadHomeProjects() {
+    // Check if projectData is available
+    if (typeof projectData === 'undefined') {
+        console.log('Project data not loaded yet, retrying...');
+        setTimeout(loadHomeProjects, 200);
+        return;
+    }
+
+    const container = document.getElementById('home-projects-container');
+    if (!container) return;
+
+    // Get all project IDs and shuffle them
+    const projectIds = Object.keys(projectData);
+    const shuffledProjects = projectIds.sort(() => Math.random() - 0.5);
+    
+    // Take first 4 projects for home page
+    const selectedProjects = shuffledProjects.slice(0, 4);
+    
+    // Create the layout: 30% - 70% on first row, 70% - 30% on second row
+    const layout = [
+        { size: 'lg:col-span-3', project: selectedProjects[0] },
+        { size: 'lg:col-span-7', project: selectedProjects[1] },
+        { size: 'lg:col-span-7', project: selectedProjects[2] },
+        { size: 'lg:col-span-3', project: selectedProjects[3] }
+    ];
+
+    let projectsHTML = '';
+    
+    // First Row: 30% Left, 70% Right
+    projectsHTML += '<div class="grid grid-cols-1 lg:grid-cols-10 gap-8 mb-8">';
+    projectsHTML += createProjectCard(layout[0].size, layout[0].project);
+    projectsHTML += createProjectCard(layout[1].size, layout[1].project);
+    projectsHTML += '</div>';
+    
+    // Second Row: 70% Left, 30% Right
+    projectsHTML += '<div class="grid grid-cols-1 lg:grid-cols-10 gap-8">';
+    projectsHTML += createProjectCard(layout[2].size, layout[2].project);
+    projectsHTML += createProjectCard(layout[3].size, layout[3].project);
+    projectsHTML += '</div>';
+
+    container.innerHTML = projectsHTML;
+    
+    // Add click event listeners to the new project cards
+    addProjectClickHandlers();
+}
+
+// Function to create individual project card HTML
+function createProjectCard(size, projectId) {
+    const project = projectData[projectId];
+    if (!project) return '';
+
+    // Generate technology tags based on project type
+    const techTags = generateTechTags(project);
+    
+    return `
+        <div class="${size}">
+            <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="${projectId}">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg mb-4 overflow-hidden relative group">
+                    ${project.image ? `
+                        <img src="${project.image}" 
+                             alt="${project.title}" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                    ` : ''}
+                </div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
+                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">${project.description}</p>
+                <div class="flex space-x-2">
+                    ${techTags.map(tag => `<span class="px-3 py-1 ${tag.bg} ${tag.text} text-sm rounded-full">${tag.name}</span>`).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to generate technology tags based on project
+function generateTechTags(project) {
+    const techMap = {
+        'taskflow': [
+            { name: 'React', bg: 'bg-blue-100', text: 'text-blue-800' },
+            { name: 'Socket.io', bg: 'bg-purple-100', text: 'text-purple-800' }
+        ],
+        'ecocart': [
+            { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
+            { name: 'Stripe', bg: 'bg-blue-100', text: 'text-blue-800' }
+        ],
+        'eventplanner': [
+            { name: 'Vue.js', bg: 'bg-purple-100', text: 'text-purple-800' },
+            { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
+        ],
+        'foodiefinder': [
+            { name: 'React Native', bg: 'bg-orange-100', text: 'text-orange-800' },
+            { name: 'Maps API', bg: 'bg-blue-100', text: 'text-blue-800' }
+        ],
+        'healthtracker': [
+            { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
+            { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
+        ],
+        'cryptotracker': [
+            { name: 'React', bg: 'bg-yellow-100', text: 'text-yellow-800' },
+            { name: 'Chart.js', bg: 'bg-blue-100', text: 'text-blue-800' }
+        ],
+        'socialconnect': [
+            { name: 'Vue.js', bg: 'bg-blue-100', text: 'text-blue-800' },
+            { name: 'Firebase', bg: 'bg-orange-100', text: 'text-orange-800' }
+        ],
+        'smartcity': [
+            { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
+            { name: 'IoT', bg: 'bg-purple-100', text: 'text-purple-800' }
+        ]
+    };
+
+    // Find project key by title
+    const projectKey = Object.keys(projectData).find(key => projectData[key].title === project.title);
+    return techMap[projectKey] || [
+        { name: 'React', bg: 'bg-blue-100', text: 'text-blue-800' },
+        { name: 'Node.js', bg: 'bg-green-100', text: 'text-green-800' }
+    ];
+}
+
+// Function to add click handlers for project cards
+function addProjectClickHandlers() {
+    const projectCards = document.querySelectorAll('[data-project]');
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const projectId = card.getAttribute('data-project');
+            showProjectModal(projectId);
+        });
+    });
+}
+
+// Duplicate showProjectModal function removed - using the existing one above
+
+// Function to load project images dynamically from projects.js (legacy function)
+function loadProjectImages() {
+    // This function is now replaced by loadHomeProjects for the home page
+    // Keep it for backward compatibility with other pages
+    console.log('loadProjectImages called - this function is deprecated for home page');
+}
+
+// Function removed - no more "More Projects" section
+
+// Initialize mobile tabs when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileTabs();
+    
+    // Load home projects if we're on the home page
+    if (document.body.getAttribute('data-page') === 'home') {
+        setTimeout(() => {
+            loadHomeProjects();
+        }, 100);
+    } else {
+        // Load project images for other pages (legacy)
+        setTimeout(() => {
+            loadProjectImages();
+        }, 100);
+    }
+});
 
 

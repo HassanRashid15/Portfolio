@@ -7,7 +7,7 @@
     <!-- Tailwind CSS CDN for quick start -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style/styles.css?v=2">
+    <link rel="stylesheet" href="style/styles.css?v=3">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -16,8 +16,8 @@
     <div id="navbar-container"></div>
 
     <!-- Home Section -->
-    <section id="home" class="pt-16 bg-white h-[80vh] flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:p-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Side - Content -->
                 <div class="order-2 lg:order-1">
@@ -33,7 +33,7 @@
                             I'm a frontend developer based in Italy, I'll help you build beautiful websites your users will love.
                         </p>
                         
-                        <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8">
                             <a href="contact.html" class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full border border-transparent hover:bg-transparent hover:text-purple-600 hover:border-purple-600 transition-colors text-center">
                                 Get In Touch
                             </a>
@@ -65,7 +65,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
+    <!-- <section id="about" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">About Me</h2>
@@ -75,7 +75,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Projects Section -->
     <section id="projects" class="py-16 bg-gray-50">
@@ -96,138 +96,59 @@
                 
             </div>
             
-            <!-- First Row: 30% Left, 70% Right -->
-            <div class="grid grid-cols-1 lg:grid-cols-10 gap-8 mb-8">
-                <!-- TaskFlow - 30% -->
-                <div class="lg:col-span-3">
-                    <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="taskflow">
-                        <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg mb-4"></div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold text-gray-900">TaskFlow</h3>
-                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Task management system with drag-and-drop, real-time collaboration, and responsive layout.</p>
-                        <div class="flex space-x-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Socket.io</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- EcoCart - 70% -->
-                <div class="lg:col-span-7">
-                    <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="ecocart">
-                        <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg mb-4"></div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold text-gray-900">EcoCart</h3>
-                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">E-commerce platform promoting eco-friendly products with payment integration.</p>
-                        <div class="flex space-x-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">React</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Stripe</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Second Row: 70% Left, 30% Right -->
-            <div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
-                <!-- EventPlanner - 70% -->
-                <div class="lg:col-span-7">
-                    <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="eventplanner">
-                        <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-4"></div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold text-gray-900">EventPlanner</h3>
-                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Event planning web application, enabling users to organise and manage events effortlessly.</p>
-                        <div class="flex space-x-2">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Node.js</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- FoodieFinder - 30% -->
-                <div class="lg:col-span-3">
-                    <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="foodiefinder">
-                        <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg mb-4"></div>
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold text-gray-900">FoodieFinder</h3>
-                            <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.</p>
-                        <div class="flex space-x-2">
-                            <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">React Native</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Maps API</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Dynamic Projects Container -->
+            <div id="home-projects-container">
+                <!-- Projects will be loaded dynamically here -->
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-left mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-2">Experience<span class="text-purple-600">.</span></h2>
             </div>
             
-                    <div class="grid grid-cols-1 lg:grid-cols-10 gap-4">
-                <!-- Left Side - Company List -->
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="relative">
-                        <!-- Vertical Line -->
-                        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                        <div id="active-line" class="absolute left-4 top-0 w-2 bg-purple-600 transition-all duration-300" style="height: 0px;"></div>
-                        
-                        <!-- Company Items -->
-                        <div class="space-y-8 pl-8">
-                            <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="apple">
-                                <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Apple</span>
-                            </div>
+            <!-- Desktop Layout (1024px and above) -->
+            <div class="hidden lg:block">
+                <div class="grid grid-cols-1 lg:grid-cols-10 gap-4">
+                    <!-- Left Side - Company List -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="relative">
+                            <!-- Vertical Line -->
+                            <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                            <div id="active-line" class="absolute left-4 top-0 w-2 bg-purple-600 transition-all duration-300" style="height: 0px;"></div>
                             
-                            <div class="experience-item relative flex items-center cursor-pointer group active py-2" data-company="microsoft">
-                                <span class="text-lg text-purple-600 font-medium">Microsoft</span>
-                            </div>
-                            
-                            <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="spotify">
-                                <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Spotify</span>
-                            </div>
-                            
-                            <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="stripe">
-                                <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Stripe</span>
-                            </div>
-                            
-                            <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="webflow">
-                                <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Webflow</span>
+                            <!-- Company Items -->
+                            <div class="space-y-8 pl-8">
+                                <div class="experience-item relative flex items-center cursor-pointer group active py-2" data-company="apple">
+                                    <span class="text-lg text-purple-600 font-medium">Apple</span>
+                                </div>
+                                
+                                <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="microsoft">
+                                    <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Microsoft</span>
+                                </div>
+                                
+                                <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="spotify">
+                                    <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Spotify</span>
+                                </div>
+                                
+                                <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="stripe">
+                                    <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Stripe</span>
+                                </div>
+                                
+                                <div class="experience-item relative flex items-center cursor-pointer group py-2" data-company="webflow">
+                                    <span class="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">Webflow</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Right Side - Experience Details -->
-                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- Right Side - Experience Details -->
+                    <div class="lg:col-span-8 space-y-4">
                     <!-- Apple Experience -->
-                    <div id="apple-details" class="experience-details hidden">
+                    <div id="apple-details" class="experience-details">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Senior iOS Developer <span class="text-purple-600">@ Apple</span></h3>
                         <p class="text-gray-500 mb-6">June 2020 - Present</p>
                         <ul class="space-y-3">
@@ -342,7 +263,7 @@
                     </div>
                     
                     <!-- Microsoft Experience -->
-                    <div id="microsoft-details" class="experience-details">
+                    <div id="microsoft-details" class="experience-details hidden">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Frontend Developer <span class="text-purple-600">@ Microsoft</span></h3>
                         <p class="text-gray-500 mb-6">January - April 2018</p>
                         <ul class="space-y-3">
@@ -444,6 +365,166 @@
                             </li>
                         </ul>
                     </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile/Tablet Layout (1023px and below) -->
+            <div class="block lg:hidden">
+                <!-- Tab Navigation -->
+                <div class="mb-8">
+                    <div class="flex  overflow-x-auto">
+                        <button class="tab-button-mobile active px-6 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative" data-tab="apple">
+                            Apple
+                        </button>
+                        <button class="tab-button-mobile px-6 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative" data-tab="microsoft">
+                            Microsoft
+                        </button>
+                        <button class="tab-button-mobile px-6 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative" data-tab="spotify">
+                            Spotify
+                        </button>
+                        <button class="tab-button-mobile px-6 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative" data-tab="stripe">
+                            Stripe
+                        </button>
+                        <button class="tab-button-mobile px-6 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap relative" data-tab="webflow">
+                            Webflow
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Tab Content -->
+                <div class=" p-6 px-0">
+                    <div class="tab-content-mobile">
+                        <!-- Apple Experience -->
+                        <div id="apple-details-mobile" class="experience-details-mobile">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Senior iOS Developer <span class="text-purple-600">@ Apple</span></h3>
+                            <p class="text-gray-500 mb-4">June 2020 - Present</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Led development of core iOS applications used by millions of users worldwide.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Collaborated with cross-functional teams to deliver high-quality software solutions.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Mentored junior developers and established best practices for iOS development.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Microsoft Experience -->
+                        <div id="microsoft-details-mobile" class="experience-details-mobile hidden">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Frontend Developer <span class="text-purple-600">@ Microsoft</span></h3>
+                            <p class="text-gray-500 mb-4">January - April 2018</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Developed responsive web applications using modern JavaScript frameworks.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Implemented user interface components and optimized application performance.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Worked closely with design teams to ensure pixel-perfect implementations.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Spotify Experience -->
+                        <div id="spotify-details-mobile" class="experience-details-mobile hidden">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">UI/UX Designer <span class="text-purple-600">@ Spotify</span></h3>
+                            <p class="text-gray-500 mb-4">May - August 2017</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Designed user interfaces for music streaming applications and web platforms.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Created wireframes, prototypes, and high-fidelity mockups for new features.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Conducted user testing sessions and iterated on designs based on feedback.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Stripe Experience -->
+                        <div id="stripe-details-mobile" class="experience-details-mobile hidden">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Product Designer <span class="text-purple-600">@ Stripe</span></h3>
+                            <p class="text-gray-500 mb-4">September 2016 - January 2017</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Designed payment processing interfaces and financial dashboard components.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Collaborated with engineering teams to implement design specifications.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Developed design systems and maintained consistency across product lines.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Webflow Experience -->
+                        <div id="webflow-details-mobile" class="experience-details-mobile hidden">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Product Designer <span class="text-purple-600">@ Webflow</span></h3>
+                            <p class="text-gray-500 mb-4">September 2017 - July 2018</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Designed intuitive user interfaces for the visual web development platform.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Created design systems and component libraries for consistent user experience.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-700">Conducted user research and usability testing to improve product features.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -512,7 +593,7 @@
     </section>
 
         <!-- My Story Section -->
-        <section class="py-20 bg-gray-50">
+        <section class="py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-start mb-16">
                     <h2 class="text-7xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -547,7 +628,7 @@
         </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
+    <!-- <section id="contact" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Get In Touch</h2>
             <p class="text-lg text-gray-600 mb-8">Ready to work together? Let's discuss your next project.</p>
@@ -555,7 +636,7 @@
                 Contact Me
             </button>
         </div>
-    </section>
+    </section> -->
 
     <!-- Project Modal -->
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
@@ -606,6 +687,8 @@
     <!-- Footer Component Container -->
     <div id="footer-container"></div>
 
-    <script src="javascript/index.js?v=2"></script>
+    <script src="javascript/project-data.js"></script>
+    <script src="javascript/projects.js"></script>
+    <script src="javascript/index.js?v=9"></script>
 </body>
 </html>
