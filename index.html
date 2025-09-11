@@ -7,39 +7,39 @@
     <!-- Tailwind CSS CDN for quick start -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/styles.css?v=2">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 min-h-screen" data-page="home">
+<body data-page="home">
     <!-- Navbar Container -->
     <div id="navbar-container"></div>
 
     <!-- Home Section -->
-    <section id="home" class="pt-16 bg-white min-h-screen flex items-center">
+    <section id="home" class="pt-16 bg-white h-[80vh] flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Side - Content -->
                 <div class="order-2 lg:order-1">
                     <div class="space-y-8">
                         <div class="space-y-4">
-                            <p class="text-lg text-gray-600">Hey, I'm Luca 👋</p>
-                            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                            <p class="text-2xl text-gray-700 font-semibold">Hey, I'm Hassan 👋</p>
+                            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mt-0">
                                 <span class="text-purple-600">Frontend</span> <span class="text-gray-900">Developer</span>
                             </h1>
                         </div>
                         
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+                        <p class="text-xl text-slate-600 font-medium leading-relaxed max-w-lg">
                             I'm a frontend developer based in Italy, I'll help you build beautiful websites your users will love.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-purple-700 transition-colors">
+                            <a href="contact.html" class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full border border-transparent hover:bg-transparent hover:text-purple-600 hover:border-purple-600 transition-colors text-center">
                                 Get In Touch
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold py-3 px-8 rounded-lg transition-colors">
+                            </a>
+                            <a href="projects.html" class="border border-gray-300 text-gray-700 hover:bg-purple-700 hover:text-white font-semibold py-3 px-8 rounded-full transition-colors text-center">
                                 Browse Projects
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -81,18 +81,19 @@
     <section id="projects" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-12">
-                <div class="text-center flex-1">
+                <div class="text-start flex-1">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">My Projects</h2>
                     <p class="text-lg text-gray-600">Here are some of my recent projects</p>
                 </div>
                 <div class="ml-8">
-                    <a href="projects.html" class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors">
+                    <a href="projects.html" class="group inline-flex items-center p-0 text-slate-600 font-semibold rounded-lg transition-colors">
                         See All
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
                 </div>
+                
             </div>
             
             <!-- First Row: 30% Left, 70% Right -->
@@ -186,13 +187,13 @@
     <!-- Experience Section -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
+            <div class="text-left mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-2">Experience<span class="text-purple-600">.</span></h2>
             </div>
             
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                    <div class="grid grid-cols-1 lg:grid-cols-10 gap-4">
                 <!-- Left Side - Company List -->
-                <div class="space-y-4">
+                <div class="lg:col-span-2 space-y-4">
                     <div class="relative">
                         <!-- Vertical Line -->
                         <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
@@ -224,7 +225,7 @@
                 </div>
                 
                 <!-- Right Side - Experience Details -->
-                <div class="space-y-6">
+                <div class="lg:col-span-8 space-y-6">
                     <!-- Apple Experience -->
                     <div id="apple-details" class="experience-details hidden">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Senior iOS Developer <span class="text-purple-600">@ Apple</span></h3>
@@ -235,6 +236,95 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="text-gray-700">Led development of core iOS applications used by millions of users worldwide.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>    <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Collaborated with design teams to implement cutting-edge user interfaces.</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -359,6 +449,96 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-2">Skills<span class="text-purple-600">.</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Web Design -->
+                <div class="text-left">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Web Design</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>UI/UX Design</li>
+                        <li>Responsive Design</li>
+                        <li>Wireframing</li>
+                        <li>User Research</li>
+                    </ul>
+                </div>
+                
+                <!-- Frontend -->
+                <div class="text-left">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Frontend</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Javascript</li>
+                        <li>ReactJS</li>
+                        <li>NextJS</li>
+                        <li>CSS3</li>
+                    </ul>
+                </div>
+                
+                <!-- Backend -->
+                <div class="text-left">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Backend</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>NodeJs</li>
+                        <li>MongoDB</li>
+                        <li>ExpressJS</li>
+                        <li>Vercel</li>
+                    </ul>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="text-left">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Soft Skills</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Effective communication</li>
+                        <li>Collaboration</li>
+                        <li>Commitment</li>
+                        <li>Leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- My Story Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-start mb-16">
+                    <h2 class="text-7xl md:text-5xl font-bold text-gray-900 mb-4">
+                        My Story<span class="text-purple-600">.</span>
+                    </h2>
+                </div>
+                
+                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 text-start">
+                     <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                        <p>
+                            My journey as a front-end developer started back in 2010, working as a <span class="text-purple-600 font-semibold">freelancer</span> for clients all over the world for several years.
+                        </p>
+                        
+                        <p>
+                            After being on my own for a while, I decided to enter the corporate world, and I started working as a software developer at <span class="text-purple-600 font-semibold">Webflow</span>, the same platform I was using with my freelance clients.
+                        </p>
+                        
+                        <p>
+                            After some exciting months of work at Webflow, I decided to transition to <span class="text-purple-600 font-semibold">Stripe</span>, where I returned what I love: front-end development.
+                        </p>
+                        
+                        <p>
+                            My <span class="text-purple-600 font-semibold">success</span> quickly compounded I started receiving job offers from the biggest names in the industry.
+                        </p>
+                        
+                        <p>
+                            All these opportunities led me to travel the world. Eventually, however, I decided to settle down for a more calm and simple routine, and I'm now working at <span class="text-purple-600 font-semibold">Apple</span>. And you know what? I love what I do! <span class="text-purple-600">💜</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -419,7 +599,6 @@
     <!-- Footer Component Container -->
     <div id="footer-container"></div>
 
-    <script src="javascript/index.js"></script>
-    <script src="javascript/projects.js"></script>
+    <script src="javascript/index.js?v=2"></script>
 </body>
 </html>

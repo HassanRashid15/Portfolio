@@ -369,12 +369,12 @@ function showProjectModal(projectId) {
     // Add click event listener to ensure navigation works
     detailLink.addEventListener('click', function(e) {
         e.preventDefault();
-        console.log('Button clicked! Navigating to:', detailUrl);
+        // console.log('Button clicked! Navigating to:', detailUrl);
         window.location.href = detailUrl;
     });
     
-    console.log('Modal opened for project:', projectId, 'URL:', detailUrl);
-    console.log('Available projects:', Object.keys(projectData));
+    // console.log('Modal opened for project:', projectId, 'URL:', detailUrl);
+    // console.log('Available projects:', Object.keys(projectData));
     
     // Update screenshot
     const screenshotContainer = document.getElementById('modal-screenshot');
@@ -479,6 +479,10 @@ function addScrollAnimations() {
 }
 
 function addParallaxEffect() {
+    // Only apply parallax effect on projects page
+    const currentPage = document.body.getAttribute('data-page');
+    if (currentPage !== 'projects') return;
+    
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const heroSection = document.querySelector('section');

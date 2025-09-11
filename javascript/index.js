@@ -161,7 +161,7 @@ function initExperienceTabs() {
     // Set initial active state
     const activeItem = document.querySelector('.experience-item.active');
     if (activeItem) {
-        console.log('Initial active item:', activeItem.getAttribute('data-company'));
+        // console.log('Initial active item:', activeItem.getAttribute('data-company'));
         updateActiveLine(activeItem);
     }
     
@@ -172,7 +172,7 @@ function initExperienceTabs() {
             e.stopPropagation();
             
             const company = item.getAttribute('data-company');
-            console.log('Clicked on:', company);
+            // console.log('Clicked on:', company);
             
             // Remove active class from all items
             experienceItems.forEach(i => {
@@ -223,12 +223,12 @@ function initExperienceTabs() {
         activeLine.style.top = `${lineTop}px`;
         activeLine.style.height = `${lineHeight}px`;
         
-        console.log('Active line updated:', {
-            company: activeItem.getAttribute('data-company'),
-            activeIndex,
-            lineTop,
-            lineHeight
-        });
+        // console.log('Active line updated:', {
+        //     company: activeItem.getAttribute('data-company'),
+        //     activeIndex,
+        //     lineTop,
+        //     lineHeight
+        // });
     }
 }
 
@@ -339,6 +339,13 @@ class FooterComponent {
     // Auto-initialize navbar and footer based on current page
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = document.body.getAttribute('data-page') || 'home';
+    
+    // Remove any transforms from home section (fix for cached parallax effect)
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+        homeSection.style.transform = 'none';
+        homeSection.style.transition = 'none';
+    }
     
     // Initialize navbar
     const navbar = new NavbarComponent();
@@ -562,6 +569,95 @@ function initHomePageModal() {
                 hideProjectModal();
             }
         });
+    }
+}
+
+// Project modal functions
+function showProjectModal(projectId) {
+    const modal = document.getElementById('project-modal');
+    if (!modal) return;
+    
+    // Project data
+    const projects = {
+        taskflow: {
+            title: 'TaskFlow',
+            client: 'Personal Project',
+            year: '2024',
+            role: 'Full Stack Developer',
+            clientName: 'Self',
+            description: 'A comprehensive task management system built with React and Socket.io. Features include drag-and-drop functionality, real-time collaboration, and a responsive design that works seamlessly across all devices.',
+            screenshot: 'linear-gradient(135deg, #3b82f6, #1d4ed8)'
+        },
+        ecocart: {
+            title: 'EcoCart',
+            client: 'E-commerce Platform',
+            year: '2024',
+            role: 'Frontend Developer',
+            clientName: 'EcoCart Inc.',
+            description: 'An innovative e-commerce platform focused on promoting eco-friendly products. Integrated with Stripe for secure payments and features a modern, user-friendly interface designed to encourage sustainable shopping habits.',
+            screenshot: 'linear-gradient(135deg, #10b981, #059669)'
+        },
+        eventplanner: {
+            title: 'EventPlanner',
+            client: 'Event Management',
+            year: '2023',
+            role: 'Full Stack Developer',
+            clientName: 'EventPro',
+            description: 'A comprehensive event planning web application that enables users to organize and manage events effortlessly. Built with Vue.js and Node.js, featuring real-time updates and collaborative planning tools.',
+            screenshot: 'linear-gradient(135deg, #8b5cf6, #ec4899)'
+        },
+        foodiefinder: {
+            title: 'FoodieFinder',
+            client: 'Restaurant Discovery',
+            year: '2023',
+            role: 'Mobile Developer',
+            clientName: 'FoodieCorp',
+            description: 'A modern restaurant discovery platform built with React Native. Features real-time search, user reviews, ratings, and integration with Maps API for location-based restaurant recommendations.',
+            screenshot: 'linear-gradient(135deg, #f59e0b, #dc2626)'
+        }
+    };
+    
+    const project = projects[projectId];
+    if (!project) return;
+    
+    // Update modal content
+    document.getElementById('modal-title').textContent = project.title;
+    document.getElementById('modal-client').textContent = project.client;
+    document.getElementById('modal-year').textContent = project.year;
+    document.getElementById('modal-role').textContent = project.role;
+    document.getElementById('modal-client-name').textContent = project.clientName;
+    document.getElementById('modal-description').textContent = project.description;
+    
+    // Update screenshot background
+    const screenshot = document.getElementById('modal-screenshot');
+    if (screenshot) {
+        screenshot.style.background = project.screenshot;
+    }
+    
+    // Update detail link
+    const detailLink = document.getElementById('modal-detail-link');
+    if (detailLink) {
+        detailLink.href = `project-detail.html?project=${projectId}`;
+        // Remove any existing click handlers and add new one
+        detailLink.onclick = function(e) {
+            e.preventDefault();
+            // Close modal first
+            hideProjectModal();
+            // Navigate to detail page
+            window.location.href = `project-detail.html?project=${projectId}`;
+        };
+    }
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideProjectModal() {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
     }
 }
 

@@ -332,3 +332,42 @@ html {
 
 
 
+
+
+#microsoft-details{
+ margin-top: 0px; 
+}
+
+/* Experience Section Dynamic Height */
+.experience-details {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+  height: 400px;
+  overflow: auto;
+}
+
+.experience-details.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+/* Ensure the right column adjusts to content height */
+.lg\:col-span-8 {
+  min-height: fit-content;
+}
+
+/* Smooth transition for the active line */
+#active-line {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Experience items hover effects */
+.experience-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.experience-item:hover {
+  transform: translateX(4px);
+}
