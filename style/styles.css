@@ -146,4 +146,189 @@ color: rgb(211, 209, 209);
   flex: 1;
 }
 
+/* Projects Page Styles */
+.project-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.project-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Filter tag animations */
+.filter-tag {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.filter-tag:hover::before {
+  left: 100%;
+}
+
+/* Search input focus animation */
+#project-search:focus {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+}
+
+/* Modal animations */
+#project-modal {
+  transition: all 0.3s ease-in-out;
+}
+
+#project-modal:not(.hidden) {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+#project-modal .bg-white {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Grid view animations */
+.grid-view .project-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.grid-view .project-card:nth-child(1) { animation-delay: 0.1s; }
+.grid-view .project-card:nth-child(2) { animation-delay: 0.2s; }
+.grid-view .project-card:nth-child(3) { animation-delay: 0.3s; }
+.grid-view .project-card:nth-child(4) { animation-delay: 0.4s; }
+.grid-view .project-card:nth-child(5) { animation-delay: 0.5s; }
+.grid-view .project-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* List view animations */
+.list-view .project-item {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.list-view .project-item:nth-child(1) { animation-delay: 0.1s; }
+.list-view .project-item:nth-child(2) { animation-delay: 0.2s; }
+.list-view .project-item:nth-child(3) { animation-delay: 0.3s; }
+.list-view .project-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  .project-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  #project-search:focus {
+    transform: scale(1.01);
+  }
+}
+
+/* Loading animation for projects */
+.projects-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.projects-loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #8b5cf6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for modal */
+#project-modal .bg-white::-webkit-scrollbar {
+  width: 6px;
+}
+
+#project-modal .bg-white::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+#project-modal .bg-white::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#project-modal .bg-white::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
 

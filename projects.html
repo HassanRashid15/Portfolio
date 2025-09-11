@@ -8,151 +8,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styles.css">
 </head>
-<body data-page="projects" class="font-bai-jamjuree">
+<body data-page="projects" class="font-bai-jamjuree min-h-screen flex flex-col">
     <!-- Navbar Container -->
     <div id="navbar-container"></div>
 
-    <!-- Hero Section -->
-    <section class="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                    My <span class="text-blue-600">Projects</span>
-                </h1>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    A collection of my recent work, showcasing my skills in web development, design, and problem-solving.
-                </p>
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="pt-20 pb-16 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-6">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Featured Projects
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+                        My <span class="text-purple-600">Projects</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                        A collection of my recent work showcasing modern web development, 
+                        creative design solutions, and innovative user experiences.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Grid -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">E-Commerce Platform</h3>
-                        <p class="text-gray-600 mb-4">A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Node.js</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">MongoDB</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
-                        </div>
+        <!-- Projects Grid Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Projects Counter -->
+                <div class="flex justify-between items-center mb-12">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            <span id="projects-count">4</span> Projects Found
+                        </h2>
+                        <p class="text-gray-600">Explore my latest work and creative solutions</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button id="grid-view" class="p-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            </svg>
+                        </button>
+                        <button id="list-view" class="p-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Task Management App</h3>
-                        <p class="text-gray-600 mb-4">A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Socket.io</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">PostgreSQL</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
-                        </div>
-                    </div>
+                <!-- Projects Grid -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Projects will be dynamically loaded here -->
                 </div>
 
-                <!-- Project 3 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Weather Dashboard</h3>
-                        <p class="text-gray-600 mb-4">A responsive weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">API</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Chart.js</span>
+                <!-- Pagination -->
+                <div id="pagination-container" class="flex justify-center items-center mt-12 space-x-2">
+                    <!-- Pagination will be dynamically generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 id="modal-title" class="text-2xl font-bold text-gray-900"></h3>
+                            <p id="modal-client" class="text-gray-600"></p>
                         </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
+                        <button id="close-modal" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div id="modal-screenshot" class="h-64 bg-gray-100 rounded-xl mb-6 relative overflow-hidden">
+                        <!-- Project screenshot will be loaded here -->
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600" id="modal-year"></div>
+                            <div class="text-sm text-gray-600">Year</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600" id="modal-role"></div>
+                            <div class="text-sm text-gray-600">Role</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600" id="modal-client-name"></div>
+                            <div class="text-sm text-gray-600">Client</div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Portfolio Website</h3>
-                        <p class="text-gray-600 mb-4">A modern, responsive portfolio website with smooth animations, dark mode, and optimized performance.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">HTML5</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">CSS3</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">JavaScript</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Blog Platform</h3>
-                        <p class="text-gray-600 mb-4">A content management system for bloggers with markdown support, SEO optimization, and social sharing features.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Next.js</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Strapi</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Tailwind</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gradient-to-br from-teal-500 to-cyan-600"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mobile App</h3>
-                        <p class="text-gray-600 mb-4">A cross-platform mobile application with offline capabilities, push notifications, and seamless user experience.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React Native</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Firebase</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Redux</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">GitHub</a>
-                        </div>
+                    
+                    <p id="modal-description" class="text-gray-700 mb-6"></p>
+                    
+                    <div class="flex justify-center">
+                        <a href="#" id="modal-detail-link" class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors cursor-pointer">
+                            View Project Details
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Interested in Working Together?</h2>
-            <p class="text-xl text-gray-600 mb-8">Let's discuss your next project and bring your ideas to life.</p>
-            <a href="contact.html" class="btn-primary inline-block">Get In Touch</a>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer Container -->
     <div id="footer-container"></div>
 
     <script src="javascript/index.js"></script>
+    <script src="javascript/projects.js"></script>
 </body>
 </html>

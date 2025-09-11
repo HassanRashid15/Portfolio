@@ -246,11 +246,11 @@ class FooterComponent {
 
     render() {
         const footerHTML = `
-            <footer class="bg-white py-16 pb-10">
+            <footer class="bg-white py-10 pb-5">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-end">
                         <!-- Left Side -->
-                        <div class="space-y-8">
+                        <div class="space-y-8 w-full">
                             <!-- Navigation Links -->
                             <div>
                                 <div class="flex flex-wrap gap-6 mb-8">
@@ -276,7 +276,7 @@ class FooterComponent {
                         </div>
                         
                         <!-- Right Side -->
-                        <div class="space-y-8">
+                        <div class="space-y-8 w-full">
                             <!-- Social Media Icons -->
                             <div class="flex justify-end">
                                 <div class="flex space-x-4">
@@ -356,6 +356,18 @@ document.addEventListener('DOMContentLoaded', function() {
         initExperienceTabs();
     }, 100);
     
+    // Initialize projects slider
+    setTimeout(() => {
+        initProjectsSlider();
+    }, 100);
+    
+    // Initialize home page modal functionality
+    setTimeout(() => {
+        initHomePageModal();
+    }, 100);
+    
+    
+    
 });
 
 // Progress Line Animation
@@ -416,6 +428,141 @@ function initProgressLineAnimation() {
     
     // Initial call
     updateProgressLine();
+}
+
+// Projects Showcase Functionality
+function initProjectsSlider() {
+    const projectsContainer = document.getElementById('projectsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.dot');
+    const projectSlides = document.querySelectorAll('.project-slide');
+    
+    if (!projectsContainer || !prevBtn || !nextBtn) return;
+    
+    let currentSlide = 0;
+    const totalSlides = projectSlides.length;
+    
+    function updateSlider() {
+        // Hide all slides
+        projectSlides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.remove('hidden');
+                slide.classList.add('active');
+            } else {
+                slide.classList.add('hidden');
+                slide.classList.remove('active');
+            }
+        });
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.remove('bg-gray-300');
+                dot.classList.add('bg-purple-600');
+            } else {
+                dot.classList.remove('bg-purple-600');
+                dot.classList.add('bg-gray-300');
+            }
+        });
+        
+        // Update button states
+        prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+        nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+    }
+    
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlider();
+        }
+    }
+    
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        }
+    }
+    
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let endX = 0;
+    
+    projectsContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    projectsContainer.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    // Initialize
+    updateSlider();
+}
+
+// Home Page Modal Functionality
+function initHomePageModal() {
+    // Project card clicks
+    document.addEventListener('click', function(e) {
+        const projectCard = e.target.closest('[data-project]');
+        if (projectCard) {
+            const projectId = projectCard.dataset.project;
+            showProjectModal(projectId);
+        }
+    });
+    
+    // Modal close button
+    const closeModalBtn = document.getElementById('close-modal');
+    const modal = document.getElementById('project-modal');
+    
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', hideProjectModal);
+    }
+    
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                hideProjectModal();
+            }
+        });
+    }
 }
 
 
