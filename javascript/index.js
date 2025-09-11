@@ -248,7 +248,7 @@ class FooterComponent {
         const footerHTML = `
             <footer class="bg-white py-10 pb-5">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-end">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-0 place-items-center">
                         <!-- Left Side -->
                         <div class="space-y-8 w-full">
                             <!-- Navigation Links -->
@@ -276,7 +276,7 @@ class FooterComponent {
                         </div>
                         
                         <!-- Right Side -->
-                        <div class="space-y-8 w-full">
+                        <div class="space-y-8 w-full py-10 pb-0">
                             <!-- Social Media Icons -->
                             <div class="flex justify-end">
                                 <div class="flex space-x-4">
