@@ -62,7 +62,7 @@ class NavbarComponent {
                 </div>
                 
                 <!-- Mobile Navigation -->
-                <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+                <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-lg">
                     <div class="px-2 pt-2 pb-3 space-y-1">
                         <a href="${this.pages.home}" class="block px-3 py-2 ${this.getLinkClass('home')}">Home</a>
                         <a href="${this.pages.projects}" class="block px-3 py-2 ${this.getLinkClass('projects')}">Projects</a>
@@ -78,48 +78,112 @@ class NavbarComponent {
         const container = document.getElementById(containerId);
         if (container) {
             container.innerHTML = this.render();
+            console.log('Navbar mounted successfully');
+        } else {
+            console.error('Navbar container not found:', containerId);
         }
     }
 }
 
-// Mobile menu functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu functionality - moved to after navbar is mounted
+function initMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
 
+    console.log('Initializing mobile menu:', {
+        mobileMenuButton: !!mobileMenuButton,
+        mobileMenu: !!mobileMenu,
+        menuIcon: !!menuIcon,
+        closeIcon: !!closeIcon
+    });
+
     if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            // Toggle mobile menu visibility
-            mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Toggle icons
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
+            console.log('Mobile menu button clicked');
+            
+            // Toggle mobile menu visibility with animation
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                // Show menu with animation
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('show');
+                mobileMenu.style.display = 'block';
+            } else {
+                // Hide menu with animation
+                mobileMenu.classList.remove('show');
+                mobileMenu.classList.add('hidden');
+                
+                // Hide after animation completes
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300); // Match CSS transition duration
+            }
+            
+            // Toggle icons with animation
+            if (menuIcon && closeIcon) {
+                if (isHidden) {
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            }
         });
 
         // Close mobile menu when clicking on a link
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', function() {
+                // Animate close
+                mobileMenu.classList.remove('show');
                 mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
+                
+                // Hide after animation completes
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+                
+                if (menuIcon && closeIcon) {
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
             });
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                // Animate close
+                mobileMenu.classList.remove('show');
                 mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
+                
+                // Hide after animation completes
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+                
+                if (menuIcon && closeIcon) {
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
             }
         });
+    } else {
+        console.error('Mobile menu elements not found:', {
+            mobileMenuButton: !!mobileMenuButton,
+            mobileMenu: !!mobileMenu
+        });
     }
+}
 
-    // Smooth scrolling for navigation links
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -136,8 +200,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+}
 
-    // Add scroll effect to navbar
+// Navbar scroll effect
+function initNavbarScrollEffect() {
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('nav');
         if (window.scrollY > 50) {
@@ -146,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
         }
     });
-});
+}
 
 // Experience Tabs Functionality
 function initExperienceTabs() {
@@ -312,14 +378,10 @@ class FooterComponent {
                             
                             <!-- Copyright -->
                             <div class="text-right">
-                                <p class="text-gray-600 mb-2">&copy; 2024 All Rights Reserved.</p>
-                                <p class="text-gray-600 flex items-center justify-end">
-                                    Made with 
-                                    <svg class="h-4 w-4 text-purple-600 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                                    </svg>
-                                    by LucaDCZ
-                                </p>
+                                <p class="text-gray-600 font-medium mb-2">&copy; ${new Date().getFullYear()} All Rights Reserved. Made by HRTECH.</p>
+                               
+                                   
+                          
                             </div>
                         </div>
                     </div>
@@ -357,6 +419,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize navbar
     const navbar = new NavbarComponent();
     navbar.mount('navbar-container');
+    
+    // Initialize mobile menu functionality after navbar is mounted
+    setTimeout(() => {
+        initMobileMenu();
+        initSmoothScrolling();
+        initNavbarScrollEffect();
+    }, 100);
     
     // Initialize footer
     const footer = new FooterComponent(currentPage);
