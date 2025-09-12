@@ -1,14 +1,16 @@
 // Centralized Project Data - Define all projects here once
 // This file is imported by both projects.js and project-detail.js
 const projectData = {
-    taskflow: {
-        title: "TaskFlow",
-        description: "Task management system with drag-and-drop, real-time collaboration, and responsive layout.",
-        link: "https://taskflow-demo.com",
-        client: "TechCorp Solutions",
-        year: "2023",
-        role: "Full Stack Developer",
-        image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=center",
+    Devstitch: {
+        title: "DevStitch",
+        description: "DevStitch is a custom web solutions development agency specializing in modern web development, web applications, e-commerce platforms, and dedicated development teams. With over 50 completed projects, 20+ satisfied clients, and a 4.9 Clutch rating, DevStitch ensures innovative, scalable, and high-performance solutions tailored to client needs.",
+        link: "https://devstitch-demo.com",
+        client: "Software Agency",
+        clientType: "organization",
+        year: "2024",   
+        role: "Frontend Developer",
+        image: "Assets/Project1a.png",
+        logo: "https://devstitch.com/favicon.ico", // DevStitch logo
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-4">
@@ -35,24 +37,27 @@ const projectData = {
             </div>
         `,
         about: [
-            "TaskFlow is a comprehensive task management system designed to streamline workflow and enhance team collaboration. Built with modern web technologies, it provides an intuitive interface for managing projects, tracking progress, and facilitating real-time communication.",
-            "The application features drag-and-drop functionality, customizable dashboards, and advanced filtering options to help teams stay organized and productive."
-        ],
+            "DevStitch is a custom web solutions development agency driven by AI and focused on performance, security, and innovative problem-solving. The company thrives on teamwork and a results-driven approach, ensuring exceptional outcomes for their clients. Their core services include modern web development using technologies like PHP Laravel and Node.js, web application development for smooth and intuitive user experiences, e-commerce solutions for scalable online stores, and providing dedicated development teams to meet diverse business needs.",
+            "With over 50 successfully completed projects, 20+ satisfied clients, and a stellar 4.9 Clutch rating, DevStitch has cemented its reputation as a leading development agency. They follow a comprehensive six-step development process — planning, design, development, testing, deployment, and maintenance — to deliver top-notch, reliable, and secure solutions. Their experience spans multiple industries, including e-commerce, luxury watch manufacturing, interior design, and sustainable travel platforms.",
+            "Client feedback frequently highlights DevStitch's professionalism, technical expertise, reliability, and commitment to deadlines, with many projects exceeding expectations. The company's mission is to ensure quality, scalability, and innovation in every solution delivered, making DevStitch a trusted partner for businesses worldwide."
+          ],
         clientInfo: [
-            "We worked with a mid-size tech startup that was struggling with project management across multiple teams. They needed a solution that could handle complex workflows while remaining user-friendly.",
-            "The client required real-time collaboration features, mobile responsiveness, and integration capabilities with their existing tools."
+            "We collaborated with a mid-size tech startup specializing in project management tools for remote teams. The organization faced challenges in managing complex workflows, enabling real-time collaboration, and integrating their platform with third-party services.",
+            "Our team at DevStitch designed and developed a scalable, responsive web application with a seamless user experience. As a Frontend Developer, I focused on building pixel-perfect interfaces, implementing real-time data handling, and ensuring cross-browser compatibility. The final solution helped the client streamline operations, improve team productivity, and enhance user engagement significantly."
         ],
         challenges: [
-            "The main challenge was creating a seamless drag-and-drop experience that worked consistently across different devices and browsers. We also needed to implement real-time synchronization without performance issues.",
-            "Another challenge was designing an intuitive interface that could handle complex project hierarchies while remaining simple enough for daily use."
-        ],
+            "As a Frontend Developer at DevStitch, I faced several challenges that helped me grow technically and professionally. One of the primary challenges was implementing pixel-perfect, responsive designs across various screen sizes while ensuring performance optimization. Integrating frontend components seamlessly with backend APIs for real-time data handling and dynamic content rendering also required careful planning. Additionally, managing state efficiently in complex web applications with features like real-time collaboration and drag-and-drop interfaces was a demanding task.",
+            "I also had to focus on optimizing page load speed, maintaining cross-browser compatibility, and balancing rapid feature delivery with clean, maintainable, and reusable code practices to ensure scalability and long-term project success."
+          ],
+          
         results: [
-            "TaskFlow successfully reduced project completion time by 40% and improved team collaboration efficiency by 60%. The real-time features eliminated communication delays and the intuitive interface reduced training time for new users.",
-            "The application now serves over 500 active users daily and has become the primary project management tool for the organization."
+         "As a result of overcoming these challenges, I successfully delivered responsive and high-performance web applications that met both design and functional requirements. The seamless integration with backend APIs enhanced real-time collaboration features, while optimization efforts significantly improved page load speed and user experience.",
+  
+  "My focus on clean, maintainable, and reusable code practices ensured long-term scalability for the projects, making future updates and feature enhancements smoother. The final solutions not only met client expectations but also contributed to positive feedback and strengthened DevStitch’s reputation for delivering quality web solutions on time."
         ],
         resultScreenshots: [
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
+                <img src="Assets/Project1b.png" />
                      alt="Dashboard Analytics" 
                      class="w-full h-full object-cover">
                 <div class="bg-white rounded-lg p-4 opacity-95">
@@ -76,7 +81,7 @@ const projectData = {
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
+               <img src="Assets/Project1c.png" />
                      alt="Analytics Charts" 
                      class="w-full h-full object-cover">
                 <div class="bg-white rounded-lg p-4 opacity-95">
@@ -97,16 +102,7 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&crop=center" 
                      alt="Team Collaboration" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Team</h3>
-                    </div>
-                    <div class="flex space-x-2">
-                        <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
-                        <div class="w-8 h-8 bg-green-500 rounded-full"></div>
-                        <div class="w-8 h-8 bg-purple-500 rounded-full"></div>
-                    </div>
-                </div>
+             
             </div>`
         ]
     },
@@ -115,9 +111,11 @@ const projectData = {
         description: "E-commerce platform promoting eco-friendly products with payment integration.",
         link: "https://ecocart-demo.com",
         client: "Jane Doe",
+        clientType: "individual",
         year: "2021",
         role: "Lead Designer",
         image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -275,10 +273,12 @@ const projectData = {
         title: "EventPlanner",
         description: "Event planning web application, enabling users to organise and manage events effortlessly.",
         link: "https://eventplanner-demo.com",
-        client: "Event Solutions Inc",
+        client: "Sarah Johnson",
+        clientType: "individual",
         year: "2022",
         role: "UI/UX Designer",
         image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -399,10 +399,12 @@ const projectData = {
         title: "FoodieFinder",
         description: "Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.",
         link: "https://foodiefinder-demo.com",
-        client: "Food Network Co",
+        client: "Michael Chen",
+        clientType: "individual",
         year: "2023",
         role: "Frontend Developer",
         image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -504,9 +506,11 @@ const projectData = {
         description: "Comprehensive health and fitness tracking app with AI-powered insights and personalized recommendations.",
         link: "https://healthtracker-demo.com",
         client: "Wellness Solutions Ltd",
+        clientType: "organization",
         year: "2024",
         role: "Full Stack Developer",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -635,9 +639,11 @@ const projectData = {
         description: "Real-time cryptocurrency portfolio tracker with advanced analytics and market insights.",
         link: "https://cryptotracker-demo.com",
         client: "Digital Finance Corp",
+        clientType: "organization",
         year: "2024",
         role: "Frontend Developer",
         image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -754,9 +760,11 @@ const projectData = {
         description: "Professional networking platform connecting industry experts and fostering meaningful business relationships.",
         link: "https://socialconnect-demo.com",
         client: "Networking Solutions Inc",
+        clientType: "organization",
         year: "2023",
         role: "UI/UX Designer",
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -872,9 +880,11 @@ const projectData = {
         description: "IoT-powered smart city management platform optimizing urban infrastructure and citizen services.",
         link: "https://smartcity-demo.com",
         client: "Urban Innovation Labs",
+        clientType: "organization",
         year: "2024",
         role: "Full Stack Developer",
         image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center",
+        logo: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=64&h=64&fit=crop&crop=center",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">

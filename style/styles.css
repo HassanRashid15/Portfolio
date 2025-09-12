@@ -490,3 +490,17 @@ html {
 #mobile-menu-button:hover #close-icon {
   transform: scale(1.1);
 }
+#results-content{
+  margin-top: 26px;
+}
+#modal-client{
+  margin-left: 53px;
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -26,14 +26,34 @@ function loadProjectData() {
     // Update page title
     document.title = `${project.title} - Portfolio`;
     
-    // Update project title
-    document.getElementById('project-title').textContent = project.title;
+    // Update project title with logo
+    const titleElement = document.getElementById('project-title');
+    if (project.logo) {
+        titleElement.innerHTML = `
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img src="${project.logo}" 
+                         alt="${project.client} logo" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
+                </div>
+                <span>${project.title}</span>
+            </div>
+        `;
+    } else {
+        titleElement.textContent = project.title;
+    }
     
     // Update project description
     document.getElementById('project-description').textContent = project.description;
     
     // Update project link
-    document.getElementById('project-link').href = project.link;
+    const projectLink = document.getElementById('project-link');
+    projectLink.href = project.link;
+    projectLink.target = '_blank';
+    projectLink.rel = 'noopener noreferrer';
+    projectLink.title = `Visit ${project.title} website`;
     
     // Update project screenshot with main image and overlay
     const screenshotContainer = document.getElementById('project-screenshot');
@@ -58,9 +78,58 @@ function loadProjectData() {
     document.getElementById('project-year').textContent = project.year;
     document.getElementById('project-role').textContent = project.role;
     
+    // Update client logo if available
+    const clientNameElement = document.getElementById('client-name');
+    if (project.logo && clientNameElement) {
+        // Add logo before client name
+        const logoElement = document.createElement('div');
+        logoElement.className = 'w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden mb-2';
+        logoElement.innerHTML = `
+            <img src="${project.logo}" 
+                 alt="${project.client} logo" 
+                 class="w-full h-full object-cover"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
+        `;
+        clientNameElement.parentNode.insertBefore(logoElement, clientNameElement);
+    }
+    
+    // Update client label based on client type
+    const clientLabel = document.getElementById('client-label');
+    if (clientLabel) {
+        clientLabel.textContent = project.clientType === 'individual' ? 'Client' : 'Organization';
+    }
+    
     // Update about content
     const aboutContent = document.getElementById('about-content');
     aboutContent.innerHTML = project.about.map(paragraph => `<p>${paragraph}</p>`).join('');
+    
+    // Update client content heading based on client type
+    const clientSection = document.querySelector('#client-content').parentElement;
+    const clientHeading = clientSection.querySelector('h2');
+    if (clientHeading) {
+        clientHeading.textContent = project.clientType === 'individual' ? 'Our Client' : 'Our Organization';
+    }
+    
+    // Add Visit Website button after description for all projects
+    const descriptionElement = document.getElementById('project-description');
+    const existingButton = descriptionElement.parentNode.querySelector('.visit-website-btn');
+    if (!existingButton) {
+        const visitButton = document.createElement('div');
+        visitButton.className = 'visit-website-btn mt-6';
+        visitButton.innerHTML = `
+            <a href="${project.link}" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Visit Website
+            </a>
+        `;
+        descriptionElement.parentNode.insertBefore(visitButton, descriptionElement.nextSibling);
+    }
     
     // Update client content
     const clientContent = document.getElementById('client-content');
@@ -148,18 +217,26 @@ function loadMoreProjects(currentProjectId) {
                 
                 <div class="p-6">
                     <div class="mb-3">
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
-                            ${project.title}
-                        </h3>
+                        <div class="flex items-center space-x-3">
+                            ${project.logo ? `
+                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+                                    <img src="${project.logo}" 
+                                         alt="${project.client} logo" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
+                                </div>
+                            ` : ''}
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                                ${project.title}
+                            </h3>
+                        </div>
                     </div>
                     
                     <p class="text-gray-600 mb-4 line-clamp-2">${project.description}</p>
                     
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                <span class="text-xs font-medium text-gray-600">${typeof project.client === 'string' ? project.client.charAt(0) : 'C'}</span>
-                            </div>
                             <span class="text-sm text-gray-600">${typeof project.client === 'string' ? project.client : 'Client'}</span>
                         </div>
                         <span class="text-sm text-purple-600 font-medium">${project.role}</span>
@@ -209,13 +286,80 @@ function showProjectModal(projectId) {
     const modal = document.getElementById('project-modal');
     if (!modal) return;
     
-    // Update modal content
-    document.getElementById('modal-title').textContent = project.title;
+    // Update modal content with logo
+    const modalTitle = document.getElementById('modal-title');
+    if (project.logo) {
+        modalTitle.innerHTML = `
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img src="${project.logo}" 
+                         alt="${project.client} logo" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
+                </div>
+                <span>${project.title}</span>
+            </div>
+        `;
+    } else {
+        modalTitle.textContent = project.title;
+    }
     document.getElementById('modal-client').textContent = project.client;
     document.getElementById('modal-year').textContent = project.year;
     document.getElementById('modal-role').textContent = project.role;
     document.getElementById('modal-client-name').textContent = project.client;
+    
+    // Add Visit Website link above description
+    const descriptionElement = document.getElementById('modal-description');
+    const existingLink = descriptionElement.parentNode.querySelector('.visit-website-link');
+    if (existingLink) {
+        existingLink.remove();
+    }
+    
+    const visitLink = document.createElement('div');
+    visitLink.className = 'visit-website-link mb-4';
+    visitLink.innerHTML = `
+        <a href="${project.link}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Visit Website
+        </a>
+    `;
+    descriptionElement.parentNode.insertBefore(visitLink, descriptionElement);
+    
     document.getElementById('modal-description').textContent = project.description;
+    
+    // Update modal client logo if available
+    const modalClientNameElement = document.getElementById('modal-client-name');
+    if (project.logo && modalClientNameElement) {
+        // Remove existing logo if any
+        const existingLogo = modalClientNameElement.parentNode.querySelector('.client-logo');
+        if (existingLogo) {
+            existingLogo.remove();
+        }
+        
+        // Add logo above client name
+        // const logoElement = document.createElement('div');
+        // logoElement.className = 'client-logo w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden mb-3 mx-auto';
+        // logoElement.innerHTML = `
+        //     <img src="${project.logo}" 
+        //          alt="${project.client} logo" 
+        //          class="w-full h-full object-cover"
+        //          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        //     <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
+        // `;
+        // modalClientNameElement.parentNode.insertBefore(logoElement, modalClientNameElement);
+    }
+    
+    // Update modal client label based on client type
+    const modalClientLabel = document.getElementById('modal-client-label');
+    if (modalClientLabel) {
+        modalClientLabel.textContent = project.clientType === 'individual' ? 'Client' : 'Organization';
+    }
     
     // Set the detail link
     const detailLink = document.getElementById('modal-detail-link');
@@ -227,6 +371,7 @@ function showProjectModal(projectId) {
         e.preventDefault();
         window.location.href = detailUrl;
     };
+    
     
     // Update screenshot with main image and overlay
     const screenshotContainer = document.getElementById('modal-screenshot');
