@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Detail - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styles.css">
 </head>
@@ -33,7 +35,7 @@
                     
                     <!-- Right Side - Project Screenshot -->
                     <div class="relative">
-                        <div id="project-screenshot" class="bg-gray-100 rounded-2xl h-96 relative overflow-hidden">
+                        <div id="project-screenshot" class="bg-gray-100 rounded-2xl relative overflow-hidden">
                             <!-- Screenshot will be loaded dynamically -->
                         </div>
                         <!-- Purple accent curves -->
@@ -162,10 +164,38 @@
         <!-- More Projects Section -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">More Projects</h2>
-                    <p class="text-lg text-gray-600">Discover other amazing projects from my portfolio</p>
+                <div class="mb-12">
+                    <!-- Mobile Layout (below lg) -->
+                    <div class="lg:hidden text-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">More Projects</h2>
+                        <p class="text-lg text-gray-600 mb-6">Discover other amazing projects from my portfolio</p>
+                        <a href="projects.html" class="group inline-flex items-center space-x-2 text-purple-600 hover:text-purple-700 transition-colors duration-200">
+                            <span class="font-semibold">See All</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Layout (lg and above) -->
+                    <div class="hidden lg:flex items-center justify-between">
+                        <div class="text-center flex-1">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">More Projects</h2>
+                            <p class="text-lg text-gray-600">Discover other amazing projects from my portfolio</p>
+                        </div>
+                        
+                        <!-- See All Link with Arrow -->
+                        <div class="flex items-center">
+                            <a href="projects.html" class="group flex items-center space-x-2 text-purple-600 hover:text-purple-700 transition-colors duration-200">
+                                <span class="font-semibold">See All</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                
                 <div id="more-projects" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- More projects will be loaded dynamically -->
                 </div>

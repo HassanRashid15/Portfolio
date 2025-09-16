@@ -1,3 +1,57 @@
+// Experience Data
+const experienceData = {
+    apple: {
+        title: "Senior iOS Developer",
+        company: "Apple",
+        period: "June 2020 - Present",
+        responsibilities: [
+            "Led development of core iOS applications used by millions of users worldwide.",
+            "Collaborated with cross-functional teams to deliver high-quality software solutions.",
+            "Mentored junior developers and established best practices for iOS development."
+        ]
+    },
+    microsoft: {
+        title: "Frontend Developer",
+        company: "Microsoft",
+        period: "January - April 2018",
+        responsibilities: [
+            "Developed responsive web applications using modern JavaScript frameworks.",
+            "Collaborated with design teams to implement cutting-edge user interfaces.",
+            "Optimized application performance and user experience across multiple browsers."
+        ]
+    },
+    spotify: {
+        title: "UI/UX Designer",
+        company: "Spotify",
+        period: "May - August 2017",
+        responsibilities: [
+            "Designed user interfaces for music streaming applications and web platforms.",
+            "Conducted user research and usability testing to improve product design.",
+            "Created interactive prototypes and design systems for consistent user experience."
+        ]
+    },
+    stripe: {
+        title: "Product Designer",
+        company: "Stripe",
+        period: "September 2016 - January 2017",
+        responsibilities: [
+            "Designed payment processing interfaces and financial dashboard components.",
+            "Worked closely with engineering teams to implement design specifications.",
+            "Conducted A/B tests to optimize conversion rates and user engagement."
+        ]
+    },
+    webflow: {
+        title: "Product Designer",
+        company: "Webflow",
+        period: "September 2017 - July 2018",
+        responsibilities: [
+            "Designed intuitive user interfaces for the visual web development platform.",
+            "Created comprehensive design systems and component libraries.",
+            "Collaborated with product managers to define user requirements and feature specifications."
+        ]
+    }
+};
+
 // Navbar Component
 class NavbarComponent {
     constructor() {
@@ -51,24 +105,26 @@ class NavbarComponent {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
                             </a>
-                            <button id="mobile-menu-button" class="text-gray-700 hover:text-gray-900 focus:outline-none">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
+                            <div id="mobile-menu-button" class="container">
+                                <div class="bars"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Mobile Navigation -->
-                <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-lg">
-                    <div class="px-2 pt-2 pb-3 space-y-1">
-                        <a href="${this.pages.home}" class="block px-3 py-2 ${this.getLinkClass('home')}">Home</a>
-                        <a href="${this.pages.projects}" class="block px-3 py-2 ${this.getLinkClass('projects')}">Projects</a>
-                        <a href="${this.pages.about}" class="block px-3 py-2 ${this.getLinkClass('about')}">About</a>
+                <!-- Animated Mobile Navigation -->
+                <nav id="mobile-nav">
+                    <h2>LucaDCZ.</h2>
+                    <div class="close">
+                        <div></div>
                     </div>
-                </div>
+                    <ul>
+                        <li style= "color: #fff" ><a href="${this.pages.home}">Home</a></li>
+                        <li style= "color: #fff" ><a href="${this.pages.about}">About</a></li>
+                        <li style= "color: #fff" ><a href="${this.pages.projects}">Projects</a></li>
+                        <li style= "color: #fff" ><a href="${this.pages.contact}">Contact</a></li>
+                    </ul>
+                </nav>
             </nav>
         `;
         return navbarHTML;
@@ -98,6 +154,12 @@ function initMobileMenu() {
         menuIcon: !!menuIcon,
         closeIcon: !!closeIcon
     });
+
+    // Skip if using the new animated mobile menu (which uses #mobile-nav)
+    if (document.getElementById('mobile-nav')) {
+        console.log('Using animated mobile menu, skipping old mobile menu');
+        return;
+    }
 
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function(e) {
@@ -210,6 +272,69 @@ function initNavbarScrollEffect() {
             navbar.classList.add('bg-white/95', 'backdrop-blur-sm');
         } else {
             navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
+        }
+    });
+}
+
+// Function to generate experience details HTML
+function generateExperienceDetails(companyKey) {
+    const experience = experienceData[companyKey];
+    if (!experience) return '';
+    
+    const responsibilitiesHTML = experience.responsibilities.map(responsibility => 
+        `<li class="flex items-start">
+            <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-gray-700">${responsibility}</span>
+        </li>`
+    ).join('');
+    
+    return `
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-purple-600">@ ${experience.company}</span></h3>
+        <p class="text-gray-500 mb-6">${experience.period}</p>
+        <ul class="space-y-3">
+            ${responsibilitiesHTML}
+        </ul>
+    `;
+}
+
+// Function to generate mobile experience details HTML
+function generateMobileExperienceDetails(companyKey) {
+    const experience = experienceData[companyKey];
+    if (!experience) return '';
+    
+    const responsibilitiesHTML = experience.responsibilities.map(responsibility => 
+        `<li class="flex items-start">
+            <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-sm text-gray-700">${responsibility}</span>
+        </li>`
+    ).join('');
+    
+    return `
+        <h3 class="text-xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-purple-600">@ ${experience.company}</span></h3>
+        <p class="text-gray-500 mb-4">${experience.period}</p>
+        <ul class="space-y-2">
+            ${responsibilitiesHTML}
+        </ul>
+    `;
+}
+
+// Function to load experience data dynamically
+function loadExperienceData() {
+    // Load desktop experience details
+    Object.keys(experienceData).forEach(companyKey => {
+        const desktopContainer = document.getElementById(`${companyKey}-details`);
+        const mobileContainer = document.getElementById(`${companyKey}-details-mobile`);
+        
+        if (desktopContainer) {
+            desktopContainer.innerHTML = generateExperienceDetails(companyKey);
+        }
+        
+        if (mobileContainer) {
+            mobileContainer.innerHTML = generateMobileExperienceDetails(companyKey);
         }
     });
 }
@@ -425,7 +550,25 @@ document.addEventListener('DOMContentLoaded', function() {
         initMobileMenu();
         initSmoothScrolling();
         initNavbarScrollEffect();
+        // Initialize animated mobile menu for all pages
+        initAnimatedMobileMenu();
     }, 100);
+    
+    // Also initialize mobile menu when page becomes visible (for navigation)
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            setTimeout(() => {
+                initAnimatedMobileMenu();
+            }, 100);
+        }
+    });
+    
+    // Backup initialization on window load
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            initAnimatedMobileMenu();
+        }, 200);
+    });
     
     // Initialize footer
     const footer = new FooterComponent(currentPage);
@@ -875,6 +1018,98 @@ function initWhatsAppButton() {
     });
 }
 
+// GSAP Animated Mobile Menu - Exact CodePen Implementation
+function initAnimatedMobileMenu(retryCount = 0) {
+    const maxRetries = 5;
+    
+    // Wait a bit more to ensure navbar is fully rendered
+    setTimeout(() => {
+        // Try multiple selectors for the open button
+        let open = document.querySelector('.container');
+        if (!open) {
+            open = document.getElementById('mobile-menu-button');
+        }
+        
+        const close = document.querySelector('.close');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        console.log('Mobile menu elements found:', { 
+            open: !!open, 
+            close: !!close, 
+            mobileNav: !!mobileNav,
+            openElement: open,
+            closeElement: close,
+            mobileNavElement: mobileNav,
+            navbarMounted: !!document.querySelector('nav')
+        });
+        
+        if (!open || !close || !mobileNav) {
+            if (retryCount < maxRetries) {
+                console.log(`Mobile menu elements not found, retrying... (${retryCount + 1}/${maxRetries})`);
+                // Check if navbar container exists
+                const navbarContainer = document.getElementById('navbar-container');
+                if (!navbarContainer) {
+                    console.log('Navbar container not found, navbar may not be mounted yet');
+                }
+                // Retry after a longer delay
+                setTimeout(() => {
+                    initAnimatedMobileMenu(retryCount + 1);
+                }, 500);
+                return;
+            } else {
+                console.error('Mobile menu initialization failed after maximum retries');
+                return;
+            }
+        }
+        
+        // Check if GSAP is available
+        if (typeof gsap === 'undefined') {
+            if (retryCount < maxRetries) {
+                console.log('GSAP not loaded, retrying...');
+                // Retry after GSAP loads
+                setTimeout(() => {
+                    initAnimatedMobileMenu(retryCount + 1);
+                }, 500);
+                return;
+            } else {
+                console.error('GSAP not loaded after maximum retries');
+                return;
+            }
+        }
+        
+        // Set initial states
+        gsap.set('#mobile-nav ul li a', { opacity: 0, pointerEvents: 'none' });
+        gsap.set('#mobile-nav .close', { opacity: 0, pointerEvents: 'none' });
+        gsap.set('#mobile-nav h2', { opacity: 0 });
+        
+        var tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
+        
+        open.addEventListener('click', () => {
+            console.log('Mobile menu open clicked');
+            if (tl.reversed()) {
+                tl.play();
+            } else {
+                tl.to('#mobile-nav', { right: 0 })
+                    .to('#mobile-nav', { height: '100vh' }, '-=.1')
+                    .to('#mobile-nav h2', { opacity: 1, pointerEvents: 'all' }, '-=.8')
+                    .to('#mobile-nav .close', { opacity: 1, pointerEvents: 'all' }, "-=.8")
+                    .to('#mobile-nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.6');
+            }
+        });
+
+        close.addEventListener('click', () => {
+            console.log('Mobile menu close clicked');
+            tl.reverse();
+        });
+        
+        console.log('Mobile menu initialized successfully with elements:', {
+            open: open.id || open.className,
+            close: close.className,
+            mobileNav: mobileNav.id
+        });
+    }, 200);
+}
+
 // Mobile Tab Functionality
 function initMobileTabs() {
     const tabButtons = document.querySelectorAll('.tab-button-mobile');
@@ -908,7 +1143,7 @@ function initMobileTabs() {
 function loadHomeProjects() {
     // Check if projectData is available
     if (typeof projectData === 'undefined') {
-        setTimeout(loadHomeProjects, 200);
+        setTimeout(loadHomeProjects, 100);
         return;
     }
 
@@ -924,30 +1159,36 @@ function loadHomeProjects() {
     
     // Create the layout: 30% - 70% on first row, 70% - 30% on second row
     const layout = [
-        { size: 'lg:col-span-3', project: selectedProjects[0] },
-        { size: 'lg:col-span-7', project: selectedProjects[1] },
-        { size: 'lg:col-span-7', project: selectedProjects[2] },
-        { size: 'lg:col-span-3', project: selectedProjects[3] }
+        { size: 'lg:w-3/10', project: selectedProjects[0] },
+        { size: 'lg:w-7/10', project: selectedProjects[1] },
+        { size: 'lg:w-7/10', project: selectedProjects[2] },
+        { size: 'lg:w-3/10', project: selectedProjects[3] }
     ];
 
     let projectsHTML = '';
     
     // First Row: 30% Left, 70% Right
-    projectsHTML += '<div class="grid grid-cols-1 lg:grid-cols-10 gap-8 mb-8">';
+    projectsHTML += '<div class="flex flex-col lg:flex-row gap-8 mb-8 min-h-[400px]">';
     projectsHTML += createProjectCard(layout[0].size, layout[0].project);
     projectsHTML += createProjectCard(layout[1].size, layout[1].project);
     projectsHTML += '</div>';
     
     // Second Row: 70% Left, 30% Right
-    projectsHTML += '<div class="grid grid-cols-1 lg:grid-cols-10 gap-8">';
+    projectsHTML += '<div class="flex flex-col lg:flex-row gap-8 min-h-[400px]">';
     projectsHTML += createProjectCard(layout[2].size, layout[2].project);
     projectsHTML += createProjectCard(layout[3].size, layout[3].project);
     projectsHTML += '</div>';
 
     container.innerHTML = projectsHTML;
     
+    // Force layout recalculation
+    container.offsetHeight;
+    
     // Add click event listeners to the new project cards
     addProjectClickHandlers();
+    
+    // Trigger a resize event to ensure proper layout
+    window.dispatchEvent(new Event('resize'));
 }
 
 // Function to create individual project card HTML
@@ -959,9 +1200,9 @@ function createProjectCard(size, projectId) {
     const techTags = generateTechTags(project);
     
     return `
-        <div class="${size}">
-            <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-project="${projectId}">
-                <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg mb-4 overflow-hidden relative group">
+        <div class="${size} h-full">
+            <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer h-full flex flex-col" data-project="${projectId}">
+                <div class=" bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg mb-4 overflow-hidden relative group flex-shrink-0">
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
@@ -970,7 +1211,7 @@ function createProjectCard(size, projectId) {
                         <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                     ` : ''}
                 </div>
-                <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center justify-between mb-2 flex-shrink-0">
                     <div class="flex items-center space-x-3">
                         ${project.logo ? `
                             <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -989,8 +1230,8 @@ function createProjectCard(size, projectId) {
                         </svg>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-4 line-clamp-2">${project.description}</p>
-                <div class="flex space-x-2">
+                <p class="text-gray-600 mb-4 line-clamp-2 flex-grow">${project.description}</p>
+                <div class="flex space-x-2 flex-shrink-0">
                     ${techTags.map(tag => `<span class="px-3 py-1 ${tag.bg} ${tag.text} text-sm rounded-full">${tag.name}</span>`).join('')}
                 </div>
             </div>
@@ -1070,17 +1311,31 @@ function loadProjectImages() {
 
 // Initialize mobile tabs when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Load experience data for both desktop and mobile views
+    loadExperienceData();
+    
     initMobileTabs();
     
     // Load home projects if we're on the home page
     if (document.body.getAttribute('data-page') === 'home') {
+        // Load immediately and also with a small delay as backup
+        loadHomeProjects();
         setTimeout(() => {
             loadHomeProjects();
-        }, 100);
+        }, 50);
     } else {
         // Load project images for other pages (legacy)
         setTimeout(() => {
             loadProjectImages();
+        }, 100);
+    }
+});
+
+// Also load projects when the page becomes visible (for navigation from other pages)
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && document.body.getAttribute('data-page') === 'home') {
+        setTimeout(() => {
+            loadHomeProjects();
         }, 100);
     }
 });

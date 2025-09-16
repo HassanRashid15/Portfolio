@@ -15,24 +15,10 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-gray-900">TASKFLOW</h3>
-                    <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+
                 </div>
                 <div class="space-y-3">
-                    <div class="flex items-center space-x-3 p-2 bg-blue-50 rounded-lg">
-                        <div class="w-4 h-4 border border-blue-500 rounded"></div>
-                        <span class="text-sm">Complete project proposal</span>
-                        <span class="ml-auto text-xs text-blue-600">High</span>
-                    </div>
-                    <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg">
-                        <div class="w-4 h-4 bg-green-500 rounded"></div>
-                        <span class="text-sm text-gray-500 line-through">Review team feedback</span>
-                        <span class="ml-auto text-xs text-green-600">Done</span>
-                    </div>
-                    <div class="flex items-center space-x-3 p-2 bg-purple-50 rounded-lg">
-                        <div class="w-4 h-4 border border-purple-500 rounded"></div>
-                        <span class="text-sm">Schedule client meeting</span>
-                        <span class="ml-auto text-xs text-purple-600">Medium</span>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -49,60 +35,27 @@ const projectData = {
             "As a Frontend Developer at DevStitch, I faced several challenges that helped me grow technically and professionally. One of the primary challenges was implementing pixel-perfect, responsive designs across various screen sizes while ensuring performance optimization. Integrating frontend components seamlessly with backend APIs for real-time data handling and dynamic content rendering also required careful planning. Additionally, managing state efficiently in complex web applications with features like real-time collaboration and drag-and-drop interfaces was a demanding task.",
             "I also had to focus on optimizing page load speed, maintaining cross-browser compatibility, and balancing rapid feature delivery with clean, maintainable, and reusable code practices to ensure scalability and long-term project success."
           ],
-          
+
         results: [
          "As a result of overcoming these challenges, I successfully delivered responsive and high-performance web applications that met both design and functional requirements. The seamless integration with backend APIs enhanced real-time collaboration features, while optimization efforts significantly improved page load speed and user experience.",
-  
+
   "My focus on clean, maintainable, and reusable code practices ensured long-term scalability for the projects, making future updates and feature enhancements smoother. The final solutions not only met client expectations but also contributed to positive feedback and strengthened DevStitch’s reputation for delivering quality web solutions on time."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="Assets/Project1b.png" />
+            `<div class="rounded-xl relative overflow-hidden">
+                <img src="Assets/Project1b.png" 
                      alt="Dashboard Analytics" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Dashboard</h3>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="bg-blue-50 p-2 rounded">
-                            <p class="text-xs text-blue-600">Ongoing</p>
-                            <p class="text-lg font-bold text-blue-800">12</p>
-                        </div>
-                        <div class="bg-green-50 p-2 rounded">
-                            <p class="text-xs text-green-600">Completed</p>
-                            <p class="text-lg font-bold text-green-800">28</p>
-                        </div>
-                        <div class="bg-purple-50 p-2 rounded">
-                            <p class="text-xs text-purple-600">Summary</p>
-                            <p class="text-lg font-bold text-purple-800">40</p>
-                        </div>
-                    </div>
-                </div>
             </div>`,
-            `<div class="rounded-xl h-48 relative overflow-hidden">
-               <img src="Assets/Project1c.png" />
+            `<div class="rounded-xl relative overflow-hidden">
+                <img src="Assets/Project1c.png" 
                      alt="Analytics Charts" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Analytics</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-purple-500 rounded-full w-3/4"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-blue-500 rounded-full w-1/2"></div>
-                        </div>
-                    </div>
-                </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&crop=center" 
                      alt="Team Collaboration" 
                      class="w-full h-full object-cover">
-             
             </div>`
         ]
     },
@@ -120,24 +73,10 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">ECO SHOP</h3>
-                    <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+
                 </div>
                 <div class="flex space-x-4">
-                    <div class="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center">
-                        <div class="w-16 h-16 bg-gray-300 rounded-lg"></div>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-sm font-bold text-gray-900 mb-1">Airpods-Max</h4>
-                        <p class="text-lg font-bold text-gray-900 mb-1">$548.00</p>
-                        <p class="text-xs text-gray-500 mb-2">or $99.99/month</p>
-                        <div class="flex space-x-1 mb-2">
-                            <div class="w-4 h-4 bg-purple-400 rounded-full"></div>
-                            <div class="w-4 h-4 bg-green-400 rounded-full"></div>
-                            <div class="w-4 h-4 bg-pink-400 rounded-full"></div>
-                            <div class="w-4 h-4 bg-blue-400 rounded-full"></div>
-                        </div>
-                        <button class="w-full bg-purple-600 text-white text-xs py-1 rounded">Add to Cart</button>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -158,113 +97,31 @@ const projectData = {
             "The platform has helped reduce carbon footprint by 30% compared to traditional e-commerce through optimized shipping and packaging solutions."
         ],
         resultScreenshots: [
-            `<div class="rounded-2xl h-96 relative overflow-hidden">
+            `<div class="rounded-2xl h-full relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Shopping" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                 <div class="bg-white rounded-xl p-6 opacity-95">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold text-gray-900">ECO SHOP</h3>
-                        <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
-                    </div>
-                    <div class="flex space-x-6">
-                        <div class="w-32 h-32 bg-gray-200 rounded-xl flex items-center justify-center">
-                            <div class="w-24 h-24 bg-purple-200 rounded-lg"></div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Airpods-Max</h4>
-                            <p class="text-2xl font-bold text-gray-900 mb-2">$549.00</p>
-                            <p class="text-sm text-gray-500 mb-4">or $99.99/month</p>
-                            <div class="flex space-x-2 mb-4">
-                                <div class="w-6 h-6 bg-gray-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
-                                <div class="w-6 h-6 bg-black rounded-full"></div>
-                                <div class="w-6 h-6 bg-purple-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-green-400 rounded-full"></div>
-                            </div>
-                            <div class="flex space-x-2 mb-4">
-                                <button class="px-4 py-2 bg-gray-100 rounded-lg text-sm">-</button>
-                                <span class="px-4 py-2 text-sm">1</span>
-                                <button class="px-4 py-2 bg-gray-100 rounded-lg text-sm">+</button>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-6 py-2 bg-purple-600 text-white text-sm rounded-lg">Buy Now</button>
-                                <button class="px-6 py-2 border border-gray-300 text-sm rounded-lg">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
-            `<div class="rounded-2xl h-96 relative overflow-hidden">
+            `<div class="rounded-2xl h-full relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&h=600&fit=crop&crop=center" 
                      alt="Online Shopping Cart" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                 <div class="bg-white rounded-xl p-6 opacity-95">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold text-gray-900">ECO SHOP</h3>
-                        <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
-                    </div>
-                    <div class="flex space-x-6">
-                        <div class="w-32 h-32 bg-gray-200 rounded-xl flex items-center justify-center">
-                            <div class="w-24 h-24 bg-purple-200 rounded-lg"></div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Airpods-Max</h4>
-                            <p class="text-2xl font-bold text-gray-900 mb-2">$549.00</p>
-                            <p class="text-sm text-gray-500 mb-4">or $99.99/month</p>
-                            <div class="flex space-x-2 mb-4">
-                                <div class="w-6 h-6 bg-gray-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
-                                <div class="w-6 h-6 bg-black rounded-full"></div>
-                                <div class="w-6 h-6 bg-purple-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-green-400 rounded-full"></div>
-                            </div>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>✓ Free Delivery</p>
-                                <p>✓ Return Delivery</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
-            `<div class="rounded-2xl h-96 relative overflow-hidden">
+            `<div class="rounded-2xl h-full relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Product Gallery" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                 <div class="bg-white rounded-xl p-6 opacity-95">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold text-gray-900">ECO SHOP</h3>
-                        <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
-                    </div>
-                    <div class="flex space-x-6">
-                        <div class="w-32 h-32 bg-gray-200 rounded-xl flex items-center justify-center">
-                            <div class="w-24 h-24 bg-purple-200 rounded-lg"></div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Airpods-Max</h4>
-                            <p class="text-2xl font-bold text-gray-900 mb-2">$549.00</p>
-                            <p class="text-sm text-gray-500 mb-4">or $99.99/month</p>
-                            <div class="flex space-x-2 mb-4">
-                                <div class="w-6 h-6 bg-gray-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
-                                <div class="w-6 h-6 bg-black rounded-full"></div>
-                                <div class="w-6 h-6 bg-purple-400 rounded-full"></div>
-                                <div class="w-6 h-6 bg-green-400 rounded-full"></div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-6 py-2 bg-purple-600 text-white text-sm rounded-lg">Buy Now</button>
-                                <button class="px-6 py-2 border border-gray-300 text-sm rounded-lg">Add to Cart</button>
-                            </div>
-                            <div class="mt-4 grid grid-cols-3 gap-2">
-                                <div class="w-12 h-12 bg-gray-200 rounded"></div>
-                                <div class="w-12 h-12 bg-gray-200 rounded"></div>
-                                <div class="w-12 h-12 bg-gray-200 rounded"></div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -283,7 +140,7 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">TIMELINE</h3>
-                    <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+
                 </div>
                 <div class="grid grid-cols-7 gap-1 mb-2">
                     <div class="text-center text-xs text-gray-500 py-1">Mon</div>
@@ -297,17 +154,13 @@ const projectData = {
                 <div class="grid grid-cols-7 gap-1">
                     <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
                         <span class="text-xs font-bold text-purple-800">1</span>
-                    </div>
-                    <div class="h-8 bg-gray-100 rounded"></div>
+
                     <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
                         <span class="text-xs font-bold text-purple-800">2</span>
-                    </div>
-                    <div class="h-8 bg-gray-100 rounded"></div>
+
                     <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
                         <span class="text-xs font-bold text-purple-800">3</span>
-                    </div>
-                    <div class="h-8 bg-gray-100 rounded"></div>
-                    <div class="h-8 bg-gray-100 rounded"></div>
+
                 </div>
             </div>
         `,
@@ -332,65 +185,21 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Planning Calendar" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Calendar</h3>
-                    </div>
-                    <div class="grid grid-cols-7 gap-1">
-                        <div class="h-6 bg-purple-100 rounded flex items-center justify-center">
-                            <span class="text-xs">1</span>
-                        </div>
-                        <div class="h-6 bg-gray-100 rounded"></div>
-                        <div class="h-6 bg-purple-100 rounded flex items-center justify-center">
-                            <span class="text-xs">2</span>
-                        </div>
-                        <div class="h-6 bg-gray-100 rounded"></div>
-                        <div class="h-6 bg-purple-100 rounded flex items-center justify-center">
-                            <span class="text-xs">3</span>
-                        </div>
-                        <div class="h-6 bg-gray-100 rounded"></div>
-                        <div class="h-6 bg-gray-100 rounded"></div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Guests Management" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Guests</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-2 p-2 bg-purple-50 rounded">
-                            <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
-                            <span class="text-xs">John Smith</span>
-                        </div>
-                        <div class="flex items-center space-x-2 p-2 bg-purple-50 rounded">
-                            <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
-                            <span class="text-xs">Jane Doe</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1519167758481-83f142bb8b5a?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Vendors Management" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Vendors</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="p-2 bg-gray-50 rounded">
-                            <p class="text-xs font-medium">Catering Co.</p>
-                            <p class="text-xs text-gray-500">Confirmed</p>
-                        </div>
-                        <div class="p-2 bg-gray-50 rounded">
-                            <p class="text-xs font-medium">Audio Visual</p>
-                            <p class="text-xs text-gray-500">Pending</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -409,30 +218,13 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">MAPS</h3>
-                    <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+
                 </div>
                 <div class="bg-gray-100 rounded-lg p-2 mb-3">
-                    <p class="text-xs text-gray-600">Where do you want to eat?</p>
+
                 </div>
                 <div class="flex space-x-3">
-                    <div class="flex-1 space-y-2">
-                        <div class="flex items-center space-x-2 p-2 bg-orange-50 rounded-lg">
-                            <div class="w-8 h-8 bg-gray-200 rounded"></div>
-                            <div>
-                                <p class="text-xs font-medium">The Spoon & Bowl</p>
-                                <p class="text-xs text-gray-500">★ 4.8 • 2.1 km</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2 p-2 bg-orange-50 rounded-lg">
-                            <div class="w-8 h-8 bg-gray-200 rounded"></div>
-                            <div>
-                                <p class="text-xs font-medium">Just Around Coffee</p>
-                                <p class="text-xs text-gray-500">★ 4.5 • 1.8 km</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-16 h-20 bg-gray-200 rounded-lg relative">
-                    </div>
+
                 </div>
             </div>
         `,
@@ -457,46 +249,21 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Search Interface" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Search</h3>
-                    </div>
-                    <div class="bg-gray-100 rounded p-2 mb-2">
-                        <p class="text-xs text-gray-600">Where do you want to eat?</p>
-                    </div>
-                    <div class="flex space-x-1">
-                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Nearest</span>
-                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Vegetarian</span>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Listing" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Restaurant</h3>
-                    </div>
-                    <div class="flex items-center space-x-2 p-2 bg-orange-50 rounded">
-                        <div class="w-8 h-8 bg-gray-200 rounded"></div>
-                        <div>
-                            <p class="text-xs font-medium">The Spoon & Bowl</p>
-                            <p class="text-xs text-gray-500">★ 4.8 • 2.1 km</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Map View" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Map</h3>
-                    </div>
-                    <div class="w-full h-20 bg-gray-200 rounded relative">
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -515,30 +282,16 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">HEALTH TRACKER</h3>
-                    <div class="w-6 h-6 bg-green-200 rounded-full"></div>
+
                 </div>
                 <div class="space-y-3">
-                    <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span class="text-sm">Steps Today</span>
-                        </div>
+
                         <span class="text-sm font-bold text-green-600">8,247</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-blue-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span class="text-sm">Water Intake</span>
-                        </div>
+
                         <span class="text-sm font-bold text-blue-600">6/8 glasses</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-purple-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
-                            <span class="text-sm">Sleep Quality</span>
-                        </div>
+
                         <span class="text-sm font-bold text-purple-600">85%</span>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -563,73 +316,21 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Dashboard" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Dashboard</h3>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="bg-green-50 p-2 rounded">
-                            <p class="text-xs text-green-600">Steps</p>
-                            <p class="text-lg font-bold text-green-800">8,247</p>
-                        </div>
-                        <div class="bg-blue-50 p-2 rounded">
-                            <p class="text-xs text-blue-600">Calories</p>
-                            <p class="text-lg font-bold text-blue-800">2,340</p>
-                        </div>
-                        <div class="bg-purple-50 p-2 rounded">
-                            <p class="text-xs text-purple-600">Heart Rate</p>
-                            <p class="text-lg font-bold text-purple-800">72 BPM</p>
-                        </div>
-                        <div class="bg-orange-50 p-2 rounded">
-                            <p class="text-xs text-orange-600">Sleep</p>
-                            <p class="text-lg font-bold text-orange-800">7.5h</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&crop=center" 
                      alt="Fitness Tracking" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Workout</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Running</span>
-                            <span class="text-xs font-bold text-green-600">30 min</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Cycling</span>
-                            <span class="text-xs font-bold text-blue-600">45 min</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Yoga</span>
-                            <span class="text-xs font-bold text-purple-600">20 min</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Analytics" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Analytics</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-green-500 rounded-full w-4/5"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-blue-500 rounded-full w-3/4"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-purple-500 rounded-full w-2/3"></div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -648,30 +349,16 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">CRYPTO TRACKER</h3>
-                    <div class="w-6 h-6 bg-yellow-200 rounded-full"></div>
+
                 </div>
                 <div class="space-y-3">
-                    <div class="flex items-center justify-between p-2 bg-yellow-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-yellow-500 rounded-full"></div>
-                            <span class="text-sm">Bitcoin</span>
-                        </div>
+
                         <span class="text-sm font-bold text-yellow-600">$45,230</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-blue-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span class="text-sm">Ethereum</span>
-                        </div>
+
                         <span class="text-sm font-bold text-blue-600">$3,120</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span class="text-sm">Portfolio</span>
-                        </div>
+
                         <span class="text-sm font-bold text-green-600">+12.5%</span>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -696,61 +383,25 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
                      alt="Crypto Dashboard" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Portfolio</h3>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="bg-yellow-50 p-2 rounded">
-                            <p class="text-xs text-yellow-600">BTC</p>
-                            <p class="text-lg font-bold text-yellow-800">$45,230</p>
-                        </div>
-                        <div class="bg-blue-50 p-2 rounded">
-                            <p class="text-xs text-blue-600">ETH</p>
-                            <p class="text-lg font-bold text-blue-800">$3,120</p>
-                        </div>
-                        <div class="bg-green-50 p-2 rounded">
-                            <p class="text-xs text-green-600">Total</p>
-                            <p class="text-lg font-bold text-green-800">$125K</p>
-                        </div>
+
                         <div class="bg-red-50 p-2 rounded">
                             <p class="text-xs text-red-600">24h</p>
                             <p class="text-lg font-bold text-red-800">+5.2%</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
                      alt="Market Analysis" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Market</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-yellow-500 rounded-full w-4/5"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-blue-500 rounded-full w-3/4"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-green-500 rounded-full w-2/3"></div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
                      alt="Trading Charts" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Charts</h3>
-                    </div>
-                    <div class="w-full h-20 bg-gray-200 rounded relative">
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -769,30 +420,10 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">SOCIAL CONNECT</h3>
-                    <div class="w-6 h-6 bg-blue-200 rounded-full"></div>
+
                 </div>
                 <div class="space-y-3">
-                    <div class="flex items-center space-x-2 p-2 bg-blue-50 rounded-lg">
-                        <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
-                        <div>
-                            <p class="text-xs font-medium">Sarah Johnson</p>
-                            <p class="text-xs text-gray-500">Product Manager</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2 p-2 bg-green-50 rounded-lg">
-                        <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
-                        <div>
-                            <p class="text-xs font-medium">Mike Chen</p>
-                            <p class="text-xs text-gray-500">Tech Lead</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2 p-2 bg-purple-50 rounded-lg">
-                        <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
-                        <div>
-                            <p class="text-xs font-medium">Emma Davis</p>
-                            <p class="text-xs text-gray-500">Designer</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -817,60 +448,21 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Network" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Network</h3>
-                    </div>
-                    <div class="flex space-x-2">
-                        <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
-                        <div class="w-8 h-8 bg-green-500 rounded-full"></div>
-                        <div class="w-8 h-8 bg-purple-500 rounded-full"></div>
-                        <div class="w-8 h-8 bg-yellow-500 rounded-full"></div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
                      alt="Connection Matching" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Matches</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Tech Industry</span>
-                            <span class="text-xs font-bold text-blue-600">85%</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Design</span>
-                            <span class="text-xs font-bold text-green-600">72%</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Marketing</span>
-                            <span class="text-xs font-bold text-purple-600">68%</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Events" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Events</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="p-2 bg-blue-50 rounded">
-                            <p class="text-xs font-medium">Tech Meetup</p>
-                            <p class="text-xs text-gray-500">Tomorrow 6PM</p>
-                        </div>
-                        <div class="p-2 bg-green-50 rounded">
-                            <p class="text-xs font-medium">Design Workshop</p>
-                            <p class="text-xs text-gray-500">Friday 2PM</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`
         ]
@@ -889,30 +481,16 @@ const projectData = {
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-bold text-gray-900">SMART CITY</h3>
-                    <div class="w-6 h-6 bg-green-200 rounded-full"></div>
+
                 </div>
                 <div class="space-y-3">
-                    <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span class="text-sm">Traffic Flow</span>
-                        </div>
+
                         <span class="text-sm font-bold text-green-600">Optimal</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-blue-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span class="text-sm">Air Quality</span>
-                        </div>
+
                         <span class="text-sm font-bold text-blue-600">Good</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2 bg-purple-50 rounded-lg">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
-                            <span class="text-sm">Energy Usage</span>
-                        </div>
+
                         <span class="text-sm font-bold text-purple-600">Efficient</span>
-                    </div>
+
                 </div>
             </div>
         `,
@@ -937,73 +515,21 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
                      alt="City Dashboard" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Dashboard</h3>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="bg-green-50 p-2 rounded">
-                            <p class="text-xs text-green-600">Traffic</p>
-                            <p class="text-lg font-bold text-green-800">Optimal</p>
-                        </div>
-                        <div class="bg-blue-50 p-2 rounded">
-                            <p class="text-xs text-blue-600">Air Quality</p>
-                            <p class="text-lg font-bold text-blue-800">Good</p>
-                        </div>
-                        <div class="bg-purple-50 p-2 rounded">
-                            <p class="text-xs text-purple-600">Energy</p>
-                            <p class="text-lg font-bold text-purple-800">Efficient</p>
-                        </div>
-                        <div class="bg-orange-50 p-2 rounded">
-                            <p class="text-xs text-orange-600">Services</p>
-                            <p class="text-lg font-bold text-orange-800">Active</p>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
                      alt="IoT Sensors" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Sensors</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Traffic Sensors</span>
-                            <span class="text-xs font-bold text-green-600">1,247</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Air Quality</span>
-                            <span class="text-xs font-bold text-blue-600">89</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs">Energy Meters</span>
-                            <span class="text-xs font-bold text-purple-600">456</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
                      alt="City Analytics" 
                      class="w-full h-full object-cover">
-                <div class="bg-white rounded-lg p-4 opacity-95">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-sm font-bold text-gray-900">Analytics</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-green-500 rounded-full w-4/5"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-blue-500 rounded-full w-3/4"></div>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-purple-500 rounded-full w-2/3"></div>
-                        </div>
-                    </div>
+
                 </div>
             </div>`
         ]
