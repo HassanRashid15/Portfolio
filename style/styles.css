@@ -374,9 +374,9 @@ html {
 }
 
 .tab-button-mobile.active {
-  color: #374151;
+  color: #8b5cf6;
   border-bottom: 2px solid #8b5cf6;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Mobile Tab Content Animation */
@@ -413,6 +413,11 @@ html {
 
 .experience-item:hover {
   transform: translateX(4px);
+}
+
+.experience-item.active span {
+  color: #8b5cf6 !important;
+  font-weight: 600;
 }
 
 /* Mobile menu styles */
@@ -683,4 +688,10 @@ html {
   width: 100%;
 }
 
+}
+#mobile-nav .navlogo-custom {
+  position: absolute;
+    z-index: 2222;
+    top: 7px;
+    left: 20px;
 }

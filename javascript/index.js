@@ -77,7 +77,9 @@ class NavbarComponent {
                     <div class="flex justify-between items-center h-16">
                         <!-- Logo -->
                         <div class="flex-shrink-0">
-                            <a href="${this.pages.home}" class="text-xl font-bold text-gray-900">LucaDCZ.</a>
+                            <a href="${this.pages.home}" class="flex items-center">
+                                <img src="Assets/Navlogo.png" alt="Logo" class="h-[60px] w-auto">
+                            </a>
                         </div>
                         
                         <!-- Desktop Menu - Centered -->
@@ -91,7 +93,7 @@ class NavbarComponent {
 
                         <!-- Right side - Chat icon (Desktop only) -->
                         <div class="hidden md:flex items-center">
-                            <a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'} transition-colors">
+                            <a href="${this.pages.contact}" class="${this.getLinkClass('contact')} transition-colors">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
@@ -100,7 +102,7 @@ class NavbarComponent {
 
                         <!-- Mobile menu button with chat icon -->
                         <div class="md:hidden flex items-center space-x-4">
-                            <a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'} transition-colors">
+                            <a href="${this.pages.contact}" class="${this.getLinkClass('contact')} transition-colors">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
@@ -114,15 +116,17 @@ class NavbarComponent {
                 
                 <!-- Animated Mobile Navigation -->
                 <nav id="mobile-nav">
-                    <h2>LucaDCZ.</h2>
+                      <a href="${this.pages.home}" class="flex items-center navlogo-custom">
+                                <img src="Assets/navwhite.png" alt="Logo" class="h-[70px] w-auto">
+                            </a>
                     <div class="close">
                         <div></div>
                     </div>
                     <ul>
-                        <li style= "color: #fff" ><a href="${this.pages.home}">Home</a></li>
-                        <li style= "color: #fff" ><a href="${this.pages.about}">About</a></li>
-                        <li style= "color: #fff" ><a href="${this.pages.projects}">Projects</a></li>
-                        <li style= "color: #fff" ><a href="${this.pages.contact}">Contact</a></li>
+                        <li><a href="${this.pages.home}" class="${this.currentPage === 'home' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Home</a></li>
+                        <li><a href="${this.pages.about}" class="${this.currentPage === 'about' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">About</a></li>
+                        <li><a href="${this.pages.projects}" class="${this.currentPage === 'projects' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Projects</a></li>
+                        <li><a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Contact</a></li>
                     </ul>
                 </nav>
             </nav>
@@ -1080,7 +1084,7 @@ function initAnimatedMobileMenu(retryCount = 0) {
         // Set initial states
         gsap.set('#mobile-nav ul li a', { opacity: 0, pointerEvents: 'none' });
         gsap.set('#mobile-nav .close', { opacity: 0, pointerEvents: 'none' });
-        gsap.set('#mobile-nav h2', { opacity: 0 });
+        gsap.set('#mobile-nav a img', { opacity: 0 });
         
         var tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
         
@@ -1091,7 +1095,7 @@ function initAnimatedMobileMenu(retryCount = 0) {
             } else {
                 tl.to('#mobile-nav', { right: 0 })
                     .to('#mobile-nav', { height: '100vh' }, '-=.1')
-                    .to('#mobile-nav h2', { opacity: 1, pointerEvents: 'all' }, '-=.8')
+                    .to('#mobile-nav a img', { opacity: 1, pointerEvents: 'all' }, '-=.8')
                     .to('#mobile-nav .close', { opacity: 1, pointerEvents: 'all' }, "-=.8")
                     .to('#mobile-nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.6');
             }
