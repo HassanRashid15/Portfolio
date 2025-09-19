@@ -694,6 +694,11 @@ html {
   width: 100%;
 }
 
+/* Contact page specific height adjustment */
+body[data-page="contact"] .main-content {
+  min-height: auto;
+}
+
 }
 #mobile-nav .navlogo-custom {
   position: absolute;
