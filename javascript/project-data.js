@@ -43,19 +43,40 @@ const projectData = {
         ],
         resultScreenshots: [
             `<div class="rounded-xl relative overflow-hidden">
-                <img src="Assets/Project1b.png" 
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
                      alt="Dashboard Analytics" 
                      class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Analytics</p>
+                    <p class="text-lg font-bold text-blue-800">+25%</p>
+                </div>
             </div>`,
             `<div class="rounded-xl relative overflow-hidden">
-                <img src="Assets/Project1c.png" 
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
                      alt="Analytics Charts" 
                      class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Performance</p>
+                    <p class="text-lg font-bold text-green-800">98%</p>
+                </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&crop=center" 
                      alt="Team Collaboration" 
                      class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Team</p>
+                    <p class="text-lg font-bold text-purple-800">50+</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center" 
+                     alt="Project Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Success</p>
+                    <p class="text-lg font-bold text-orange-800">4.9★</p>
+                </div>
             </div>`
         ]
     },
@@ -97,31 +118,40 @@ const projectData = {
             "The platform has helped reduce carbon footprint by 30% compared to traditional e-commerce through optimized shipping and packaging solutions."
         ],
         resultScreenshots: [
-            `<div class="rounded-2xl h-full relative overflow-hidden">
+            `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Shopping" 
                      class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div class="bg-white rounded-xl p-6 opacity-95">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Sales</p>
+                    <p class="text-lg font-bold text-green-800">+40%</p>
                 </div>
             </div>`,
-            `<div class="rounded-2xl h-full relative overflow-hidden">
+            `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&h=600&fit=crop&crop=center" 
                      alt="Online Shopping Cart" 
                      class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div class="bg-white rounded-xl p-6 opacity-95">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Cart</p>
+                    <p class="text-lg font-bold text-blue-800">$2.5K</p>
                 </div>
             </div>`,
-            `<div class="rounded-2xl h-full relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Product Gallery" 
                      class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div class="bg-white rounded-xl p-6 opacity-95">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Products</p>
+                    <p class="text-lg font-bold text-purple-800">500+</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop&crop=center" 
+                     alt="Eco Impact" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Impact</p>
+                    <p class="text-lg font-bold text-orange-800">-30%</p>
                 </div>
             </div>`
         ]
@@ -185,21 +215,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Planning Calendar" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Events</p>
+                    <p class="text-lg font-bold text-blue-800">100+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Guests Management" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Guests</p>
+                    <p class="text-lg font-bold text-green-800">500+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1519167758481-83f142bb8b5a?w=800&h=600&fit=crop&crop=center" 
                      alt="Event Vendors Management" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Vendors</p>
+                    <p class="text-lg font-bold text-purple-800">50+</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop&crop=center" 
+                     alt="Event Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Success</p>
+                    <p class="text-lg font-bold text-orange-800">70%</p>
                 </div>
             </div>`
         ]
@@ -249,21 +294,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Search Interface" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Search</p>
+                    <p class="text-lg font-bold text-blue-800">1M+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Listing" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Restaurants</p>
+                    <p class="text-lg font-bold text-green-800">10K+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Map View" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Rating</p>
+                    <p class="text-lg font-bold text-purple-800">4.7★</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop&crop=center" 
+                     alt="Restaurant Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Traffic</p>
+                    <p class="text-lg font-bold text-orange-800">+35%</p>
                 </div>
             </div>`
         ]
@@ -316,21 +376,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Dashboard" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Users</p>
+                    <p class="text-lg font-bold text-blue-800">50K+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&crop=center" 
                      alt="Fitness Tracking" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Fitness</p>
+                    <p class="text-lg font-bold text-green-800">+60%</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Analytics" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Data</p>
+                    <p class="text-lg font-bold text-purple-800">2M+</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&crop=center" 
+                     alt="Health Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Rating</p>
+                    <p class="text-lg font-bold text-orange-800">4.9★</p>
                 </div>
             </div>`
         ]
@@ -383,25 +458,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
                      alt="Crypto Dashboard" 
                      class="w-full h-full object-cover">
-
-                        <div class="bg-red-50 p-2 rounded">
-                            <p class="text-xs text-red-600">24h</p>
-                            <p class="text-lg font-bold text-red-800">+5.2%</p>
-
+                <div class="absolute top-4 right-4 bg-red-50 p-2 rounded">
+                    <p class="text-xs text-red-600">24h</p>
+                    <p class="text-lg font-bold text-red-800">+5.2%</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=600&fit=crop&crop=center" 
                      alt="Market Analysis" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Portfolio</p>
+                    <p class="text-lg font-bold text-green-800">$45,230</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center" 
                      alt="Trading Charts" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Trend</p>
+                    <p class="text-lg font-bold text-blue-800">↗ +12.5%</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1642790103337-344b4477a0b1?w=800&h=600&fit=crop&crop=center" 
+                     alt="Analytics" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">ROI</p>
+                    <p class="text-lg font-bold text-purple-800">+35%</p>
                 </div>
             </div>`
         ]
@@ -448,21 +534,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Network" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Network</p>
+                    <p class="text-lg font-bold text-blue-800">15K+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center" 
                      alt="Connection Matching" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Connections</p>
+                    <p class="text-lg font-bold text-green-800">5K+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Events" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Events</p>
+                    <p class="text-lg font-bold text-purple-800">200+</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center" 
+                     alt="Career Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Success</p>
+                    <p class="text-lg font-bold text-orange-800">+45%</p>
                 </div>
             </div>`
         ]
@@ -515,21 +616,36 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
                      alt="City Dashboard" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
+                    <p class="text-xs text-blue-600">Traffic</p>
+                    <p class="text-lg font-bold text-blue-800">-30%</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center" 
                      alt="IoT Sensors" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
+                    <p class="text-xs text-green-600">Air Quality</p>
+                    <p class="text-lg font-bold text-green-800">+25%</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
+                <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop&crop=center" 
                      alt="City Analytics" 
                      class="w-full h-full object-cover">
-
+                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
+                    <p class="text-xs text-purple-600">Energy</p>
+                    <p class="text-lg font-bold text-purple-800">-20%</p>
+                </div>
+            </div>`,
+            `<div class="rounded-xl h-48 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop&crop=center" 
+                     alt="City Success" 
+                     class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">
+                    <p class="text-xs text-orange-600">Satisfaction</p>
+                    <p class="text-lg font-bold text-orange-800">+40%</p>
                 </div>
             </div>`
         ]

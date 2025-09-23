@@ -67,7 +67,7 @@ class NavbarComponent {
     getLinkClass(page) {
         return this.currentPage === page 
             ? 'text-purple-600 font-bold' 
-            : 'text-gray-700 hover:text-gray-900 transition-colors font-bold';
+            : 'text-gray-700 link transition-colors font-bold';
     }
 
     render() {
@@ -460,10 +460,10 @@ class FooterComponent {
                             <div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in working together?</h3>
                                 <div class="flex flex-col sm:flex-row gap-4">
-                                    <a href="${this.pages.contact}" class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full border border-transparent hover:bg-transparent hover:text-purple-600 hover:border-purple-600 transition-colors text-center">
+                                    <a href="${this.pages.contact}" class="btn-mimas text-center">
                                         Get In Touch
                                     </a>
-                                    <a href="${this.pages.projects}" class="border border-gray-300 text-gray-700 hover:bg-purple-700 hover:text-white font-semibold py-3 px-8 rounded-full transition-colors text-center">
+                                    <a href="${this.pages.projects}" class="btn-mimas btn-mimas--white text-center">
                                         Browse Projects
                                     </a>
                                 </div>
@@ -539,7 +539,7 @@ class FooterComponent {
     getLinkClass(page) {
         return this.currentPage === page 
             ? 'text-purple-600 font-bold' 
-            : 'text-gray-700 hover:text-purple-600 transition-colors font-bold';
+            : 'text-gray-700 link transition-colors font-bold';
     }
 
     mount(containerId) {
@@ -617,6 +617,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initWhatsAppButton();
     }, 2000); // Show after 2 seconds
     
+    // Initialize grid layout functionality
+    setTimeout(() => {
+        initGridLayout();
+        addRippleAnimation();
+    }, 100);
     
     
 });
@@ -859,13 +864,11 @@ function showProjectModal(projectId) {
     const visitLink = document.createElement('div');
     visitLink.className = 'visit-website-link mb-4';
     visitLink.innerHTML = `
-        <a href="${project.link}" 
+           <a href="${project.link}" 
            target="_blank" 
            rel="noopener noreferrer"
-           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium my-5 mt-0 transition-colors link">
+        
             Visit Website
         </a>
     `;
@@ -1159,7 +1162,7 @@ function initMobileTabs() {
 // Note: In a real application, you would use ES6 modules or fetch the data
 // For now, we'll access the global projectData from projects.js
 
-// Function to load random projects for home page
+// Function to load random projects for home page with grid layout
 function loadHomeProjects() {
     // Check if projectData is available
     if (typeof projectData === 'undefined') {
@@ -1172,43 +1175,128 @@ function loadHomeProjects() {
 
     // Get all project IDs and shuffle them
     const projectIds = Object.keys(projectData);
+    console.log('Available project IDs:', projectIds);
     const shuffledProjects = projectIds.sort(() => Math.random() - 0.5);
+    console.log('Shuffled projects:', shuffledProjects);
     
-    // Take first 4 projects for home page
+    // Take first 4 projects for home page, ensure we have exactly 4
     const selectedProjects = shuffledProjects.slice(0, 4);
+    console.log('Selected projects for grid:', selectedProjects);
     
-    // Create the layout: 30% - 70% on first row, 70% - 30% on second row
-    const layout = [
-        { size: 'lg:w-3/10', project: selectedProjects[0] },
-        { size: 'lg:w-7/10', project: selectedProjects[1] },
-        { size: 'lg:w-7/10', project: selectedProjects[2] },
-        { size: 'lg:w-3/10', project: selectedProjects[3] }
+    // Ensure we have exactly 4 projects
+    if (selectedProjects.length < 4) {
+        console.warn('Not enough projects available, using available projects');
+        // Fill with available projects if we have less than 4
+        while (selectedProjects.length < 4 && selectedProjects.length < projectIds.length) {
+            const remainingProjects = projectIds.filter(id => !selectedProjects.includes(id));
+            if (remainingProjects.length > 0) {
+                selectedProjects.push(remainingProjects[0]);
+            } else {
+                break;
+            }
+        }
+    }
+    
+    // Create the new grid layout with your specified spans
+    const gridLayout = [
+        { 
+            project: selectedProjects[0], 
+            classes: 'col-span-2 row-span-3',
+            gradient: 'from-purple-500 to-blue-600'
+        },
+        { 
+            project: selectedProjects[1], 
+            classes: 'col-span-3 row-span-3 col-start-3',
+            gradient: 'from-green-500 to-teal-600'
+        },
+        { 
+            project: selectedProjects[2], 
+            classes: 'col-span-2 row-span-2 row-start-4',
+            gradient: 'from-orange-500 to-red-600'
+        },
+        { 
+            project: selectedProjects[3], 
+            classes: 'col-span-3 row-span-2 col-start-3 row-start-4',
+            gradient: 'from-indigo-500 to-purple-600'
+        }
     ];
 
     let projectsHTML = '';
     
-    // First Row: 30% Left, 70% Right
-    projectsHTML += '<div class="flex flex-col lg:flex-row gap-8 mb-8 min-h-[400px]">';
-    projectsHTML += createProjectCard(layout[0].size, layout[0].project);
-    projectsHTML += createProjectCard(layout[1].size, layout[1].project);
-    projectsHTML += '</div>';
-    
-    // Second Row: 70% Left, 30% Right
-    projectsHTML += '<div class="flex flex-col lg:flex-row gap-8 min-h-[400px]">';
-    projectsHTML += createProjectCard(layout[2].size, layout[2].project);
-    projectsHTML += createProjectCard(layout[3].size, layout[3].project);
-    projectsHTML += '</div>';
+    gridLayout.forEach((item, index) => {
+        console.log(`Processing grid item ${index + 1}:`, item);
+        const project = projectData[item.project];
+        if (!project) {
+            console.log(`Project not found for ${item.project}`);
+            return;
+        }
+        console.log(`Project found:`, project.title);
+        
+        const techTags = generateTechTags(project);
+        
+        projectsHTML += `
+            <div class="${item.classes} bg-gradient-to-br ${item.gradient} rounded-xl p-6 flex flex-col justify-between text-white hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group relative overflow-hidden" data-project="${item.project}">
+                <!-- Project Image -->
+                <div class="absolute inset-0 rounded-xl overflow-hidden">
+                    ${project.image ? `
+                        <img src="${project.image}" 
+                             alt="${project.title}" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-br ${item.gradient} bg-opacity-80"></div>
+                    ` : `
+                        <div class="w-full h-full bg-gradient-to-br ${item.gradient}"></div>
+                    `}
+                </div>
+                
+                <!-- Content -->
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">${project.title}</h3>
+                        <p class="text-white text-opacity-90 text-sm line-clamp-2">${project.description}</p>
+                    </div>
+                    <div class="flex space-x-2 flex-wrap mt-4">
+                        ${techTags.map(tag => `<span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs">${tag.name}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <!-- Hover overlay -->
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 rounded-xl transition-all duration-300"></div>
+            </div>
+        `;
+    });
+
+    console.log('Final projects HTML length:', projectsHTML.length);
+    console.log('Number of grid items generated:', (projectsHTML.match(/class="[^"]*col-span/g) || []).length);
 
     container.innerHTML = projectsHTML;
     
-    // Force layout recalculation
+    // Debug: Log the generated HTML and container info
+    console.log('Grid container:', container);
+    console.log('Generated projects HTML:', projectsHTML);
+    console.log('Container classes:', container.className);
+    console.log('Container computed style:', window.getComputedStyle(container).display);
+    console.log('Grid template columns:', window.getComputedStyle(container).gridTemplateColumns);
+    console.log('Grid template rows:', window.getComputedStyle(container).gridTemplateRows);
+    
+    // Force grid layout and clear any cached styles
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    container.style.gridTemplateRows = 'repeat(5, 1fr)';
+    container.style.gap = '1rem';
+    container.style.height = '600px';
+    
+    // Force reflow to ensure styles are applied
     container.offsetHeight;
+    
+    // Log the final computed styles
+    console.log('Final computed styles:');
+    console.log('Display:', window.getComputedStyle(container).display);
+    console.log('Grid columns:', window.getComputedStyle(container).gridTemplateColumns);
+    console.log('Grid rows:', window.getComputedStyle(container).gridTemplateRows);
     
     // Add click event listeners to the new project cards
     addProjectClickHandlers();
-    
-    // Trigger a resize event to ensure proper layout
-    window.dispatchEvent(new Event('resize'));
 }
 
 // Function to create individual project card HTML
@@ -1359,5 +1447,78 @@ document.addEventListener('visibilitychange', function() {
         }, 100);
     }
 });
+
+// Grid Layout Functionality for Projects
+function initGridLayout() {
+    const gridBoxes = document.querySelectorAll('#home-projects-container > div');
+    
+    gridBoxes.forEach((box, index) => {
+        // Add click functionality
+        box.addEventListener('click', function() {
+            // Add a ripple effect
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple-effect';
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+                top: 50%;
+                left: 50%;
+                width: 100px;
+                height: 100px;
+                margin-left: -50px;
+                margin-top: -50px;
+            `;
+            
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+            
+            // Get project ID from data attribute
+            const projectId = this.getAttribute('data-project');
+            if (projectId) {
+                console.log(`Clicked on project: ${projectId}`);
+                // You can add navigation or modal opening here
+                // For example: showProjectModal(projectId);
+            }
+        });
+        
+        // Add hover sound effect (optional)
+        box.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) translateY(-2px)';
+        });
+        
+        box.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) translateY(0)';
+        });
+    });
+}
+
+// Add ripple animation CSS
+function addRippleAnimation() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        #home-projects-container > div {
+            position: relative;
+            overflow: hidden;
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 

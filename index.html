@@ -55,10 +55,10 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                            <a href="contact.html" class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full border border-transparent hover:bg-transparent hover:text-purple-600 hover:border-purple-600 transition-colors text-center">
+                            <a href="contact.html" class="btn-mimas text-center">
                                 Get In Touch
                             </a>
-                            <a href="projects.html" class="border border-gray-300 text-gray-700 hover:bg-purple-700 hover:text-white font-semibold py-3 px-8 rounded-full transition-colors text-center">
+                            <a href="projects.html" class="btn-mimas btn-mimas--white text-center">
                                 Browse Projects
                             </a>
                         </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="ml-8">
                     <a href="projects.html" class="group inline-flex items-center p-0 text-slate-600 font-semibold rounded-lg transition-colors">
-                        See All
+                        <span class="font-semibold link">See All</span>
                         <svg class="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -117,9 +117,9 @@
                 
             </div>
             
-            <!-- Dynamic Projects Container -->
-            <div id="home-projects-container">
-                <!-- Projects will be loaded dynamically here -->
+            <!-- Tailwind CSS Grid Layout -->
+            <div id="home-projects-container" class="grid grid-cols-5 grid-rows-5 gap-4 h-[600px]">
+                <!-- Projects will be loaded dynamically here with grid layout -->
             </div>
         </div>
     </section>
@@ -705,7 +705,7 @@
                 <p id="modal-description" class="text-gray-700 mb-6"></p>
                 
                 <div class="flex justify-center">
-                    <a href="#" id="modal-detail-link" class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors cursor-pointer">
+                    <a href="#" id="modal-detail-link" class="btn-mimas cursor-pointer">
                         View Project Details
                     </a>
                 </div>

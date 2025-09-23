@@ -116,17 +116,15 @@ function loadProjectData() {
     const existingButton = descriptionElement.parentNode.querySelector('.visit-website-btn');
     if (!existingButton) {
         const visitButton = document.createElement('div');
-        visitButton.className = 'visit-website-btn mt-6';
+        visitButton.className = 'visit-website-btn mt-0';
         visitButton.innerHTML = `
-            <a href="${project.link}" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Visit Website
-            </a>
+               <a href="${project.link}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium my-5 mt-0 transition-colors link">
+        
+            Visit Website
+        </a>
         `;
         descriptionElement.parentNode.insertBefore(visitButton, descriptionElement.nextSibling);
     }
@@ -143,33 +141,93 @@ function loadProjectData() {
     const resultsContent = document.getElementById('results-content');
     resultsContent.innerHTML = project.results.map(paragraph => `<p>${paragraph}</p>`).join('');
     
-    // Update results screenshots with custom layout
+    // Update results screenshots with 5x5 grid layout
     const resultsScreenshots = document.getElementById('results-screenshots');
-    if (project.resultScreenshots && project.resultScreenshots.length >= 3) {
-        resultsScreenshots.innerHTML = `
-            <!-- First row: 40% left, 60% right -->
-            <div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
-                <div class="lg:col-span-4">
-                    <div class="relative">
-                        ${project.resultScreenshots[0]}
-                        <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-200 rounded-full opacity-30"></div>
-                    </div>
+    console.log('=== PROJECT DETAIL DEBUG ===');
+    console.log('Project ID:', projectId);
+    console.log('Project resultScreenshots:', project.resultScreenshots);
+    console.log('Number of screenshots:', project.resultScreenshots ? project.resultScreenshots.length : 0);
+    console.log('Timestamp:', new Date().toISOString());
+    
+    if (project.resultScreenshots && project.resultScreenshots.length >= 4) {
+        // Define the grid layout for result images
+        const gridLayout = [
+            { 
+                screenshot: project.resultScreenshots[0], 
+                classes: 'col-span-2 row-span-3',
+                gradient: 'from-purple-500 to-blue-600'
+            },
+            { 
+                screenshot: project.resultScreenshots[1], 
+                classes: 'col-span-3 row-span-3 col-start-3',
+                gradient: 'from-green-500 to-teal-600'
+            },
+            { 
+                screenshot: project.resultScreenshots[2], 
+                classes: 'col-span-2 row-span-2 row-start-4',
+                gradient: 'from-orange-500 to-red-600'
+            },
+            { 
+                screenshot: project.resultScreenshots[3], 
+                classes: 'col-span-3 row-span-2 col-start-3 row-start-4',
+                gradient: 'from-indigo-500 to-purple-600'
+            }
+        ];
+
+        let screenshotsHTML = '';
+        
+        gridLayout.forEach((item, index) => {
+            screenshotsHTML += `
+                <div class="${item.classes} rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${item.screenshot.match(/src="([^"]*)"/)?.[1] || ''}', 'Result ${index + 1}')">
+                    ${item.screenshot}
                 </div>
-                <div class="lg:col-span-6">
-                    <div class="relative">
-                        ${project.resultScreenshots[1]}
-                        <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-200 rounded-full opacity-30"></div>
-                    </div>
+            `;
+        });
+        
+        resultsScreenshots.innerHTML = screenshotsHTML;
+        console.log('✅ Using 4+ screenshots grid layout');
+        console.log('Grid HTML length:', screenshotsHTML.length);
+    } else if (project.resultScreenshots && project.resultScreenshots.length > 0) {
+        console.log('Using fallback layout for', project.resultScreenshots.length, 'screenshots');
+        // Fallback for fewer than 4 screenshots - still use grid layout
+        const availableScreenshots = project.resultScreenshots;
+        // const gradients = ['from-purple-500 to-blue-600', 'from-green-500 to-teal-600', 'from-orange-500 to-red-600', 'from-indigo-500 to-purple-600'];
+        
+        let fallbackHTML = '';
+        
+        if (availableScreenshots.length === 1) {
+            console.log('Using 1 screenshot layout');
+            fallbackHTML = `
+                <div class="col-span-5 row-span-5 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Project Result')">
+                    ${availableScreenshots[0]}
                 </div>
-            </div>
-            <!-- Second row: Full width -->
-            <div class="w-full">
-                <div class="relative">
-                    ${project.resultScreenshots[2]}
-                    <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-200 rounded-full opacity-30"></div>
+            `;
+        } else if (availableScreenshots.length === 2) {
+            console.log('Using 2 screenshots layout');
+            fallbackHTML = `
+                <div class="col-span-3 row-span-5 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 1')">
+                    ${availableScreenshots[0]}
                 </div>
-            </div>
-        `;
+                <div class="col-span-2 row-span-5 col-start-4 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[1].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 2')">
+                    ${availableScreenshots[1]}
+                </div>
+            `;
+        } else if (availableScreenshots.length === 3) {
+            console.log('Using 3 screenshots layout');
+            fallbackHTML = `
+                <div class="col-span-2 row-span-3 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 1')">
+                    ${availableScreenshots[0]}
+                </div>
+                <div class="col-span-3 row-span-3 col-start-3 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[1].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 2')">
+                    ${availableScreenshots[1]}
+                </div>
+                <div class="col-span-5 row-span-2 row-start-4 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[2].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 3')">
+                    ${availableScreenshots[2]}
+                </div>
+            `;
+        }
+        
+        resultsScreenshots.innerHTML = fallbackHTML;
     }
     
     // Load more projects (exclude current project)
@@ -319,13 +377,11 @@ function showProjectModal(projectId) {
     const visitLink = document.createElement('div');
     visitLink.className = 'visit-website-link mb-4';
     visitLink.innerHTML = `
-        <a href="${project.link}" 
+               <a href="${project.link}" 
            target="_blank" 
            rel="noopener noreferrer"
-           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium my-5 mt-0 transition-colors link">
+        
             Visit Website
         </a>
     `;
@@ -415,6 +471,138 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Image Preview Functionality
+function openImagePreview(imageSrc, title) {
+    if (!imageSrc) return;
+    
+    // Get all images for navigation
+    const allImages = Array.from(document.querySelectorAll('#results-screenshots img')).map(img => ({
+        src: img.src,
+        alt: img.alt || 'Project Image'
+    }));
+    
+    let currentIndex = allImages.findIndex(img => img.src === imageSrc);
+    if (currentIndex === -1) currentIndex = 0;
+    
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center';
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+            document.body.style.overflow = 'auto';
+        }
+    };
+    
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'relative w-full h-full flex items-center justify-center p-8';
+    modalContent.onclick = function(e) {
+        e.stopPropagation();
+    };
+    
+    // Create close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'absolute top-4 right-4 z-20 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 transition-all text-white';
+    closeBtn.innerHTML = `
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    `;
+    closeBtn.onclick = function() {
+        document.body.removeChild(modal);
+        document.body.style.overflow = 'auto';
+    };
+    
+    // Create previous button
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 transition-all text-white';
+    prevBtn.innerHTML = `
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+    `;
+    prevBtn.onclick = function(e) {
+        e.stopPropagation();
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : allImages.length - 1;
+        updatePreviewImage(allImages[currentIndex].src, allImages[currentIndex].alt);
+    };
+    
+    // Create next button
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-3 transition-all text-white';
+    nextBtn.innerHTML = `
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+    `;
+    nextBtn.onclick = function(e) {
+        e.stopPropagation();
+        currentIndex = currentIndex < allImages.length - 1 ? currentIndex + 1 : 0;
+        updatePreviewImage(allImages[currentIndex].src, allImages[currentIndex].alt);
+    };
+    
+    // Create image container
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'max-w-full max-h-full flex items-center justify-center';
+    
+    // Create image
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = title;
+    img.className = 'max-w-full max-h-full object-contain rounded-lg';
+    img.loading = 'lazy';
+    
+    // Create title
+    const titleElement = document.createElement('div');
+    titleElement.className = 'absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-2 rounded-lg';
+    titleElement.textContent = title;
+    
+    // Create image counter
+    const counterElement = document.createElement('div');
+    counterElement.className = 'absolute top-4 left-4 bg-black bg-opacity-60 text-white px-3 py-1 rounded-lg text-sm';
+    counterElement.textContent = `${currentIndex + 1} / ${allImages.length}`;
+    
+    // Function to update image
+    function updatePreviewImage(newSrc, newTitle) {
+        img.src = newSrc;
+        img.alt = newTitle;
+        titleElement.textContent = newTitle;
+        counterElement.textContent = `${currentIndex + 1} / ${allImages.length}`;
+    }
+    
+    // Assemble modal
+    imageContainer.appendChild(img);
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(prevBtn);
+    modalContent.appendChild(nextBtn);
+    modalContent.appendChild(imageContainer);
+    modalContent.appendChild(titleElement);
+    modalContent.appendChild(counterElement);
+    modal.appendChild(modalContent);
+    
+    // Add keyboard navigation
+    const handleKeyPress = function(e) {
+        if (e.key === 'Escape') {
+            document.body.removeChild(modal);
+            document.body.style.overflow = 'auto';
+            document.removeEventListener('keydown', handleKeyPress);
+        } else if (e.key === 'ArrowLeft') {
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : allImages.length - 1;
+            updatePreviewImage(allImages[currentIndex].src, allImages[currentIndex].alt);
+        } else if (e.key === 'ArrowRight') {
+            currentIndex = currentIndex < allImages.length - 1 ? currentIndex + 1 : 0;
+            updatePreviewImage(allImages[currentIndex].src, allImages[currentIndex].alt);
+        }
+    };
+    
+    document.addEventListener('keydown', handleKeyPress);
+    
+    // Add to page
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+}
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {

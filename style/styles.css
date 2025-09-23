@@ -27,6 +27,90 @@ body {
   .card {
     @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
   }
+  
+  /* Mimas Button Style */
+  .btn-mimas {
+    pointer-events: auto;
+    cursor: pointer;
+    background: #8b5cf6; /* Purple background */
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-mimas::before,
+  .btn-mimas::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .btn-mimas span,
+  .btn-mimas {
+    position: relative;
+    mix-blend-mode: difference;
+    z-index: 2;
+  }
+  
+  .btn-mimas span {
+    position: relative;
+    z-index: 3;
+  }
+  
+  .btn-mimas::before {
+    content: '';
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+  }
+  
+  .btn-mimas:hover::before {
+    transform: translate3d(100%, 0, 0);
+  }
+  
+  .btn-mimas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+  }
+  
+  /* Mimas Button Variants */
+  .btn-mimas--white {
+    background: #fff;
+    color: #8b5cf6;
+  }
+  
+  .btn-mimas--white::before {
+    background: #8b5cf6;
+  }
+  
+  .btn-mimas--white span {
+    mix-blend-mode: difference;
+  }
+  
+  .btn-mimas--gray {
+    background: #6b7280;
+    color: #fff;
+  }
+  
+  .btn-mimas--gray::before {
+    background: #000;
+  }
 }
 .marquee__content span {
 padding: 13px 10px;
@@ -511,7 +595,7 @@ html {
   overflow: hidden;
 }
 
-/* Project cards height fix */
+/* Project cards height fix - Updated for grid layout */
 #home-projects-container .card {
   min-height: 400px;
   display: flex;
@@ -527,6 +611,13 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* Grid layout overrides for project cards */
+#home-projects-container > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
 /* Animated Mobile Menu Styles */
@@ -722,4 +813,211 @@ body[data-page="contact"] .main-content {
   display: inline-block;
   transform-origin: 70% 70%;
   animation: wave 2s infinite;
+}
+
+.experience-item{
+  margin: 40px 0px;
+}
+
+/* Projects Grid Layout Styles */
+#home-projects-container {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  grid-template-rows: repeat(5, 1fr) !important;
+  gap: 1rem;
+  height: 600px;
+}
+
+/* Ensure desktop layout is applied on larger screens */
+@media (min-width: 1025px) {
+  #home-projects-container {
+    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-rows: repeat(5, 1fr) !important;
+    height: 600px !important;
+  }
+}
+
+#home-projects-container > div {
+  position: relative;
+  overflow: hidden;
+}
+
+#home-projects-container > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+#home-projects-container > div:hover::before {
+  opacity: 1;
+}
+
+/* Responsive Grid Layout for Projects */
+@media (max-width: 1024px) {
+  #home-projects-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    height: 400px !important;
+    gap: 0.75rem;
+  }
+  
+  #home-projects-container > div:nth-child(1) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #home-projects-container > div:nth-child(2) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #home-projects-container > div:nth-child(3) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #home-projects-container > div:nth-child(4) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}
+
+/* Medium screens - single column with larger cards */
+@media (max-width: 768px) {
+  #home-projects-container {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 1fr) !important;
+    height: 1000px !important;
+    gap: 1rem;
+  }
+  
+  #home-projects-container > div {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    grid-column-start: 1 !important;
+    grid-row-start: auto !important;
+    height: auto !important;
+    min-height: 200px;
+  }
+}
+
+/* Small screens - compact single column */
+@media (max-width: 480px) {
+  #home-projects-container {
+    height: 800px !important;
+    gap: 0.75rem;
+  }
+  
+  #home-projects-container > div {
+    height: auto !important;
+    min-height: 150px;
+  }
+}
+
+/* Project Detail Results Grid Layout */
+#results-screenshots {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  grid-template-rows: repeat(5, 1fr) !important;
+  gap: 1.5rem;
+  height: 600px;
+}
+
+/* Responsive Grid Layout for Project Detail Results */
+@media (max-width: 1024px) {
+  #results-screenshots {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    height: 400px !important;
+    gap: 0.75rem;
+  }
+  
+  #results-screenshots > div:nth-child(1) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #results-screenshots > div:nth-child(2) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #results-screenshots > div:nth-child(3) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  
+  #results-screenshots > div:nth-child(4) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}
+
+/* Medium screens - single column with larger cards */
+@media (max-width: 768px) {
+  #results-screenshots {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 1fr) !important;
+    height: 1000px !important;
+    gap: 1rem;
+  }
+  
+  #results-screenshots > div {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    grid-column-start: 1 !important;
+    grid-row-start: auto !important;
+    height: auto !important;
+    min-height: 200px;
+  }
+}
+
+/* Small screens - compact single column */
+@media (max-width: 480px) {
+  #results-screenshots {
+    height: 800px !important;
+    gap: 0.75rem;
+  }
+  
+  #results-screenshots > div {
+    height: auto !important;
+    min-height: 150px;
+  }
+}
+
+.link {
+  cursor: pointer;
+  font-size: 18px;
+  position: relative;
+  white-space: nowrap;
+  color: #111;
+  text-decoration: none;
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  top: 100%;
+  left: 0;
+  pointer-events: none;
+  transform-origin: 100% 50%;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.3s;
+}
+
+.link:hover::before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
 }
