@@ -65,6 +65,11 @@ class NavbarComponent {
     }
 
     getLinkClass(page) {
+        // Special case: highlight Projects link when on project-detail page
+        if (page === 'projects' && this.currentPage === 'project-detail') {
+            return 'text-purple-600 font-bold';
+        }
+        
         return this.currentPage === page 
             ? 'text-purple-600 font-bold' 
             : 'text-gray-700 link transition-colors font-bold';
@@ -537,6 +542,11 @@ class FooterComponent {
     }
 
     getLinkClass(page) {
+        // Special case: highlight Projects link when on project-detail page
+        if (page === 'projects' && this.currentPage === 'project-detail') {
+            return 'text-purple-600 font-bold';
+        }
+        
         return this.currentPage === page 
             ? 'text-purple-600 font-bold' 
             : 'text-gray-700 link transition-colors font-bold';
