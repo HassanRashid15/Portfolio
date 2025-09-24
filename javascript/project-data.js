@@ -10,6 +10,7 @@ const projectData = {
         year: "2024",   
         role: "Frontend Developer",
         image: "Assets/Project1a.png",
+        category: "live-projects",
         logo: "https://devstitch.com/favicon.ico", // DevStitch logo
         screenshot: `
             <div class="bg-white rounded-xl p-4">
@@ -90,6 +91,7 @@ const projectData = {
         role: "Lead Designer",
         image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=64&h=64&fit=crop&crop=center",
+        category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -166,6 +168,7 @@ const projectData = {
         role: "UI/UX Designer",
         image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=64&h=64&fit=crop&crop=center",
+        category: "live-projects",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -259,6 +262,7 @@ const projectData = {
         role: "Frontend Developer",
         image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=64&h=64&fit=crop&crop=center",
+        category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -338,6 +342,7 @@ const projectData = {
         role: "Full Stack Developer",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=64&h=64&fit=crop&crop=center",
+        category: "live-projects",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -420,6 +425,7 @@ const projectData = {
         role: "Frontend Developer",
         image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=64&h=64&fit=crop&crop=center",
+        category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -502,6 +508,7 @@ const projectData = {
         role: "UI/UX Designer",
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=64&h=64&fit=crop&crop=center",
+        category: "live-projects",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
@@ -578,6 +585,7 @@ const projectData = {
         role: "Full Stack Developer",
         image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center",
         logo: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=64&h=64&fit=crop&crop=center",
+        category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">

@@ -51,7 +51,34 @@
         <!-- Projects Grid Section -->
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Projects Counter -->
+                <!-- Project Tabs -->
+                <div class="flex justify-center mb-12">
+                    <div class="bg-gray-800 p-1 rounded-full shadow-lg flex gap-1 overflow-x-auto scrollbar-hide" id="tabs-container">
+                        <button id="tab-all-projects" class="tab-button active px-4 sm:px-6 lg:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-xs sm:text-base">
+                            <svg class="w-3 h-3 sm:w-5 sm:h-5 mr-1 sm:mr-2 inline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                            </svg>
+                            <span class="text-xs sm:text-base">All Projects</span>
+                            <span class="ml-1 sm:ml-2 bg-white bg-opacity-20 text-xs px-1.5 sm:px-2 py-1 rounded-full flex-shrink-0" id="all-projects-count">8</span>
+                        </button>
+                        <button id="tab-live-projects" class="tab-button px-4 sm:px-6 lg:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-xs sm:text-base">
+                            <svg class="w-3 h-3 sm:w-5 sm:h-5 mr-1 sm:mr-2 inline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"/>
+                            </svg>
+                            <span class="text-xs sm:text-base">Live Projects</span>
+                            <span class="ml-1 sm:ml-2 bg-white bg-opacity-20 text-xs px-1.5 sm:px-2 py-1 rounded-full flex-shrink-0" id="live-projects-count">4</span>
+                        </button>
+                        <button id="tab-figma-converters" class="tab-button px-4 sm:px-6 lg:px-8 py-3 rounded-full font-semibold transition-all duration-300 text-xs sm:text-base">
+                            <svg class="w-3 h-3 sm:w-5 sm:h-5 mr-1 sm:mr-2 inline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+                            </svg>
+                            <span class="text-xs sm:text-base">Figma Converters</span>
+                            <span class="ml-1 sm:ml-2 bg-white bg-opacity-20 text-xs px-1.5 sm:px-2 py-1 rounded-full flex-shrink-0" id="figma-projects-count">4</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Projects Counter and View Controls -->
                 <div class="flex justify-between items-center mb-12">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900">

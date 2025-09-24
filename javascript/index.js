@@ -124,6 +124,9 @@ class NavbarComponent {
                       <a href="${this.pages.home}" class="flex items-center navlogo-custom">
                                 <img src="Assets/navwhite.png" alt="Logo" class="h-[70px] w-auto">
                             </a>
+                    <div class="menu-title">
+                        <h2 class="text-white text-2xl font-bold tracking-wider">MENU</h2>
+                    </div>
                     <div class="close">
                         <div></div>
                     </div>
@@ -350,18 +353,36 @@ function loadExperienceData() {
 
 // Experience Tabs Functionality
 function initExperienceTabs() {
+    console.log('🚀 Initializing desktop experience tabs...');
+    console.log('Screen width:', window.innerWidth);
+    
     const experienceItems = document.querySelectorAll('.experience-item');
     const experienceDetails = document.querySelectorAll('.experience-details');
     const activeLine = document.getElementById('active-line');
     
+    console.log('Desktop experience items found:', experienceItems.length);
+    console.log('Desktop experience details found:', experienceDetails.length);
+    console.log('Active line element found:', !!activeLine);
+    
     if (!experienceItems.length || !experienceDetails.length || !activeLine) {
+        console.log('❌ Missing required elements for desktop experience tabs');
         return;
     }
+    
+    // Debug initial state
+    experienceItems.forEach((item, index) => {
+        const company = item.getAttribute('data-company');
+        console.log(`Desktop experience item ${index + 1} (${company}):`, {
+            hasActive: item.classList.contains('active'),
+            classes: item.className,
+            computedColor: window.getComputedStyle(item.querySelector('span')).color
+        });
+    });
     
     // Set initial active state
     const activeItem = document.querySelector('.experience-item.active');
     if (activeItem) {
-        // console.log('Initial active item:', activeItem.getAttribute('data-company'));
+        console.log('Initial active desktop item:', activeItem.getAttribute('data-company'));
         updateActiveLine(activeItem);
     }
     
@@ -372,7 +393,11 @@ function initExperienceTabs() {
             e.stopPropagation();
             
             const company = item.getAttribute('data-company');
-            // console.log('Clicked on:', company);
+            console.log('🖱️ Desktop experience item clicked:', company);
+            console.log('Before change - active items:', Array.from(experienceItems).map(i => ({
+                company: i.getAttribute('data-company'),
+                hasActive: i.classList.contains('active')
+            })));
             
             // Remove active class from all items
             experienceItems.forEach(i => {
@@ -386,10 +411,17 @@ function initExperienceTabs() {
             
             // Add active class to clicked item
             item.classList.add('active');
+            console.log(`✅ Added active to ${company} desktop item`);
+            console.log(`${company} item classes:`, item.className);
+            
             const text = item.querySelector('span');
             if (text) {
                 text.classList.remove('text-gray-600');
                 text.classList.add('text-purple-600', 'font-medium');
+                console.log(`${company} text computed styles:`, {
+                    color: window.getComputedStyle(text).color,
+                    fontWeight: window.getComputedStyle(text).fontWeight
+                });
             }
             
             // Hide all experience details
@@ -401,10 +433,26 @@ function initExperienceTabs() {
             const selectedDetails = document.getElementById(`${company}-details`);
             if (selectedDetails) {
                 selectedDetails.classList.remove('hidden');
+                console.log(`✅ Showed ${company} details`);
+            } else {
+                console.log(`❌ Could not find ${company}-details element`);
             }
             
             // Update active line
             updateActiveLine(item);
+            
+            // Debug final state
+            setTimeout(() => {
+                console.log('🔍 Final desktop experience state:');
+                experienceItems.forEach(i => {
+                    const companyName = i.getAttribute('data-company');
+                    console.log(`${companyName} item:`, {
+                        hasActive: i.classList.contains('active'),
+                        classes: i.className,
+                        computedColor: window.getComputedStyle(i.querySelector('span')).color
+                    });
+                });
+            }, 100);
         });
     });
     
@@ -1114,6 +1162,7 @@ function initAnimatedMobileMenu(retryCount = 0) {
         gsap.set('#mobile-nav ul li a', { opacity: 0, pointerEvents: 'none' });
         gsap.set('#mobile-nav .close', { opacity: 0, pointerEvents: 'none' });
         gsap.set('#mobile-nav a img', { opacity: 0 });
+        gsap.set('#mobile-nav .menu-title', { opacity: 0, pointerEvents: 'none' });
         
         var tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
         
@@ -1125,6 +1174,7 @@ function initAnimatedMobileMenu(retryCount = 0) {
                 tl.to('#mobile-nav', { right: 0 })
                     .to('#mobile-nav', { height: '100vh' }, '-=.1')
                     .to('#mobile-nav a img', { opacity: 1, pointerEvents: 'all' }, '-=.8')
+                    .to('#mobile-nav .menu-title', { opacity: 1, pointerEvents: 'all' }, '-=.7')
                     .to('#mobile-nav .close', { opacity: 1, pointerEvents: 'all' }, "-=.8")
                     .to('#mobile-nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.6');
             }
@@ -1145,17 +1195,50 @@ function initAnimatedMobileMenu(retryCount = 0) {
 
 // Mobile Tab Functionality
 function initMobileTabs() {
+    console.log('🚀 Initializing mobile experience tabs...');
+    console.log('Screen width:', window.innerWidth);
+    
     const tabButtons = document.querySelectorAll('.tab-button-mobile');
     const tabContents = document.querySelectorAll('.experience-details-mobile');
+    
+    console.log('Mobile tab buttons found:', tabButtons.length);
+    console.log('Mobile tab contents found:', tabContents.length);
+    
+    // Debug initial state
+    tabButtons.forEach((btn, index) => {
+        const tabName = btn.getAttribute('data-tab');
+        console.log(`Mobile tab ${index + 1} (${tabName}):`, {
+            hasActive: btn.classList.contains('active'),
+            classes: btn.className,
+            computedColor: window.getComputedStyle(btn).color,
+            computedBackground: window.getComputedStyle(btn).backgroundColor
+        });
+    });
     
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetTab = button.getAttribute('data-tab');
+            console.log('🖱️ Mobile tab clicked:', targetTab);
+            console.log('Before change - active tabs:', Array.from(tabButtons).map(btn => ({
+                tab: btn.getAttribute('data-tab'),
+                hasActive: btn.classList.contains('active')
+            })));
             
             // Remove active class from all buttons
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                console.log(`Removed active from ${btn.getAttribute('data-tab')} tab`);
+            });
+            
             // Add active class to clicked button
             button.classList.add('active');
+            console.log(`✅ Added active to ${targetTab} tab`);
+            console.log(`${targetTab} tab classes:`, button.className);
+            console.log(`${targetTab} tab computed styles:`, {
+                color: window.getComputedStyle(button).color,
+                backgroundColor: window.getComputedStyle(button).backgroundColor,
+                background: window.getComputedStyle(button).background
+            });
             
             // Hide all tab contents
             tabContents.forEach(content => content.classList.add('hidden'));

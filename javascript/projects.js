@@ -7,51 +7,134 @@
 let currentView = 'grid';
 let currentPage = 1;
 let projectsPerPage = 6;
+let currentTab = 'all-projects';
 
 function initProjectsPage() {
-    loadProjects();
+    console.log('🚀 Initializing projects page...');
+    console.log('Initial currentTab:', currentTab);
+    console.log('Screen width on init:', window.innerWidth);
+    
+    loadProjects(false); // No transition on initial load
     setupEventListeners();
+    setupTabListeners();
     updateProjectsCount();
     addParallaxEffect();
     addTypingEffect();
+    
+    // Debug initial tab state
+    setTimeout(() => {
+        console.log('🔍 Initial tab state after setup:');
+        const allProjectsTab = document.getElementById('tab-all-projects');
+        const liveProjectsTab = document.getElementById('tab-live-projects');
+        const figmaConvertersTab = document.getElementById('tab-figma-converters');
+        
+        [allProjectsTab, liveProjectsTab, figmaConvertersTab].forEach((tab, index) => {
+            if (tab) {
+                const tabNames = ['all-projects', 'live-projects', 'figma-converters'];
+                console.log(`${tabNames[index]} tab initial state:`, {
+                    hasActive: tab.classList.contains('active'),
+                    classes: tab.className,
+                    computedColor: window.getComputedStyle(tab).color,
+                    computedBackground: window.getComputedStyle(tab).backgroundColor
+                });
+            }
+        });
+    }, 200);
+    
+    console.log('✅ Projects page initialized successfully');
 }
 
-function loadProjects() {
+function loadProjects(showTransition = true) {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
     
-    // Show loading state
-    projectsGrid.innerHTML = '<div class="projects-loading"></div>';
-    
-    // Simulate loading delay for better UX
-    setTimeout(() => {
-        const allProjects = getFilteredProjects();
-        const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+    if (showTransition) {
+        // Add fade out effect
+        projectsGrid.classList.add('fade-out');
         
-        // Get projects for current page
-        const startIndex = (currentPage - 1) * projectsPerPage;
-        const endIndex = startIndex + projectsPerPage;
-        const projects = allProjects.slice(startIndex, endIndex);
+        setTimeout(() => {
+            // Show loading state
+            projectsGrid.innerHTML = '<div class="projects-loading"></div>';
+            projectsGrid.classList.remove('fade-out');
+            projectsGrid.classList.add('fade-in');
+            
+            // Load projects after fade in
+            setTimeout(() => {
+                const allProjects = getFilteredProjects();
+                const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+                
+                // Get projects for current page
+                const startIndex = (currentPage - 1) * projectsPerPage;
+                const endIndex = startIndex + projectsPerPage;
+                const projects = allProjects.slice(startIndex, endIndex);
+                
+                if (currentView === 'grid') {
+                    projectsGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-view fade-in';
+                    projectsGrid.innerHTML = projects.map(projectId => createProjectCard(projectId)).join('');
+                } else {
+                    projectsGrid.className = 'space-y-6 list-view fade-in';
+                    projectsGrid.innerHTML = projects.map(projectId => createProjectListItem(projectId)).join('');
+                }
+                
+                updateProjectsCount();
+                updatePagination(allProjects.length, totalPages);
+                
+                // Add intersection observer for scroll animations
+                addScrollAnimations();
+            }, 150);
+        }, 200);
+    } else {
+        // Direct load without transition (for initial load)
+        projectsGrid.innerHTML = '<div class="projects-loading"></div>';
         
-        if (currentView === 'grid') {
-            projectsGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-view';
-            projectsGrid.innerHTML = projects.map(projectId => createProjectCard(projectId)).join('');
-        } else {
-            projectsGrid.className = 'space-y-6 list-view';
-            projectsGrid.innerHTML = projects.map(projectId => createProjectListItem(projectId)).join('');
-        }
-        
-        updateProjectsCount();
-        updatePagination(allProjects.length, totalPages);
-        
-        // Add intersection observer for scroll animations
-        addScrollAnimations();
-    }, 300);
+        setTimeout(() => {
+            const allProjects = getFilteredProjects();
+            const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+            
+            // Get projects for current page
+            const startIndex = (currentPage - 1) * projectsPerPage;
+            const endIndex = startIndex + projectsPerPage;
+            const projects = allProjects.slice(startIndex, endIndex);
+            
+            if (currentView === 'grid') {
+                projectsGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-view fade-in';
+                projectsGrid.innerHTML = projects.map(projectId => createProjectCard(projectId)).join('');
+            } else {
+                projectsGrid.className = 'space-y-6 list-view fade-in';
+                projectsGrid.innerHTML = projects.map(projectId => createProjectListItem(projectId)).join('');
+            }
+            
+            updateProjectsCount();
+            updatePagination(allProjects.length, totalPages);
+            
+            // Add intersection observer for scroll animations
+            addScrollAnimations();
+        }, 300);
+    }
 }
 
 function getFilteredProjects() {
-    // Return all projects since we removed filtering
-    return Object.keys(projectData);
+    // Get all project IDs from projectData
+    const allProjectIds = Object.keys(projectData);
+    
+    // Filter based on current tab
+    if (currentTab === 'all-projects') {
+        return allProjectIds; // Show all projects
+    } else if (currentTab === 'live-projects') {
+        // Show only live projects
+        return allProjectIds.filter(projectId => {
+            const project = projectData[projectId];
+            return project.category === 'live-projects';
+        });
+    } else if (currentTab === 'figma-converters') {
+        // Show only figma converter projects
+        return allProjectIds.filter(projectId => {
+            const project = projectData[projectId];
+            return project.category === 'figma-converters';
+        });
+    }
+    
+    return allProjectIds; // Fallback
 }
 
 
@@ -215,6 +298,209 @@ function setupEventListeners() {
     });
 }
 
+function setupTabListeners() {
+    const allProjectsTab = document.getElementById('tab-all-projects');
+    const liveProjectsTab = document.getElementById('tab-live-projects');
+    const figmaConvertersTab = document.getElementById('tab-figma-converters');
+    
+    if (allProjectsTab) {
+        allProjectsTab.addEventListener('click', () => {
+            console.log('🖱️ All Projects tab clicked');
+            console.log('Before change - currentTab:', currentTab);
+            currentTab = 'all-projects';
+            console.log('After change - currentTab:', currentTab);
+            currentPage = 1;
+            updateTabButtons();
+            scrollToActiveTab();
+            loadProjects();
+        });
+    }
+    
+    if (liveProjectsTab) {
+        liveProjectsTab.addEventListener('click', () => {
+            console.log('🖱️ Live Projects tab clicked');
+            console.log('Before change - currentTab:', currentTab);
+            currentTab = 'live-projects';
+            console.log('After change - currentTab:', currentTab);
+            currentPage = 1;
+            updateTabButtons();
+            scrollToActiveTab();
+            loadProjects();
+        });
+    }
+    
+    if (figmaConvertersTab) {
+        figmaConvertersTab.addEventListener('click', () => {
+            console.log('🖱️ Figma Converters tab clicked');
+            console.log('Before change - currentTab:', currentTab);
+            currentTab = 'figma-converters';
+            console.log('After change - currentTab:', currentTab);
+            currentPage = 1;
+            updateTabButtons();
+            scrollToActiveTab();
+            loadProjects();
+        });
+    }
+    
+    // Add touch gesture support
+    setupTouchGestures();
+}
+
+function scrollToActiveTab() {
+    const tabsContainer = document.getElementById('tabs-container');
+    const activeTab = tabsContainer.querySelector('.tab-button.active');
+    
+    if (activeTab && tabsContainer) {
+        const containerRect = tabsContainer.getBoundingClientRect();
+        const tabRect = activeTab.getBoundingClientRect();
+        
+        // Calculate scroll position to center the active tab
+        const scrollLeft = activeTab.offsetLeft - (tabsContainer.offsetWidth / 2) + (activeTab.offsetWidth / 2);
+        
+        tabsContainer.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+        });
+    }
+}
+
+function setupTouchGestures() {
+    const tabsContainer = document.getElementById('tabs-container');
+    if (!tabsContainer) return;
+    
+    let startX = 0;
+    let startY = 0;
+    let isScrolling = false;
+    
+    tabsContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isScrolling = false;
+    }, { passive: true });
+    
+    tabsContainer.addEventListener('touchmove', (e) => {
+        if (!startX || !startY) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+        
+        // Determine if this is a horizontal scroll
+        if (diffX > diffY && diffX > 10) {
+            isScrolling = true;
+        }
+    }, { passive: true });
+    
+    tabsContainer.addEventListener('touchend', (e) => {
+        if (!isScrolling) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        
+        // Swipe threshold
+        if (Math.abs(diffX) > 50) {
+            const tabs = ['all-projects', 'live-projects', 'figma-converters'];
+            const currentIndex = tabs.indexOf(currentTab);
+            
+            if (diffX > 0 && currentIndex < tabs.length - 1) {
+                // Swipe left - next tab
+                currentTab = tabs[currentIndex + 1];
+            } else if (diffX < 0 && currentIndex > 0) {
+                // Swipe right - previous tab
+                currentTab = tabs[currentIndex - 1];
+            }
+            
+            if (currentTab !== tabs[tabs.indexOf(currentTab)]) {
+                currentPage = 1;
+                updateTabButtons();
+                scrollToActiveTab();
+                loadProjects();
+            }
+        }
+        
+        startX = 0;
+        startY = 0;
+        isScrolling = false;
+    }, { passive: true });
+}
+
+function updateTabButtons() {
+    const allProjectsTab = document.getElementById('tab-all-projects');
+    const liveProjectsTab = document.getElementById('tab-live-projects');
+    const figmaConvertersTab = document.getElementById('tab-figma-converters');
+    
+    console.log('🔍 DEBUG: updateTabButtons called');
+    console.log('Current tab:', currentTab);
+    console.log('Screen width:', window.innerWidth);
+    console.log('Tabs found:', {
+        allProjects: !!allProjectsTab,
+        liveProjects: !!liveProjectsTab,
+        figmaConverters: !!figmaConvertersTab
+    });
+    
+    // Remove active class from all tabs
+    if (allProjectsTab) {
+        allProjectsTab.classList.remove('active');
+        console.log('Removed active from all-projects tab');
+    }
+    if (liveProjectsTab) {
+        liveProjectsTab.classList.remove('active');
+        console.log('Removed active from live-projects tab');
+    }
+    if (figmaConvertersTab) {
+        figmaConvertersTab.classList.remove('active');
+        console.log('Removed active from figma-converters tab');
+    }
+    
+    // Add active class to current tab
+    if (currentTab === 'all-projects' && allProjectsTab) {
+        allProjectsTab.classList.add('active');
+        console.log('✅ Added active to all-projects tab');
+        console.log('All-projects tab classes:', allProjectsTab.className);
+        console.log('All-projects tab computed styles:', {
+            color: window.getComputedStyle(allProjectsTab).color,
+            backgroundColor: window.getComputedStyle(allProjectsTab).backgroundColor,
+            background: window.getComputedStyle(allProjectsTab).background
+        });
+    } else if (currentTab === 'live-projects' && liveProjectsTab) {
+        liveProjectsTab.classList.add('active');
+        console.log('✅ Added active to live-projects tab');
+        console.log('Live-projects tab classes:', liveProjectsTab.className);
+        console.log('Live-projects tab computed styles:', {
+            color: window.getComputedStyle(liveProjectsTab).color,
+            backgroundColor: window.getComputedStyle(liveProjectsTab).backgroundColor,
+            background: window.getComputedStyle(liveProjectsTab).background
+        });
+    } else if (currentTab === 'figma-converters' && figmaConvertersTab) {
+        figmaConvertersTab.classList.add('active');
+        console.log('✅ Added active to figma-converters tab');
+        console.log('Figma-converters tab classes:', figmaConvertersTab.className);
+        console.log('Figma-converters tab computed styles:', {
+            color: window.getComputedStyle(figmaConvertersTab).color,
+            backgroundColor: window.getComputedStyle(figmaConvertersTab).backgroundColor,
+            background: window.getComputedStyle(figmaConvertersTab).background
+        });
+    }
+    
+    // Debug all tabs after update
+    setTimeout(() => {
+        console.log('🔍 Final tab states:');
+        [allProjectsTab, liveProjectsTab, figmaConvertersTab].forEach((tab, index) => {
+            if (tab) {
+                const tabNames = ['all-projects', 'live-projects', 'figma-converters'];
+                console.log(`${tabNames[index]} tab:`, {
+                    hasActive: tab.classList.contains('active'),
+                    classes: tab.className,
+                    computedColor: window.getComputedStyle(tab).color,
+                    computedBackground: window.getComputedStyle(tab).backgroundColor
+                });
+            }
+        });
+    }, 100);
+}
+
 function showProjectModal(projectId) {
     const project = projectData[projectId];
     if (!project) return;
@@ -329,6 +615,39 @@ function updateProjectsCount() {
     if (countElement) {
         const count = getFilteredProjects().length;
         countElement.textContent = count;
+    }
+    
+    // Update tab counts
+    updateTabCounts();
+}
+
+function updateTabCounts() {
+    const allProjectsCount = document.getElementById('all-projects-count');
+    const liveProjectsCount = document.getElementById('live-projects-count');
+    const figmaProjectsCount = document.getElementById('figma-projects-count');
+    
+    if (allProjectsCount) {
+        // Count all projects
+        const totalProjects = Object.keys(projectData).length;
+        allProjectsCount.textContent = totalProjects;
+    }
+    
+    if (liveProjectsCount) {
+        // Count only live projects
+        const liveProjects = Object.keys(projectData).filter(projectId => {
+            const project = projectData[projectId];
+            return project.category === 'live-projects';
+        }).length;
+        liveProjectsCount.textContent = liveProjects;
+    }
+    
+    if (figmaProjectsCount) {
+        // Count only figma converter projects
+        const figmaProjects = Object.keys(projectData).filter(projectId => {
+            const project = projectData[projectId];
+            return project.category === 'figma-converters';
+        }).length;
+        figmaProjectsCount.textContent = figmaProjects;
     }
 }
 
