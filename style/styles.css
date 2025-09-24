@@ -735,6 +735,7 @@ button.tab-button-mobile.active {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {

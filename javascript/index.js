@@ -147,6 +147,11 @@ class NavbarComponent {
         if (container) {
             container.innerHTML = this.render();
             console.log('Navbar mounted successfully');
+            
+            // Initialize mobile menu after navbar is mounted
+            setTimeout(() => {
+                initAnimatedMobileMenu();
+            }, 100);
         } else {
             console.error('Navbar container not found:', containerId);
         }
@@ -646,6 +651,20 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             initAnimatedMobileMenu();
         }, 200);
+    });
+    
+    // Initialize mobile menu on page focus (for navigation between tabs)
+    window.addEventListener('focus', function() {
+        setTimeout(() => {
+            initAnimatedMobileMenu();
+        }, 100);
+    });
+    
+    // Initialize mobile menu when navigating back/forward
+    window.addEventListener('pageshow', function() {
+        setTimeout(() => {
+            initAnimatedMobileMenu();
+        }, 100);
     });
     
     // Initialize footer
@@ -1157,6 +1176,18 @@ function initAnimatedMobileMenu(retryCount = 0) {
                 return;
             }
         }
+        
+        // Check if mobile menu is already initialized to prevent duplicate event listeners
+        if (open.hasAttribute('data-mobile-menu-initialized')) {
+            console.log('Mobile menu already initialized, skipping...');
+            return;
+        }
+        
+        // Mark as initialized
+        open.setAttribute('data-mobile-menu-initialized', 'true');
+        
+        // Reset mobile menu state to ensure it starts closed (original animation)
+        gsap.set('#mobile-nav', { right: '-100%', height: '30px' });
         
         // Set initial states
         gsap.set('#mobile-nav ul li a', { opacity: 0, pointerEvents: 'none' });
