@@ -1326,22 +1326,22 @@ function loadHomeProjects() {
         { 
             project: selectedProjects[0], 
             classes: 'col-span-2 row-span-3',
-            gradient: 'from-purple-500 to-blue-600'
+       
         },
         { 
             project: selectedProjects[1], 
             classes: 'col-span-3 row-span-3 col-start-3',
-            gradient: 'from-green-500 to-teal-600'
+         
         },
         { 
             project: selectedProjects[2], 
             classes: 'col-span-2 row-span-2 row-start-4',
-            gradient: 'from-orange-500 to-red-600'
+      
         },
         { 
             project: selectedProjects[3], 
             classes: 'col-span-3 row-span-2 col-start-3 row-start-4',
-            gradient: 'from-indigo-500 to-purple-600'
+          
         }
     ];
 
@@ -1359,7 +1359,7 @@ function loadHomeProjects() {
         const techTags = generateTechTags(project);
         
         projectsHTML += `
-            <div class="${item.classes} bg-gradient-to-br ${item.gradient} rounded-xl p-6 flex flex-col justify-between text-white hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group relative overflow-hidden" data-project="${item.project}">
+            <div class="${item.classes} rounded-xl p-6 flex flex-col justify-between text-white hover:shadow-2xl cursor-pointer group relative overflow-hidden" data-project="${item.project}">
                 <!-- Project Image -->
                 <div class="absolute inset-0 rounded-xl overflow-hidden">
                     ${project.image ? `
@@ -1367,9 +1367,9 @@ function loadHomeProjects() {
                              alt="${project.title}" 
                              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                              loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-br ${item.gradient} bg-opacity-80"></div>
+                        <div class="absolute inset-0 bg-opacity-80"></div>
                     ` : `
-                        <div class="w-full h-full bg-gradient-to-br ${item.gradient}"></div>
+                        <div class="w-full h-full"></div>
                     `}
                 </div>
                 
@@ -1385,7 +1385,7 @@ function loadHomeProjects() {
                 </div>
                 
                 <!-- Hover overlay -->
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 rounded-xl transition-all duration-300"></div>
+                <div class="absolute inset-0 bg-black bg-opacity-80 group-hover:bg-opacity-60 rounded-xl transition-all duration-300"></div>
             </div>
         `;
     });
