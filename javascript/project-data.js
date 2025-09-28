@@ -158,21 +158,21 @@ const projectData = {
             </div>`
         ]
     },
-    eventplanner: {
-        title: "EventPlanner",
-        description: "Event planning web application, enabling users to organise and manage events effortlessly.",
-        link: "https://eventplanner-demo.com",
+    jokester: {
+        title: "Jokester",
+        description: "Jokester is a web application that allows users to share and discover jokes.",
+        link: "https://jokester-demo.com",
         client: "Sarah Johnson",
         clientType: "individual",
         year: "2022",
         role: "UI/UX Designer",
-        image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center",
-        logo: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=64&h=64&fit=crop&crop=center",
+        image: "Assets/Project2a.png",
+        logo: "Assets/jokester-favicon.ico",
         category: "live-projects",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
                 <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-bold text-gray-900">TIMELINE</h3>
+                    <h3 class="text-lg font-bold text-gray-900">JOKESTER</h3>
 
                 </div>
                 <div class="grid grid-cols-7 gap-1 mb-2">
@@ -198,7 +198,7 @@ const projectData = {
             </div>
         `,
         about: [
-            "EventPlanner is a comprehensive event management platform that simplifies the entire event planning process. From initial concept to post-event analysis, it provides tools for every aspect of event organization.",
+            "Jokester is a web application that allows users to share and discover jokes.",
             "The application features timeline management, guest coordination, vendor management, and real-time collaboration tools to ensure successful events."
         ],
         clientInfo: [
@@ -215,7 +215,7 @@ const projectData = {
         ],
         resultScreenshots: [
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&crop=center" 
+                <img src="Assets/Project2a.png" 
                      alt="Event Planning Calendar" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-4 right-4 bg-blue-50 p-2 rounded">
@@ -224,7 +224,7 @@ const projectData = {
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
+                <img src="Assets/Project2b.png" 
                      alt="Event Guests Management" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-4 right-4 bg-green-50 p-2 rounded">
@@ -233,7 +233,7 @@ const projectData = {
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1519167758481-83f142bb8b5a?w=800&h=600&fit=crop&crop=center" 
+                <img src="Assets/Project2c.png" 
                      alt="Event Vendors Management" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
@@ -242,7 +242,7 @@ const projectData = {
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop&crop=center" 
+                <img src="Assets/Project2d.png" 
                      alt="Event Success" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-4 right-4 bg-orange-50 p-2 rounded">

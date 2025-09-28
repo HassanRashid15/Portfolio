@@ -1,7 +1,7 @@
 // Experience Data
 const experienceData = {
     apple: {
-        title: "Senior iOS Developer",
+        title: "Senior iOS Developerss",
         company: "Apple",
         period: "June 2020 - Present",
         responsibilities: [
@@ -518,11 +518,11 @@ class FooterComponent {
                             <div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in working together?</h3>
                                 <div class="flex flex-col sm:flex-row gap-4">
-                                    <a href="${this.pages.contact}" class="btn-mimas text-center">
-                                        Get In Touch
+                                    <a href="${this.pages.contact}" class="btn-mimas hvr-sweep-to-right">
+                                        <span>Get In Touch</span>
                                     </a>
-                                    <a href="${this.pages.projects}" class="btn-mimas btn-mimas--white text-center">
-                                        Browse Projects
+                                    <a href="${this.pages.projects}" class="btn-mimas btn-mimas--white hvr-sweep-to-left">
+                                        <span>Browse Projects</span>
                                     </a>
                                 </div>
                             </div>
@@ -1482,7 +1482,7 @@ function generateTechTags(project) {
             { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
             { name: 'Stripe', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
-        'eventplanner': [
+        'jokester': [
             { name: 'Vue.js', bg: 'bg-purple-100', text: 'text-purple-800' },
             { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],

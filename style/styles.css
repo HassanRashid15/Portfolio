@@ -28,11 +28,11 @@ body {
     @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
   }
   
-  /* Mimas Button Style */
+  /* Mimas Button Style - With Animation but Visible Text */
   .btn-mimas {
     pointer-events: auto;
     cursor: pointer;
-    background: #8b5cf6; /* Purple background */
+    background: #8b5cf6;
     border: none;
     padding: 1rem 2rem;
     margin: 0;
@@ -46,8 +46,10 @@ body {
     font-size: 0.85rem;
     border-radius: 0.5rem;
     overflow: hidden;
-    color: #fff;
+    color: #ffffff;
     transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 10;
   }
   
   .btn-mimas::before,
@@ -59,18 +61,6 @@ body {
     height: 100%;
   }
   
-  .btn-mimas span,
-  .btn-mimas {
-    position: relative;
-    mix-blend-mode: difference;
-    z-index: 2;
-  }
-  
-  .btn-mimas span {
-    position: relative;
-    z-index: 3;
-  }
-  
   .btn-mimas::before {
     content: '';
     background: #000;
@@ -78,6 +68,7 @@ body {
     left: -10%;
     transform: skew(30deg);
     transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    z-index: 1;
   }
   
   .btn-mimas:hover::before {
@@ -87,12 +78,26 @@ body {
   .btn-mimas:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+    color: #ffffff !important;
+  }
+  
+  /* Button text - ensure it's always visible */
+  .btn-mimas {
+    color: #ffffff !important;
+    position: relative;
+    z-index: 15;
+  }
+  
+  .btn-mimas span {
+    position: relative;
+    z-index: 20;
+    color: #ffffff !important;
   }
   
   /* Mimas Button Variants */
   .btn-mimas--white {
     background: #fff;
-    color: #8b5cf6;
+    color: #8b5cf6 !important;
   }
   
   .btn-mimas--white::before {
@@ -100,16 +105,36 @@ body {
   }
   
   .btn-mimas--white span {
-    mix-blend-mode: difference;
+    color: #8b5cf6 !important;
+  }
+  
+  .btn-mimas--white:hover {
+    color: #ffffff !important;
+  }
+  
+  .btn-mimas--white:hover span {
+    color: #ffffff !important;
   }
   
   .btn-mimas--gray {
     background: #6b7280;
-    color: #fff;
+    color: #fff !important;
   }
   
   .btn-mimas--gray::before {
     background: #000;
+  }
+  
+  .btn-mimas--gray span {
+    color: #ffffff !important;
+  }
+  
+  .btn-mimas--gray:hover {
+    color: #ffffff !important;
+  }
+  
+  .btn-mimas--gray:hover span {
+    color: #ffffff !important;
   }
 }
 .marquee__content span {
@@ -535,6 +560,10 @@ button.tab-button-mobile.active {
 
 .experience-item:hover {
   transform: translateX(4px);
+}
+
+.experience-item:hover span {
+  color: #8b5cf6 !important;
 }
 
 .experience-item.active span {
