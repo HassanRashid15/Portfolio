@@ -167,7 +167,7 @@ function createProjectCard(projectId) {
                                 <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
                             </div>
                         ` : ''}
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                             ${project.title}
                         </h3>
                     </div>
@@ -179,7 +179,7 @@ function createProjectCard(projectId) {
                     <div class="flex items-center space-x-2">
                         <span class="text-sm text-gray-600">${project.client}</span>
                     </div>
-                    <span class="text-sm text-purple-600 font-medium">${project.role}</span>
+                    <span class="text-sm text-primary font-medium">${project.role}</span>
                 </div>
             </div>
         </div>
@@ -240,10 +240,10 @@ function setupEventListeners() {
     if (gridViewBtn) {
         gridViewBtn.addEventListener('click', function() {
             currentView = 'grid';
-            gridViewBtn.classList.add('bg-purple-100', 'text-purple-600');
+            gridViewBtn.classList.add('bg-primary-light', 'text-primary');
             gridViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
             listViewBtn.classList.add('bg-gray-100', 'text-gray-600');
-            listViewBtn.classList.remove('bg-purple-100', 'text-purple-600');
+            listViewBtn.classList.remove('bg-primary-light', 'text-primary');
             loadProjects();
         });
     }
@@ -251,10 +251,10 @@ function setupEventListeners() {
     if (listViewBtn) {
         listViewBtn.addEventListener('click', function() {
             currentView = 'list';
-            listViewBtn.classList.add('bg-purple-100', 'text-purple-600');
+            listViewBtn.classList.add('bg-primary-light', 'text-primary');
             listViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
             gridViewBtn.classList.add('bg-gray-100', 'text-gray-600');
-            gridViewBtn.classList.remove('bg-purple-100', 'text-purple-600');
+            gridViewBtn.classList.remove('bg-primary-light', 'text-primary');
             loadProjects();
         });
     }
@@ -675,7 +675,7 @@ function updatePagination(totalProjects, totalPages) {
     for (let i = 1; i <= totalPages; i++) {
         if (i === currentPage) {
             paginationHTML += `
-                <button class="pagination-btn px-4 py-2 bg-purple-600 text-white rounded-lg font-medium" data-page="${i}">
+                <button class="pagination-btn px-4 py-2 bg-primary text-white rounded-lg font-medium" data-page="${i}">
                     ${i}
                 </button>
             `;

@@ -285,7 +285,7 @@ function loadMoreProjects(currentProjectId) {
                                     <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
                                 </div>
                             ` : ''}
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                                 ${project.title}
                             </h3>
                         </div>
@@ -297,7 +297,7 @@ function loadMoreProjects(currentProjectId) {
                         <div class="flex items-center space-x-2">
                             <span class="text-sm text-gray-600">${typeof project.client === 'string' ? project.client : 'Client'}</span>
                         </div>
-                        <span class="text-sm text-purple-600 font-medium">${project.role}</span>
+                        <span class="text-sm text-primary font-medium">${project.role}</span>
                     </div>
                 </div>
             </div>

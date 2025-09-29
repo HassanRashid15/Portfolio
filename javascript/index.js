@@ -1,4 +1,38 @@
-// Experience Data
+// Stack Data for About Page
+const stackData = {
+    marquee1: [
+        { text: "Responsive Design", icon: "star" },
+        { text: "HTML5/CSS3 Mastery", icon: "star" },
+        { text: "JavaScript", icon: "star" },
+        { text: "React Development", icon: "star" },
+        { text: "Tailwind CSS", icon: "star" },
+        // { text: "Node.js Backend", icon: "star" },
+        { text: "TypeScript", icon: "star" }
+    ],
+    marquee2: [
+        // { text: "Database Design", icon: "star" },
+        { text: "API Integration", icon: "star" },
+        { text: "Bootstrap", icon: "star" },
+        { text: "Version Control", icon: "star" },
+        { text: "AI-powered Tools", icon: "star" },
+        { text: "Cloud Deployment", icon: "star" },
+        { text: "Performance Optimization", icon: "star" },
+        
+        // { text: "Docker & Kubernetes", icon: "star" }
+    ],
+    marquee3: [
+        { text: "Testing & QA", icon: "star" },
+        { text: "Agile Methodology", icon: "star" },
+        { text: "Code Review", icon: "star" },
+        { text: "Performance Optimization", icon: "star" },
+        { text: "Collaborative Team Player", icon: "star" },
+        { text: "Attention to Detail", icon: "star" },
+        { text: "Effective Communication", icon: "star" },
+        { text: "Commitment", icon: "star" },
+    ]
+};
+
+// Legacy Experience Data (keeping for other pages)
 const experienceData = {
     apple: {
         title: "Senior iOS Developerss",
@@ -67,11 +101,11 @@ class NavbarComponent {
     getLinkClass(page) {
         // Special case: highlight Projects link when on project-detail page
         if (page === 'projects' && this.currentPage === 'project-detail') {
-            return 'text-purple-600 font-bold';
+            return 'text-primary font-bold';
         }
         
         return this.currentPage === page 
-            ? 'text-purple-600 font-bold' 
+            ? 'text-primary font-bold' 
             : 'text-gray-700 link transition-colors font-bold';
     }
 
@@ -131,10 +165,10 @@ class NavbarComponent {
                         <div></div>
                     </div>
                     <ul>
-                        <li><a href="${this.pages.home}" class="${this.currentPage === 'home' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Home</a></li>
-                        <li><a href="${this.pages.about}" class="${this.currentPage === 'about' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">About</a></li>
-                        <li><a href="${this.pages.projects}" class="${this.currentPage === 'projects' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Projects</a></li>
-                        <li><a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-purple-400' : 'text-white'} hover:text-purple-400 transition-colors">Contact</a></li>
+                        <li><a href="${this.pages.home}" class="${this.currentPage === 'home' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Home</a></li>
+                        <li><a href="${this.pages.about}" class="${this.currentPage === 'about' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">About</a></li>
+                        <li><a href="${this.pages.projects}" class="${this.currentPage === 'projects' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Projects</a></li>
+                        <li><a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Contact</a></li>
                     </ul>
                 </nav>
             </nav>
@@ -300,7 +334,7 @@ function generateExperienceDetails(companyKey) {
     
     const responsibilitiesHTML = experience.responsibilities.map(responsibility => 
         `<li class="flex items-start">
-            <svg class="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
             <span class="text-gray-700">${responsibility}</span>
@@ -308,7 +342,7 @@ function generateExperienceDetails(companyKey) {
     ).join('');
     
     return `
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-purple-600">@ ${experience.company}</span></h3>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
         <p class="text-gray-500 mb-6">${experience.period}</p>
         <ul class="space-y-3">
             ${responsibilitiesHTML}
@@ -323,7 +357,7 @@ function generateMobileExperienceDetails(companyKey) {
     
     const responsibilitiesHTML = experience.responsibilities.map(responsibility => 
         `<li class="flex items-start">
-            <svg class="w-4 h-4 text-purple-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-4 h-4 text-primary mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
             <span class="text-sm text-gray-700">${responsibility}</span>
@@ -331,7 +365,7 @@ function generateMobileExperienceDetails(companyKey) {
     ).join('');
     
     return `
-        <h3 class="text-xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-purple-600">@ ${experience.company}</span></h3>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
         <p class="text-gray-500 mb-4">${experience.period}</p>
         <ul class="space-y-2">
             ${responsibilitiesHTML}
@@ -409,7 +443,7 @@ function initExperienceTabs() {
                 i.classList.remove('active');
                 const text = i.querySelector('span');
                 if (text) {
-                    text.classList.remove('text-purple-600', 'font-medium');
+                    text.classList.remove('text-primary', 'font-medium');
                     text.classList.add('text-gray-600');
                 }
             });
@@ -422,7 +456,7 @@ function initExperienceTabs() {
             const text = item.querySelector('span');
             if (text) {
                 text.classList.remove('text-gray-600');
-                text.classList.add('text-purple-600', 'font-medium');
+                text.classList.add('text-primary', 'font-medium');
                 console.log(`${company} text computed styles:`, {
                     color: window.getComputedStyle(text).color,
                     fontWeight: window.getComputedStyle(text).fontWeight
@@ -499,7 +533,7 @@ class FooterComponent {
 
     render() {
         const footerHTML = `
-            <footer class="bg-white py-10 pb-5">
+            <footer class="bg-white py-10 pb-2">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-0 place-items-center">
                         <!-- Left Side -->
@@ -517,11 +551,11 @@ class FooterComponent {
                             <!-- Call to Action -->
                             <div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in working together?</h3>
-                                <div class="flex flex-col sm:flex-row gap-4">
-                                    <a href="${this.pages.contact}" class="btn-mimas hvr-sweep-to-right">
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <a href="${this.pages.contact}" class="bg-primary text-white hover:bg-primary-hover hover:text-white font-semibold py-3 px-12 rounded-full transition-colors ">
                                         <span>Get In Touch</span>
                                     </a>
-                                    <a href="${this.pages.projects}" class="btn-mimas btn-mimas--white hvr-sweep-to-left">
+                                    <a href="${this.pages.projects}" class="border border-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white font-semibold py-3 px-12 rounded-full transition-colors">
                                         <span>Browse Projects</span>
                                     </a>
                                 </div>
@@ -537,7 +571,7 @@ class FooterComponent {
          <a href="https://www.linkedin.com/in/hassan-rashid-61136823b/" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-purple-600 transition-colors" 
+   class="text-gray-700 hover:text-primary transition-colors" 
    aria-label="LinkedIn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="h-8 w-8" fill="currentColor">
         <path d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z"/>
@@ -550,7 +584,7 @@ class FooterComponent {
                                <a href="https://instagram.com/yourprofile" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-purple-600 transition-colors" 
+   class="text-gray-700 hover:text-primary transition-colors" 
    aria-label="Instagram">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-7 w-7" fill="currentColor">
         <path d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
@@ -559,7 +593,7 @@ class FooterComponent {
 
                                     
                                     <!-- GitHub -->
-                                    <a href="https://github.com/HassanRashid15" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-purple-600 transition-colors" aria-label="GitHub">
+                                    <a href="https://github.com/HassanRashid15" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-primary transition-colors" aria-label="GitHub">
                                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                         </svg>
@@ -569,7 +603,7 @@ class FooterComponent {
                               <a href="https://x.com/yourusername" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-purple-600 transition-colors" 
+   class="text-gray-700 hover:text-primary transition-colors" 
    aria-label="X (Twitter)">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="h-8 w-8" fill="currentColor">
         <path d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/>
@@ -597,11 +631,11 @@ class FooterComponent {
     getLinkClass(page) {
         // Special case: highlight Projects link when on project-detail page
         if (page === 'projects' && this.currentPage === 'project-detail') {
-            return 'text-purple-600 font-bold';
+            return 'text-primary font-bold';
         }
         
         return this.currentPage === page 
-            ? 'text-purple-600 font-bold' 
+            ? 'text-primary font-bold' 
             : 'text-gray-700 link transition-colors font-bold';
     }
 
@@ -671,8 +705,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = new FooterComponent(currentPage);
     footer.mount('footer-container');
     
-    // Initialize progress line animation
-    initProgressLineAnimation();
+    // Initialize progress line animation and store the update function
+    window.updateProgressLine = initProgressLineAnimation();
     
     // Initialize experience tabs
     setTimeout(() => {
@@ -707,13 +741,17 @@ document.addEventListener('DOMContentLoaded', function() {
 function initProgressLineAnimation() {
     const experienceSection = document.querySelector('#experience-section');
     const progressLine = document.getElementById('progress-line');
-    const experienceItems = document.querySelectorAll('.experience-item');
     
-    if (!experienceSection || !progressLine || experienceItems.length === 0) return;
+    if (!experienceSection || !progressLine) return;
     
     let ticking = false;
     
     function updateProgressLine() {
+        // Re-query experience items to get updated content
+        const experienceItems = document.querySelectorAll('.experience-item');
+        
+        if (experienceItems.length === 0) return;
+        
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
@@ -748,6 +786,18 @@ function initProgressLineAnimation() {
         
         progressLine.style.height = `${currentHeight}px`;
         
+        // Debug logging
+        console.log('Progress Line Update (Original Logic):', {
+            scrolled,
+            contentStart,
+            contentEnd,
+            contentHeight,
+            progress: (progress * 100).toFixed(1) + '%',
+            currentHeight: currentHeight.toFixed(0) + 'px',
+            firstItemTop,
+            lastItemBottom
+        });
+        
         ticking = false;
     }
     
@@ -759,9 +809,247 @@ function initProgressLineAnimation() {
         }
     });
     
-    // Initial call
-    updateProgressLine();
+    // Also update on window resize to handle dynamic content changes
+    window.addEventListener('resize', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateProgressLine);
+            ticking = true;
+        }
+    });
+    
+    // Use MutationObserver to detect when content changes dynamically
+    const observer = new MutationObserver(() => {
+        if (!ticking) {
+            requestAnimationFrame(updateProgressLine);
+            ticking = true;
+        }
+    });
+    
+    // Observe the experience section for changes
+    observer.observe(experienceSection, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style']
+    });
+    
+    // Initial call with a small delay to ensure DOM is ready
+    setTimeout(() => {
+        updateProgressLine();
+    }, 100);
+    
+    // Also call on load to ensure it works
+    window.addEventListener('load', () => {
+        setTimeout(updateProgressLine, 200);
+    });
+    
+    // Return the update function so it can be called manually if needed
+    return updateProgressLine;
 }
+
+// Utility function to manually refresh the progress line
+function refreshProgressLine() {
+    if (window.updateProgressLine) {
+        window.updateProgressLine();
+    }
+}
+
+// Make it globally available
+window.refreshProgressLine = refreshProgressLine;
+
+// Debug function to test progress line
+function debugProgressLine() {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine) {
+        console.log('❌ Progress line element not found');
+        return;
+    }
+    
+    if (experienceItems.length === 0) {
+        console.log('❌ No experience items found');
+        return;
+    }
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const contentHeight = lastItemBottom - firstItemTop;
+    
+    console.log('🔍 Progress Line Debug Info:');
+    console.log('- Experience items count:', experienceItems.length);
+    console.log('- First item top:', firstItemTop);
+    console.log('- Last item bottom:', lastItemBottom);
+    console.log('- Content height:', contentHeight);
+    console.log('- Current scroll:', scrolled);
+    console.log('- Progress line height:', progressLine.style.height);
+    console.log('- Progress line computed height:', window.getComputedStyle(progressLine).height);
+    
+    // Force refresh
+    refreshProgressLine();
+    console.log('- After refresh height:', progressLine.style.height);
+}
+
+// Make debug function globally available
+window.debugProgressLine = debugProgressLine;
+
+// Function to force progress line to full height (for testing)
+function forceProgressLineFull() {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine || experienceItems.length === 0) return;
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const totalHeight = lastItemBottom - firstItemTop;
+    
+    progressLine.style.height = `${totalHeight}px`;
+    console.log('Forced progress line to full height:', totalHeight + 'px');
+}
+
+// Make it globally available
+window.forceProgressLineFull = forceProgressLineFull;
+
+// Quick fix function to immediately set progress line to full height
+function fixProgressLineNow() {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine || experienceItems.length === 0) {
+        console.log('❌ Progress line or experience items not found');
+        return;
+    }
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const totalHeight = lastItemBottom - firstItemTop;
+    
+    // Set the progress line to full height immediately
+    progressLine.style.height = `${totalHeight}px`;
+    progressLine.style.transition = 'none'; // Remove transition for immediate effect
+    
+    console.log('✅ Progress line fixed to full height:', totalHeight + 'px');
+    
+    // Restore transition after a brief moment
+    setTimeout(() => {
+        progressLine.style.transition = 'height 0.3s ease-out';
+    }, 100);
+}
+
+// Make it globally available
+window.fixProgressLineNow = fixProgressLineNow;
+
+// Function to set progress line to 100% immediately
+function setProgressLineTo100() {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine || experienceItems.length === 0) {
+        console.log('❌ Progress line or experience items not found');
+        return;
+    }
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const totalHeight = lastItemBottom - firstItemTop;
+    
+    // Set to 100% height
+    progressLine.style.height = `${totalHeight}px`;
+    
+    console.log('✅ Progress line set to 100%:', totalHeight + 'px');
+}
+
+// Make it globally available
+window.setProgressLineTo100 = setProgressLineTo100;
+
+// Function to set progress line to 50% (middle point)
+function setProgressLineTo50() {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine || experienceItems.length === 0) {
+        console.log('❌ Progress line or experience items not found');
+        return;
+    }
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const totalHeight = lastItemBottom - firstItemTop;
+    
+    // Set to 50% height
+    progressLine.style.height = `${totalHeight * 0.5}px`;
+    
+    console.log('✅ Progress line set to 50%:', (totalHeight * 0.5) + 'px');
+}
+
+// Make it globally available
+window.setProgressLineTo50 = setProgressLineTo50;
+
+// Simple test function to manually set progress line height
+function testProgressLine(percentage) {
+    const progressLine = document.getElementById('progress-line');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    if (!progressLine || experienceItems.length === 0) {
+        console.log('❌ Progress line or experience items not found');
+        return;
+    }
+    
+    const firstItem = experienceItems[0];
+    const lastItem = experienceItems[experienceItems.length - 1];
+    
+    const firstItemRect = firstItem.getBoundingClientRect();
+    const lastItemRect = lastItem.getBoundingClientRect();
+    
+    const scrolled = window.pageYOffset;
+    const firstItemTop = firstItemRect.top + scrolled;
+    const lastItemBottom = lastItemRect.bottom + scrolled;
+    const totalHeight = lastItemBottom - firstItemTop;
+    
+    const targetHeight = totalHeight * (percentage / 100);
+    progressLine.style.height = `${targetHeight}px`;
+    
+    console.log(`✅ Progress line set to ${percentage}%:`, targetHeight + 'px');
+}
+
+// Make it globally available
+window.testProgressLine = testProgressLine;
 
 // Projects Showcase Functionality
 function initProjectsSlider() {
@@ -792,9 +1080,9 @@ function initProjectsSlider() {
         dots.forEach((dot, index) => {
             if (index === currentSlide) {
                 dot.classList.remove('bg-gray-300');
-                dot.classList.add('bg-purple-600');
+                dot.classList.add('bg-primary');
             } else {
-                dot.classList.remove('bg-purple-600');
+                dot.classList.remove('bg-primary');
                 dot.classList.add('bg-gray-300');
             }
         });
@@ -1476,14 +1764,14 @@ function generateTechTags(project) {
     const techMap = {
         'Devstitch': [
             { name: 'React', bg: 'bg-blue-100', text: 'text-blue-800' },
-            { name: 'Socket.io', bg: 'bg-purple-100', text: 'text-purple-800' }
+            { name: 'Socket.io', bg: 'bg-primary-light', text: 'text-primary-dark' }
         ],
         'ecocart': [
             { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
             { name: 'Stripe', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
         'jokester': [
-            { name: 'Vue.js', bg: 'bg-purple-100', text: 'text-purple-800' },
+            { name: 'Vue.js', bg: 'bg-primary-light', text: 'text-primary-dark' },
             { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
         'foodiefinder': [
@@ -1504,7 +1792,7 @@ function generateTechTags(project) {
         ],
         'smartcity': [
             { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
-            { name: 'IoT', bg: 'bg-purple-100', text: 'text-purple-800' }
+            { name: 'IoT', bg: 'bg-primary-light', text: 'text-primary-dark' }
         ]
     };
 
@@ -1644,5 +1932,59 @@ function addRippleAnimation() {
     `;
     document.head.appendChild(style);
 }
+
+// Stack Rendering Function for About Page
+function renderStackItems() {
+    const marqueeWrapper = document.getElementById('marquee-wrapper');
+    if (!marqueeWrapper) return;
+
+    // Clear existing content
+    marqueeWrapper.innerHTML = '';
+
+    // Create star icon SVG
+    const starIcon = `
+        <svg class="w-6 h-6 text-primary-light mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+        </svg>
+    `;
+
+    // Function to create marquee content
+    function createMarqueeContent(items) {
+        return items.map(item => `
+            <div class="marquee__content">
+                ${starIcon}
+                <span class="text-sm font-bold text-white">${item.text}</span>
+            </div>
+        `).join('');
+    }
+
+    // Create marquees dynamically
+    const marquees = [
+        { data: stackData.marquee1, classes: 'marquee marquee--fast' },
+        { data: stackData.marquee2, classes: 'marquee marquee--reverse marquee--medium' },
+        { data: stackData.marquee3, classes: 'marquee marquee--slow' }
+    ];
+
+    marquees.forEach(marquee => {
+        const marqueeElement = document.createElement('div');
+        marqueeElement.className = marquee.classes;
+        
+        marqueeElement.innerHTML = `
+            <div class="marquee__group">
+                ${createMarqueeContent(marquee.data)}
+            </div>
+            <div class="marquee__group" aria-hidden="true">
+                ${createMarqueeContent(marquee.data)}
+            </div>
+        `;
+        
+        marqueeWrapper.appendChild(marqueeElement);
+    });
+}
+
+// Initialize stack rendering when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    renderStackItems();
+});
 
 

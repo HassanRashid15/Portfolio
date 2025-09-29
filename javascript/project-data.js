@@ -65,9 +65,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&crop=center" 
                      alt="Team Collaboration" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Team</p>
-                    <p class="text-lg font-bold text-purple-800">50+</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Team</p>
+                    <p class="text-lg font-bold text-primary-dark">50+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -142,9 +142,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Product Gallery" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Products</p>
-                    <p class="text-lg font-bold text-purple-800">500+</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Products</p>
+                    <p class="text-lg font-bold text-primary-dark">500+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -185,14 +185,14 @@ const projectData = {
                     <div class="text-center text-xs text-gray-500 py-1">Sun</div>
                 </div>
                 <div class="grid grid-cols-7 gap-1">
-                    <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
-                        <span class="text-xs font-bold text-purple-800">1</span>
+                    <div class="h-8 bg-primary-light rounded flex items-center justify-center">
+                        <span class="text-xs font-bold text-primary-dark">1</span>
 
-                    <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
-                        <span class="text-xs font-bold text-purple-800">2</span>
+                    <div class="h-8 bg-primary-light rounded flex items-center justify-center">
+                        <span class="text-xs font-bold text-primary-dark">2</span>
 
-                    <div class="h-8 bg-purple-100 rounded flex items-center justify-center">
-                        <span class="text-xs font-bold text-purple-800">3</span>
+                    <div class="h-8 bg-primary-light rounded flex items-center justify-center">
+                        <span class="text-xs font-bold text-primary-dark">3</span>
 
                 </div>
             </div>
@@ -236,9 +236,9 @@ const projectData = {
                 <img src="Assets/Project2c.png" 
                      alt="Event Vendors Management" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Vendors</p>
-                    <p class="text-lg font-bold text-purple-800">50+</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Vendors</p>
+                    <p class="text-lg font-bold text-primary-dark">50+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -316,9 +316,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop&crop=center" 
                      alt="Restaurant Map View" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Rating</p>
-                    <p class="text-lg font-bold text-purple-800">4.7★</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Rating</p>
+                    <p class="text-lg font-bold text-primary-dark">4.7★</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -355,7 +355,7 @@ const projectData = {
 
                         <span class="text-sm font-bold text-blue-600">6/8 glasses</span>
 
-                        <span class="text-sm font-bold text-purple-600">85%</span>
+                        <span class="text-sm font-bold text-primary">85%</span>
 
                 </div>
             </div>
@@ -399,9 +399,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Analytics" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Data</p>
-                    <p class="text-lg font-bold text-purple-800">2M+</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Data</p>
+                    <p class="text-lg font-bold text-primary-dark">2M+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -491,9 +491,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1642790103337-344b4477a0b1?w=800&h=600&fit=crop&crop=center" 
                      alt="Analytics" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">ROI</p>
-                    <p class="text-lg font-bold text-purple-800">+35%</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">ROI</p>
+                    <p class="text-lg font-bold text-primary-dark">+35%</p>
                 </div>
             </div>`
         ]
@@ -559,9 +559,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Events" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Events</p>
-                    <p class="text-lg font-bold text-purple-800">200+</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Events</p>
+                    <p class="text-lg font-bold text-primary-dark">200+</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
@@ -598,7 +598,7 @@ const projectData = {
 
                         <span class="text-sm font-bold text-blue-600">Good</span>
 
-                        <span class="text-sm font-bold text-purple-600">Efficient</span>
+                        <span class="text-sm font-bold text-primary">Efficient</span>
 
                 </div>
             </div>
@@ -642,9 +642,9 @@ const projectData = {
                 <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop&crop=center" 
                      alt="City Analytics" 
                      class="w-full h-full object-cover">
-                <div class="absolute top-4 right-4 bg-purple-50 p-2 rounded">
-                    <p class="text-xs text-purple-600">Energy</p>
-                    <p class="text-lg font-bold text-purple-800">-20%</p>
+                <div class="absolute top-4 right-4 bg-primary-light p-2 rounded">
+                    <p class="text-xs text-primary">Energy</p>
+                    <p class="text-lg font-bold text-primary-dark">-20%</p>
                 </div>
             </div>`,
             `<div class="rounded-xl h-48 relative overflow-hidden">
