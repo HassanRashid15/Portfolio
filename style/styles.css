@@ -6,12 +6,12 @@
 @layer base {
   :root {
     /* Dynamic Color Variables - Change these values to update colors everywhere */
-    --primary-color: red; /* urple-600 equivalent */
-    --primary-color-hover: #7c3aed; /* Purple-700 for hover states */
-    --primary-color-light: #a855f7; /* Purple-500 for lighter variants */
-    --primary-color-dark: #6b21a8; /* Purple-800 for darker variants */
-    --primary-bg-light: #f3e8ff; /* Purple-100 for light backgrounds */
-    --primary-bg-hover: #e9d5ff; /* Purple-200 for hover backgrounds */
+    --primary-color: #dc2626; /* Red-600 equivalent */
+    --primary-color-hover: #b91c1c; /* Red-700 for hover states */
+    --primary-color-light: #ef4444; /* Red-500 for lighter variants */
+    --primary-color-dark: #991b1b; /* Red-800 for darker variants */
+    --primary-bg-light: #fee2e2; /* Red-100 for light backgrounds */
+    --primary-bg-hover: #fecaca; /* Red-200 for hover backgrounds */
   }
   
   * {
@@ -86,6 +86,57 @@ body {
   
   .group-hover\:text-primary:hover {
     color: var(--primary-color) !important;
+  }
+  
+  /* Enhanced Hover States */
+  .hover\:text-primary-light:hover {
+    color: var(--primary-color-light) !important;
+  }
+  
+  .hover\:text-primary-dark:hover {
+    color: var(--primary-color-dark) !important;
+  }
+  
+  .hover\:border-primary:hover {
+    border-color: var(--primary-color) !important;
+  }
+  
+  .hover\:border-primary-light:hover {
+    border-color: var(--primary-color-light) !important;
+  }
+  
+  /* Active States */
+  .active\:text-primary:active {
+    color: var(--primary-color) !important;
+  }
+  
+  .active\:text-primary-light:active {
+    color: var(--primary-color-light) !important;
+  }
+  
+  .active\:bg-primary:active {
+    background-color: var(--primary-color) !important;
+  }
+  
+  .active\:bg-primary-light:active {
+    background-color: var(--primary-bg-light) !important;
+  }
+  
+  .active\:border-primary:active {
+    border-color: var(--primary-color) !important;
+  }
+  
+  /* Focus States */
+  .focus\:text-primary:focus {
+    color: var(--primary-color) !important;
+  }
+  
+  .focus\:border-primary:focus {
+    border-color: var(--primary-color) !important;
+  }
+  
+  .focus\:ring-primary:focus {
+    --tw-ring-color: var(--primary-color) !important;
   }
   
   /* Progress Line Animation */
@@ -861,6 +912,11 @@ button.tab-button-mobile.active {
   text-decoration: none;
   font-weight: 500;
   position: relative;
+  transition: color 0.3s ease;
+}
+
+#mobile-nav ul li a:hover {
+  color: var(--primary-color-light);
 }
 
 #mobile-nav ul li a:after {
@@ -869,7 +925,7 @@ button.tab-button-mobile.active {
   position: absolute;
   height: 3px;
   border-radius: 5px;
-  background: #fff;
+  background: var(--primary-color-light);
   bottom: -10px;
   left: 0;
   transform-origin: left;

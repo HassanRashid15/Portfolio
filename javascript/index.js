@@ -132,7 +132,7 @@ class NavbarComponent {
 
                         <!-- Right side - Chat icon (Desktop only) -->
                         <div class="hidden md:flex items-center">
-                            <a href="${this.pages.contact}" class="${this.getLinkClass('contact')} transition-colors">
+                            <a href="${this.pages.contact}" class="text-gray-700 hover:text-primary transition-colors">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
@@ -141,7 +141,7 @@ class NavbarComponent {
 
                         <!-- Mobile menu button with chat icon -->
                         <div class="md:hidden flex items-center space-x-4">
-                            <a href="${this.pages.contact}" class="${this.getLinkClass('contact')} transition-colors">
+                            <a href="${this.pages.contact}" class="text-gray-700 hover:text-primary transition-colors">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
@@ -165,10 +165,10 @@ class NavbarComponent {
                         <div></div>
                     </div>
                     <ul>
-                        <li><a href="${this.pages.home}" class="${this.currentPage === 'home' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Home</a></li>
-                        <li><a href="${this.pages.about}" class="${this.currentPage === 'about' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">About</a></li>
-                        <li><a href="${this.pages.projects}" class="${this.currentPage === 'projects' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Projects</a></li>
-                        <li><a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary-light' : 'text-white'} hover:text-primary-light transition-colors">Contact</a></li>
+                        <li><a href="${this.pages.home}" class="${this.currentPage === 'home' ? 'text-primary-light' : 'text-white'} link hover:text-primary-light transition-colors">Home</a></li>
+                        <li><a href="${this.pages.about}" class="${this.currentPage === 'about' ? 'text-primary-light' : 'text-white'} link hover:text-primary-light transition-colors">About</a></li>
+                        <li><a href="${this.pages.projects}" class="${this.currentPage === 'projects' ? 'text-primary-light' : 'text-white'} link hover:text-primary-light transition-colors">Projects</a></li>
+                        <li><a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary-light' : 'text-white'} link hover:text-primary-light transition-colors">Contact</a></li>
                     </ul>
                 </nav>
             </nav>
@@ -835,7 +835,7 @@ function initProgressLineAnimation() {
     
     // Initial call with a small delay to ensure DOM is ready
     setTimeout(() => {
-        updateProgressLine();
+    updateProgressLine();
     }, 100);
     
     // Also call on load to ensure it works

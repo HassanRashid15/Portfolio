@@ -20,6 +20,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styles.css">
+    <style>
+        .faq-item.active {
+            border-bottom-color: var(--primary-color) !important;
+        }
+        
+        /* Dynamic Text Selection Styling */
+        ::selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        ::-moz-selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Selection styling for different contexts */
+        .testimonials ::selection {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .testimonials ::-moz-selection {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .faq ::selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .faq ::-moz-selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Special selection for headings */
+        h1 ::selection, h2 ::selection, h3 ::selection {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+        
+        h1 ::-moz-selection, h2 ::-moz-selection, h3 ::-moz-selection {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+    </style>
 </head>
 <body data-page="contact" class="font-bai-jamjuree">
     <!-- Navbar Container -->
@@ -92,6 +140,236 @@
             </div>
         </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50 testimonials">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    What Clients Say<span class="text-primary">.</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Don't just take my word for it. Here's what clients have to say about working with me.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-primary">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic flex-grow relative pl-8">
+                        <span class="absolute left-0 top-0 text-6xl text-primary font-serif leading-none">"</span>
+                        Hassan delivered an exceptional website that exceeded our expectations. His attention to detail and modern design approach made our brand stand out.
+                    </p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-semibold text-sm">JS</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">John Smith</p>
+                            <p class="text-sm text-gray-500">CEO, TechStart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-primary">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic flex-grow relative pl-8">
+                        <span class="absolute left-0 top-0 text-6xl text-primary font-serif leading-none">"</span>
+                        Professional, responsive, and incredibly talented. Hassan transformed our vision into a stunning reality. Highly recommended!
+                    </p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-semibold text-sm">MJ</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Maria Johnson</p>
+                            <p class="text-sm text-gray-500">Founder, DesignCo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-primary">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic flex-grow relative pl-8">
+                        <span class="absolute left-0 top-0 text-6xl text-primary font-serif leading-none">"</span>
+                        Working with Hassan was a game-changer for our business. His technical expertise and creative vision delivered results beyond our expectations.
+                    </p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-semibold text-sm">AB</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-900">Ahmed Bhatti</p>
+                            <p class="text-sm text-gray-500">CTO, InnovateLab</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-12 pb-0 faq">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-7xl md:text-5xl font-bold text-gray-900 mb-3">
+                    Frequently Asked Questions<span class="text-primary">.</span>
+                </h2>
+                <p class="text-base text-gray-600 max-w-2xl mx-auto">
+                    Got questions? I've got answers. Here are some common questions I receive from potential clients.
+                </p>
+            </div>
+            
+            <div class="max-w-7xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">What frontend technologies do you specialize in?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>I specialize in React, Next.js, Vue.js, TypeScript, Tailwind CSS, and modern JavaScript. I also work with state management libraries like Redux and Zustand, build tools like Vite and Webpack, and have experience with testing frameworks like Jest and Cypress.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">How long does a typical frontend project take?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>A responsive website typically takes 1-3 weeks, while a complex React/Next.js application can take 4-8 weeks. Single-page applications (SPAs) usually require 2-6 weeks depending on features. I provide detailed timelines during our initial consultation and keep you updated throughout the development process.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">Do you provide responsive design for all devices?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>Yes! All my frontend projects are fully responsive and optimized for desktop, tablet, and mobile devices. I use modern CSS frameworks like Tailwind CSS and implement mobile-first design principles to ensure your website looks perfect on all screen sizes and devices.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">Do you optimize websites for performance and SEO?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>Absolutely! I focus on performance optimization including code splitting, lazy loading, image optimization, and Core Web Vitals. I also implement SEO best practices like semantic HTML, meta tags, structured data, and ensure fast loading times to improve your search engine rankings and user experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">Can you integrate with existing backends and APIs?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>Yes! I have extensive experience integrating frontend applications with various backends including REST APIs, GraphQL, and third-party services. I work with authentication systems, database connections, and can help you connect your existing backend infrastructure with modern frontend frameworks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="border-b border-gray-300 py-4 hover:border-primary-light transition-colors duration-300 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none faq-toggle group" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-light transition-colors duration-300">Do you provide code documentation and maintenance?</h3>
+                        <svg class="h-6 w-6 text-gray-900 group-hover:text-primary-light transform transition-all duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content mt-3 text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+                        <div class="pb-1">
+                            <p>Yes! I provide comprehensive code documentation, comments, and README files for all projects. I also offer ongoing maintenance services including bug fixes, security updates, performance monitoring, and feature enhancements. All code is clean, well-structured, and follows industry best practices for easy maintenance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     </main>
 
     <!-- Footer Container -->
@@ -108,7 +386,7 @@
                     // Show a temporary message
                     const originalText = event.target.textContent;
                     event.target.textContent = 'Email copied!';
-                    event.target.style.color = '#8b5cf6';
+                    event.target.style.color = 'var(--primary-color)';
                     
                     setTimeout(() => {
                         event.target.textContent = originalText;
@@ -118,6 +396,62 @@
                     // If clipboard fails, just proceed with mailto
                     console.log('Clipboard copy failed, proceeding with mailto');
                 });
+            }
+        }
+
+        // FAQ Toggle Function with Smooth Animations
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            const faqItem = button.closest('.faq-item');
+            
+            // Close all other FAQs first
+            const allFaqContents = document.querySelectorAll('.faq-content');
+            const allFaqIcons = document.querySelectorAll('.faq-icon');
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            
+            allFaqContents.forEach(faqContent => {
+                if (faqContent !== content) {
+                    // Close other FAQs with animation
+                    faqContent.style.maxHeight = '0px';
+                    faqContent.style.opacity = '0';
+                }
+            });
+            
+            allFaqIcons.forEach(faqIcon => {
+                if (faqIcon !== icon) {
+                    faqIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Remove active class from all FAQ items
+            allFaqItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current FAQ with smooth animation
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                // Show content with animation
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+                faqItem.classList.add('active');
+                
+                // Reset max-height after animation completes
+                setTimeout(() => {
+                    content.style.maxHeight = 'none';
+                }, 300);
+            } else {
+                // Hide content with animation
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                faqItem.classList.remove('active');
+                
+                // Set to 0 after opacity transition
+                setTimeout(() => {
+                    content.style.maxHeight = '0px';
+                }, 150);
             }
         }
     </script>
