@@ -78,7 +78,8 @@
     <!-- Get In Touch Section -->
     <section class="pt-16 pb-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 place-items-center ">
+
                 <!-- Left Side - Content -->
                 <div class="order-2 lg:order-1">
                     <div class="space-y-6">
@@ -89,7 +90,7 @@
                         
                         <!-- Description -->
                         <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
-                            Looking to partner or work together? Reach out through the form and I'll get back to you in the next 48 hours.
+                            Looking to partner or work together? Reach out through the email and phone number and I'll get back to you in the next 48 hours.
                         </p>
                         
                         <!-- Contact Information -->
@@ -123,16 +124,22 @@
                 
                 <!-- Right Side - Portrait -->
                 <div class="order-1 lg:order-2">
-                    <div class="flex justify-center lg:justify-end">
-                        <!-- Circular profile image with purple border -->
-                        <div class="w-64 h-64 lg:w-72 lg:h-72 rounded-full border-2 border-primary-light overflow-hidden shadow-lg">
-                            <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                                <div class="text-center text-gray-500">
-                                    <svg class="h-16 w-16 mx-auto mb-3 opacity-60" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                                    </svg>
-                                    <p class="text-xs font-medium">Your Photo Here</p>
-                                </div>
+                    <div class="flex justify-center lg:justify-end p-8">
+                        <!-- Circular profile image with padding around the entire circle -->
+                        <div class="w-80 h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full shadow-lg relative">
+                            <!-- Outer circular border with more padding -->
+                            <div class="absolute -inset-14 rounded-full border-2 border-[#6e06f2]"></div>
+                            <!-- Circular image content -->
+                            <div class="w-full h-full relative rounded-full overflow-hidden">
+                                <!-- Random user image from Unsplash -->
+                                <img 
+                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format&q=80" 
+                                    alt="Profile Image" 
+                                    class="w-full h-full object-cover rounded-full"
+                                    loading="lazy"
+                                />
+                                <!-- Optional: Add a subtle overlay for better visual appeal -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#6e06f2]/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
                             </div>
                         </div>
                     </div>

@@ -6,12 +6,10 @@
 @layer base {
   :root {
     /* Dynamic Color Variables - Change these values to update colors everywhere */
-    --primary-color: #dc2626; /* Red-600 equivalent */
-    --primary-color-hover: #b91c1c; /* Red-700 for hover states */
-    --primary-color-light: #ef4444; /* Red-500 for lighter variants */
-    --primary-color-dark: #991b1b; /* Red-800 for darker variants */
-    --primary-bg-light: #fee2e2; /* Red-100 for light backgrounds */
-    --primary-bg-hover: #fecaca; /* Red-200 for hover backgrounds */
+    --primary-color: #6e06f2; /* Red-600 equivalent */
+    --primary-color-hover: #6e06f2; /* Red-700 for hover states */
+  
+    --primary-bg-hover: #6e06f2; /* Red-200 for hover backgrounds */
   }
   
   * {
@@ -1208,7 +1206,7 @@ body[data-page="contact"] .main-content {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--primary-color-light);
+  background: var(--primary-color);
   border-radius: inherit;
   transform: scale(0);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1244,12 +1242,12 @@ button.tab-button.active {
 
 .tab-button.active span,
 button.tab-button.active span {
-  background: rgba(255, 255, 255, 0.25) !important;
+  /* background: rgba(255, 255, 255, 0.25) !important; */
   color: white !important;
 }
 
 .tab-button:not(.active) span {
-  background: rgba(255, 255, 255, 0.15);
+  /* background: rgba(255, 255, 255, 0.15); */
   color: #d1d5db;
 }
 
@@ -1471,7 +1469,9 @@ button.tab-button.active span {
   color: #111;
   text-decoration: none;
 }
-
+.link:hover {
+  color: var(--primary-color-hover);
+}
 .link::before {
   content: '';
   position: absolute;
