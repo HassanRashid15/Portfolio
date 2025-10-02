@@ -1023,6 +1023,7 @@ body[data-page="contact"] .main-content {
   grid-template-rows: repeat(5, 1fr) !important;
   gap: 1rem;
   height: 600px;
+  min-height: 600px;
 }
 
 /* Ensure desktop layout is applied on larger screens */
@@ -1501,4 +1502,447 @@ button.tab-button.active span {
 .menu-title h2{
   font-size: 60px;
   color: white;
+}
+
+/* Project Card Hover Effects - Adapted from provided CSS */
+.project-card-hover {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.project-card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 170%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
+  transition: .8s;
+  transform: skewX(45deg);
+  border-radius: 0.75rem;
+}
+
+.project-card-hover img {
+  max-width: 100%;
+  max-height: 100%;
+  filter: grayscale(100%);
+  transition: 2s;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.project-card-hover h3,
+.project-card-hover .project-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  transition: .5s;
+  padding: 10px 0;
+  margin: 0;
+  transform-origin: bottom;
+  transform: perspective(500px) rotateX(90deg);
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+
+.project-card-hover .project-social-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.project-card-hover .project-social-links li {
+  list-style: none;
+  width: 40px;
+  height: 40px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  line-height: 40px;
+  text-align: center;
+  background: #fff;
+  transition: .5s;
+  transform-origin: left;
+  transform: perspective(1000px) rotateY(90deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-card-hover .project-social-links li:first-child {
+  border-radius: 0 0 0 0.75rem;
+}
+
+.project-card-hover .project-social-links li:last-child {
+  border-radius: 0 0 0 0.75rem;
+}
+
+.project-card-hover .project-social-links .fa,
+.project-card-hover .project-social-links i {
+  color: #262626;
+  font-size: 16px;
+}
+
+.project-card-hover:hover::before {
+  left: -170%;
+  transition-delay: 1.1s;
+}
+
+.project-card-hover:hover img {
+  filter: grayscale(0);
+  transform: scale(1.2);
+}
+
+.project-card-hover:hover h3,
+.project-card-hover:hover .project-title {
+  transform: perspective(500px) rotateX(0deg);
+}
+
+.project-card-hover:hover .project-social-links li {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.project-card-hover:hover .project-social-links li:nth-child(1) {
+  transition-delay: .5s;
+}
+
+.project-card-hover:hover .project-social-links li:nth-child(2) {
+  transition-delay: .8s;
+}
+
+.project-card-hover:hover .project-social-links li:nth-child(3) {
+  transition-delay: 1.1s;
+}
+
+/* Enhanced version with full height image and GSAP content overlay */
+.project-card-simple {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-simple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 170%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
+  transition: .8s;
+  transform: skewX(45deg);
+  border-radius: 0.75rem;
+}
+
+.project-card-simple .card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-card-simple img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(100%);
+  transition: 2s;
+  border-radius: 0.75rem;
+  display: block;
+}
+
+/* Background for card images with contain */
+.project-card-simple .card-image {
+  background-color: #f8fafc;
+  background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%), 
+                    linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #f1f5f9 75%), 
+                    linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Default title and icon - always visible */
+.project-card-simple .card-default {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  padding: 1.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.project-card-simple .card-default .default-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  margin-left: 0.75rem;
+}
+
+.project-card-simple .card-default .default-icon {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Detailed content - hidden by default, shows on hover */
+.project-card-simple .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  padding: 2rem 1.5rem 1.5rem;
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 0 0.75rem 0.75rem;
+  opacity: 0;
+}
+
+.project-card-simple .card-content.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hide default content on hover */
+.project-card-simple:hover .card-default {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.project-card-simple h3,
+.project-card-simple .project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.project-card-simple .project-description {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.project-card-simple .project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-card-simple .project-client {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.875rem;
+}
+
+.project-card-simple .project-role {
+  color: #fbbf24;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: rgba(251, 191, 36, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.project-card-simple .tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-card-simple .tech-tag {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-card-simple:hover::before {
+  left: -170%;
+  transition-delay: 1.1s;
+}
+
+.project-card-simple:hover img {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+.project-card-simple:hover .card-content {
+  transform: translateY(0);
+}
+
+.project-card-simple:hover .tech-tag {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* List view specific styles */
+.list-view .project-card-simple {
+  /* height: 350px; 
+  min-height: 350px; */
+  margin-bottom: 1.5rem;
+}
+
+.list-view .project-card-simple .card-image {
+  height: 100%;
+  width: 100%;
+}
+
+.list-view .project-card-simple .card-content {
+  padding: 1.5rem;
+}
+
+
+/* Ensure grid items have proper height */
+#projects-grid.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  min-height: 500px;
+  height: auto;
+}
+
+/* Projects page grid container */
+#projects-grid {
+  min-height: 500px;
+}
+
+#projects-grid.grid-view .project-card-simple {
+  height: 100%;
+  width: 100%;
+}
+
+/* List view container */
+#projects-grid.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: auto;
+}
+
+/* Home page grid specific styles */
+#home-projects-container .project-card-simple {
+  height: 100%;
+  min-height: 300px;
+  width: 100%;
+}
+
+#home-projects-container .project-card-simple .card-image {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home-projects-container .project-card-simple img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Responsive adjustments for project cards */
+@media (max-width: 768px) {
+  .project-card-simple {
+    min-height: 300px;
+  }
+  
+  .grid-view .project-card-simple {
+    min-height: 350px;
+  }
+  
+  .list-view .project-card-simple {
+    height: 300px;
+    min-height: 300px;
+  }
+  
+  #projects-grid.grid-view {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  #home-projects-container {
+    height: 400px;
+    min-height: 400px;
+  }
+  
+  #home-projects-container .project-card-simple {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card-simple {
+    min-height: 250px;
+  }
+  
+  .grid-view .project-card-simple {
+    min-height: 300px;
+  }
+  
+  .list-view .project-card-simple {
+    height: 250px;
+    min-height: 250px;
+  }
+  
+  #home-projects-container {
+    height: 300px;
+    min-height: 300px;
+  }
+  
+  #home-projects-container .project-card-simple {
+    min-height: 150px;
+  }
 }

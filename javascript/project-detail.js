@@ -260,45 +260,49 @@ function loadMoreProjects(currentProjectId) {
             return '';
         }
         return `
-            <div class="project-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 cursor-pointer" data-project="${projectId}">
-                <div class="relative h-64 overflow-hidden group">
+            <div class="project-card-simple shadow-lg cursor-pointer" data-project="${projectId}">
+                <div class="card-image">
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
-                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             class="w-full h-full object-cover"
                              loading="lazy">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                     ` : `
                         <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
                     `}
                 </div>
                 
-                <div class="p-6">
-                    <div class="mb-3">
-                        <div class="flex items-center space-x-3">
-                            ${project.logo ? `
-                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
-                                    <img src="${project.logo}" 
-                                         alt="${project.client} logo" 
-                                         class="w-full h-full object-cover"
-                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
-                                </div>
-                            ` : ''}
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
-                                ${project.title}
-                            </h3>
-                        </div>
+                <!-- Default title and icon - always visible -->
+                <div class="card-default">
+                    <div class="default-title">${project.title}</div>
+                    <div class="default-icon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </div>
                     </div>
                     
-                    <p class="text-gray-600 mb-4 line-clamp-2">${project.description}</p>
-                    
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-sm text-gray-600">${typeof project.client === 'string' ? project.client : 'Client'}</span>
+                <!-- Detailed content - shows on hover -->
+                <div class="card-content">
+                    <div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        
+                        <div class="project-meta">
+                            <span class="project-client">${project.client}</span>
+                            <span class="project-role">${project.role}</span>
                         </div>
-                        <span class="text-sm text-primary font-medium">${project.role}</span>
                     </div>
+                </div>
+                
+                <!-- Hidden content for modal -->
+                <div class="hidden project-data">
+                    <div class="project-description">${project.description}</div>
+                    <div class="project-client">${project.client}</div>
+                    <div class="project-role">${project.role}</div>
+                    <div class="project-year">${project.year}</div>
+                    <div class="project-image">${project.image || ''}</div>
+                    <div class="project-logo">${project.logo || ''}</div>
                 </div>
             </div>
         `;
@@ -308,6 +312,87 @@ function loadMoreProjects(currentProjectId) {
     
     // Add event listeners for the project cards
     setupModalEventListeners();
+    
+    // Initialize GSAP animations for project detail cards
+    initializeProjectDetailCardAnimations();
+}
+
+// Function to initialize GSAP animations for project detail cards
+function initializeProjectDetailCardAnimations() {
+    const projectCards = document.querySelectorAll('#more-projects .project-card-simple');
+    
+    projectCards.forEach((card, index) => {
+        const content = card.querySelector('.card-content');
+        const title = card.querySelector('.project-title');
+        const description = card.querySelector('.project-description');
+        const meta = card.querySelector('.project-meta');
+        
+        if (!content || !title) return; // Skip if elements not found
+        
+        const defaultContent = card.querySelector('.card-default');
+        const defaultTitle = card.querySelector('.default-title');
+        const defaultIcon = card.querySelector('.default-icon');
+        
+        // Set initial state for GSAP - content is hidden by default
+        gsap.set(content, { y: "100%", opacity: 0 });
+        gsap.set([title, description, meta].filter(Boolean), { y: 20, opacity: 0 });
+        
+        // Hover in animation - hide default content and show detailed content
+        card.addEventListener('mouseenter', () => {
+            const tl = gsap.timeline();
+            
+            // First hide the default content
+            tl.to([defaultTitle, defaultIcon].filter(Boolean), {
+                opacity: 0,
+                y: -10,
+                duration: 0.3,
+                ease: "power2.in"
+            })
+            // Then slide up the detailed content container
+            .to(content, {
+                y: "0%",
+                opacity: 1,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.1")
+            // Then animate the individual elements with stagger
+            .to([title, description, meta].filter(Boolean), {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "power2.out"
+            }, "-=0.3");
+        });
+        
+        // Hover out animation - show default content and hide detailed content
+        card.addEventListener('mouseleave', () => {
+            const tl = gsap.timeline();
+            
+            // First hide the individual elements
+            tl.to([title, description, meta].filter(Boolean), {
+                y: 20,
+                opacity: 0,
+                duration: 0.2,
+                stagger: 0.05,
+                ease: "power2.in"
+            })
+            // Then slide down the content container
+            .to(content, {
+                y: "100%",
+                opacity: 0,
+                duration: 0.4,
+                ease: "power2.in"
+            }, "-=0.1")
+            // Finally show the default content
+            .to([defaultTitle, defaultIcon].filter(Boolean), {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            }, "-=0.2");
+        });
+    });
 }
 
 function setupModalEventListeners() {

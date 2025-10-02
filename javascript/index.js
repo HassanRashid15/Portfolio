@@ -112,7 +112,7 @@ class NavbarComponent {
     render() {
         const navbarHTML = `
             <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: 5px;">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: 0px;">
                     <div class="flex justify-between items-center h-16">
                         <!-- Logo -->
                         <div class="flex-shrink-0">
@@ -1647,33 +1647,47 @@ function loadHomeProjects() {
         const techTags = generateTechTags(project);
         
         projectsHTML += `
-            <div class="${item.classes} rounded-xl p-6 flex flex-col justify-between text-white hover:shadow-2xl cursor-pointer group relative overflow-hidden" data-project="${item.project}">
-                <!-- Project Image -->
-                <div class="absolute inset-0 rounded-xl overflow-hidden">
+            <div class="${item.classes} project-card-simple shadow-lg cursor-pointer" data-project="${item.project}">
+                <div class="card-image">
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
-                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             class="w-full h-full object-cover"
                              loading="lazy">
-                        <div class="absolute inset-0 bg-opacity-80"></div>
                     ` : `
-                        <div class="w-full h-full"></div>
+                        <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
                     `}
                 </div>
                 
-                <!-- Content -->
-                <div class="relative z-10 flex flex-col justify-between h-full">
+                <div class="card-content">
                     <div>
-                        <h3 class="text-2xl font-bold mb-2">${project.title}</h3>
-                        <p class="text-white text-opacity-90 text-sm line-clamp-2">${project.description}</p>
+                        <h3 class="project-title">
+                            ${project.title}
+                        </h3>
+                        <p class="project-description">
+                            ${project.description}
+                        </p>
+                        
+                        <div class="project-meta">
+                            <span class="project-client">${project.client}</span>
+                            <span class="project-role">${project.role}</span>
+                        </div>
                     </div>
-                    <div class="flex space-x-2 flex-wrap mt-4">
-                        ${techTags.map(tag => `<span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs">${tag.name}</span>`).join('')}
+                    
+                    <div class="tech-tags">
+                        ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
                     </div>
                 </div>
                 
-                <!-- Hover overlay -->
-                <div class="absolute inset-0 bg-black bg-opacity-80 group-hover:bg-opacity-60 rounded-xl transition-all duration-300"></div>
+                <!-- Hidden content for modal -->
+                <div class="hidden project-data">
+                    <div class="project-description">${project.description}</div>
+                    <div class="project-client">${project.client}</div>
+                    <div class="project-role">${project.role}</div>
+                    <div class="project-year">${project.year}</div>
+                    <div class="project-image">${project.image || ''}</div>
+                    <div class="project-logo">${project.logo || ''}</div>
+                </div>
             </div>
         `;
     });
@@ -1709,6 +1723,88 @@ function loadHomeProjects() {
     
     // Add click event listeners to the new project cards
     addProjectClickHandlers();
+    
+    // Initialize GSAP animations for home project cards
+    initializeHomeProjectCardAnimations();
+}
+
+// Function to initialize GSAP animations for home project cards
+function initializeHomeProjectCardAnimations() {
+    const projectCards = document.querySelectorAll('#home-projects-container .project-card-simple');
+    
+    projectCards.forEach((card, index) => {
+        const content = card.querySelector('.card-content');
+        const title = card.querySelector('.project-title');
+        const description = card.querySelector('.project-description');
+        const meta = card.querySelector('.project-meta');
+        const techTags = card.querySelector('.tech-tags');
+        
+        if (!content || !title) return; // Skip if elements not found
+        
+        const defaultContent = card.querySelector('.card-default');
+        const defaultTitle = card.querySelector('.default-title');
+        const defaultIcon = card.querySelector('.default-icon');
+        
+        // Set initial state for GSAP - content is hidden by default
+        gsap.set(content, { y: "100%", opacity: 0 });
+        gsap.set([title, description, meta, techTags].filter(Boolean), { y: 20, opacity: 0 });
+        
+        // Hover in animation - hide default content and show detailed content
+        card.addEventListener('mouseenter', () => {
+            const tl = gsap.timeline();
+            
+            // First hide the default content
+            tl.to([defaultTitle, defaultIcon].filter(Boolean), {
+                opacity: 0,
+                y: -10,
+                duration: 0.3,
+                ease: "power2.in"
+            })
+            // Then slide up the detailed content container
+            .to(content, {
+                y: "0%",
+                opacity: 1,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.1")
+            // Then animate the individual elements with stagger
+            .to([title, description, meta, techTags].filter(Boolean), {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "power2.out"
+            }, "-=0.3");
+        });
+        
+        // Hover out animation - show default content and hide detailed content
+        card.addEventListener('mouseleave', () => {
+            const tl = gsap.timeline();
+            
+            // First hide the individual elements
+            tl.to([title, description, meta, techTags].filter(Boolean), {
+                y: 20,
+                opacity: 0,
+                duration: 0.2,
+                stagger: 0.05,
+                ease: "power2.in"
+            })
+            // Then slide down the content container
+            .to(content, {
+                y: "100%",
+                opacity: 0,
+                duration: 0.4,
+                ease: "power2.in"
+            }, "-=0.1")
+            // Finally show the default content
+            .to([defaultTitle, defaultIcon].filter(Boolean), {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            }, "-=0.2");
+        });
+    });
 }
 
 // Function to create individual project card HTML
@@ -1721,38 +1817,53 @@ function createProjectCard(size, projectId) {
     
     return `
         <div class="${size} h-full">
-            <div class="card hover:shadow-lg transition-shadow duration-300 cursor-pointer h-full flex flex-col" data-project="${projectId}">
-                <div class=" bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg mb-4 overflow-hidden relative group flex-shrink-0">
+            <div class="project-card-simple shadow-lg cursor-pointer h-full" data-project="${projectId}">
+                <div class="card-image">
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
-                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             class="w-full h-full object-cover"
                              loading="lazy">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                    ` : ''}
+                    ` : `
+                        <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
+                    `}
                 </div>
-                <div class="flex items-center justify-between mb-2 flex-shrink-0">
-                    <div class="flex items-center space-x-3">
-                        ${project.logo ? `
-                            <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
-                                <img src="${project.logo}" 
-                                     alt="${project.client} logo" 
-                                     class="w-full h-full object-cover"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <span class="text-xs font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
-                            </div>
-                        ` : ''}
-                        <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
-                    </div>
-                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                
+                <!-- Default title and icon - always visible -->
+                <div class="card-default">
+                    <div class="default-title">${project.title}</div>
+                    <div class="default-icon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                     </div>
                 </div>
-                <p class="text-gray-600 mb-4 line-clamp-2 flex-grow">${project.description}</p>
-                <div class="flex space-x-2 flex-shrink-0">
-                    ${techTags.map(tag => `<span class="px-3 py-1 ${tag.bg} ${tag.text} text-sm rounded-full">${tag.name}</span>`).join('')}
+                
+                <!-- Detailed content - shows on hover -->
+                <div class="card-content">
+                    <div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        
+                        <div class="project-meta">
+                            <span class="project-client">${project.client}</span>
+                            <span class="project-role">${project.role}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-tags">
+                        ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <!-- Hidden content for modal -->
+                <div class="hidden project-data">
+                    <div class="project-description">${project.description}</div>
+                    <div class="project-client">${project.client}</div>
+                    <div class="project-role">${project.role}</div>
+                    <div class="project-year">${project.year}</div>
+                    <div class="project-image">${project.image || ''}</div>
+                    <div class="project-logo">${project.logo || ''}</div>
                 </div>
             </div>
         </div>
