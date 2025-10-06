@@ -1636,7 +1636,6 @@ button.tab-button.active span {
   border-radius: 0.75rem;
   transition: all 0.3s ease;
   height: 100%;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -1963,7 +1962,7 @@ button.tab-button.active span {
 /* Home page grid specific styles */
 #home-projects-container .project-card-simple {
   height: 100%;
-  min-height: 300px;
+
   width: 100%;
 }
 
@@ -2068,27 +2067,16 @@ button.tab-button.active span {
 }
 
 @media (max-width: 480px) {
-  .project-card-simple {
-    min-height: 250px;
-  }
-  
-  .grid-view .project-card-simple {
-    min-height: 300px;
-  }
+
   
   .list-view .project-card-simple {
     height: 250px;
     min-height: 250px;
   }
   
-  #home-projects-container {
-    height: 300px;
-    min-height: 300px;
-  }
+
   
-  #home-projects-container .project-card-simple {
-    min-height: 150px;
-  }
+
   .project-card-simple .project-meta{
     gap: 15px;
   }
