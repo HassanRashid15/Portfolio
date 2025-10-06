@@ -26,7 +26,9 @@ body {
     width: 100%;
     overflow-x: hidden;
 }
-
+.visit-website-btn{
+  display: none;
+}
 @layer components {
   /* Dynamic Color Utility Classes */
   .text-primary {
@@ -1397,7 +1399,7 @@ button.tab-button.active span {
   grid-template-columns: repeat(5, 1fr) !important;
   grid-template-rows: repeat(5, 1fr) !important;
   gap: 1.5rem;
-  height: 600px;
+  min-height: 600px;
 }
 
 /* Responsive Grid Layout for Project Detail Results */
@@ -1703,6 +1705,7 @@ button.tab-button.active span {
   justify-content: flex-start;
   border-radius: 0 0 0.75rem 0.75rem;
   transition: all 0.3s ease;
+  min-height: 60px;
 }
 
 .project-card-simple .card-default .default-title {
@@ -1711,6 +1714,39 @@ button.tab-button.active span {
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   margin-left: 0.75rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Style for the purple dot after project titles */
+.project-title-dot {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-left: 0.25rem;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+/* Ensure proper alignment in different contexts */
+.project-card-simple .project-title .project-title-dot {
+  vertical-align: middle;
+  margin-left: 0.25rem;
+}
+
+.project-card-simple .default-title .project-title-dot {
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  margin-bottom: 2px;
+}
+
+/* Modal title dot positioning */
+#modal-title .project-title-dot {
+  vertical-align: middle;
+  margin-left: 0.25rem;
 }
 
 .project-card-simple .card-default .default-icon {
@@ -1719,6 +1755,25 @@ button.tab-button.active span {
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.project-card-simple .card-default .default-icon img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  object-fit: cover;
+  filter: brightness(1.1) contrast(1.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card-simple .card-default .default-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Detailed content - hidden by default, shows on hover */
@@ -1756,6 +1811,39 @@ button.tab-button.active span {
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
+/* Project title with icon in hover content */
+.project-card-simple .project-title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-card-simple .project-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+  filter: brightness(1.2) contrast(1.1);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.project-card-simple .project-logo-fallback {
+  width: 28px;
+  height: 28px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.project-card-simple .project-title-with-icon .project-title {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
 .project-card-simple .project-description {
   color: rgba(255,255,255,0.9);
   font-size: 0.875rem;
@@ -1772,6 +1860,7 @@ button.tab-button.active span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
@@ -1893,6 +1982,61 @@ button.tab-button.active span {
   object-position: center;
 }
 
+/* Contact Page Circle Animation */
+.contact-circle-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-circle-container .circle-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #6e06f2;
+  border-radius: 50%;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.contact-circle-container .circle-image {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.contact-circle-container .circle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg, rgba(110, 6, 242, 0.1), rgba(110, 6, 242, 0.1));
+  
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Hover states */
+.contact-circle-container:hover .circle-border {
+  transform: translate(-50%, -50%) scale(1.2);
+  border-width: 4px;
+  border-color: #6e06f2;
+  box-shadow: 0 0 30px rgba(110, 6, 242, 0.4);
+}
+
+.contact-circle-container:hover .circle-image {
+  transform: scale(1.05);
+}
+
+.contact-circle-container:hover .circle-overlay {
+  opacity: 1;
+}
+
 /* Responsive adjustments for project cards */
 @media (max-width: 768px) {
   .project-card-simple {
@@ -1945,4 +2089,269 @@ button.tab-button.active span {
   #home-projects-container .project-card-simple {
     min-height: 150px;
   }
+  .project-card-simple .project-meta{
+    gap: 15px;
+  }
 }
+
+/* Project meta improvements for all pages */
+.project-card-simple .project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Visit Website Link */
+.project-card-simple .visit-website-link {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-card-simple .visit-link {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: rgba(110, 6, 242, 0.2);
+  border: 1px solid rgba(110, 6, 242, 0.3);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-card-simple .visit-link:hover {
+  background: rgba(110, 6, 242, 0.4);
+  border-color: rgba(110, 6, 242, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(110, 6, 242, 0.3);
+}
+
+.project-card-simple .visit-link svg {
+  transition: transform 0.3s ease;
+}
+
+.project-card-simple .visit-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Inline Visit Website Link (for project detail page) */
+.project-card-simple .visit-website-link-inline {
+  margin-left: auto;
+}
+
+.project-card-simple .visit-link-inline {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(110, 6, 242, 0.2);
+  border: 1px solid rgba(110, 6, 242, 0.3);
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.project-card-simple .visit-link-inline:hover {
+  background: rgba(110, 6, 242, 0.4);
+  border-color: rgba(110, 6, 242, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(110, 6, 242, 0.3);
+}
+
+.project-card-simple .visit-link-inline svg {
+  transition: transform 0.3s ease;
+}
+
+.project-card-simple .visit-link-inline:hover svg {
+  transform: translate(1px, -1px);
+}
+
+/* Visit Website Link Animation */
+.linkchanger {
+  cursor: pointer;
+  font-size: 18px;
+  position: relative;
+  white-space: nowrap;
+  color: #111;
+  text-decoration: none;
+  outline: none;
+}
+
+.linkchanger::before,
+.linkchanger::after {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  top: 100%;
+  left: 0;
+  pointer-events: none;
+}
+
+.linkchanger::before {
+  content: '';
+}
+
+.linkchanger--thebe {
+  font-weight: 600;
+  color: white;
+}
+
+.linkchanger--thebe::before {
+  transform-origin: 100% 50%;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
+}
+
+.linkchanger--thebe:hover::before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 2, 1);
+  transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.linkchanger--thebe::after {
+  content: '';
+  top: calc(100% + 4px);
+  transform-origin: 100% 50%;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.4s 0.1s cubic-bezier(0.2, 1, 0.8, 1);
+}
+
+.linkchanger--thebe:hover::after {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
+  transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.linkchanger:hover {
+  color: white;
+  outline: none;
+}
+
+.linkchanger:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.linkchanger:focus:not(:focus-visible) {
+  background: transparent;
+}
+
+.linkchanger:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
+.circlecustom {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 5px;
+  height: 5px;
+}
+
+.circlecustom::before {
+  content: "";
+  position: relative;
+  display: block;
+  width: 250%;
+  height: 250%;
+  box-sizing: border-box;
+  margin-left: -75%;
+  margin-top: -75%;
+  border-radius: 45px;
+  background-color: var(--primary-color);
+  animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.circlecustom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 50px;
+  animation: circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+}
+
+/* Active tab state - change pulse color to white */
+.tab-button.active .circlecustom::before {
+  background-color: white;
+}
+
+.tab-button.active .circlecustom::after {
+  background-color: white;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.33);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+/* Modern Pagination Dots */
+.pagination-dots {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(110, 6, 242, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.pagination-dot.active {
+  background: var(--primary-color);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px rgba(110, 6, 242, 0.2);
+}
+
+.pagination-dot:hover {
+  background: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.pagination-dot:focus {
+  outline: 2px solid rgba(110, 6, 242, 0.5);
+  outline-offset: 2px;
+}
+

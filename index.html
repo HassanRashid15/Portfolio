@@ -36,7 +36,7 @@
     <main class="main-content">
     <!-- Home Section -->
     <section id="home" class="py-20 bg-white min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:p-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:p-8 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ">
                 <!-- Left Side - Content -->
                 <div class="order-2 lg:order-1">
@@ -70,21 +70,22 @@
                 <!-- Right Side - Image -->
                 <div class="order-1 lg:order-2">
                     <div class="flex justify-center lg:justify-end p-8">
-                        <!-- Circular profile image with padding around the entire circle -->
-                        <div class="w-80 h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full shadow-lg relative">
-                            <!-- Outer circular border with more padding -->
-                            <div class="absolute -inset-14 rounded-full border-2 border-[#6e06f2]"></div>
+                        <!-- Circular profile image with animation -->
+                        <div class="contact-circle-container w-80 h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem]">
+                            <!-- Outer circular border that expands on hover -->
+                            <div class="circle-border w-full h-full"></div>
+                            
                             <!-- Circular image content -->
-                            <div class="w-full h-full relative rounded-full overflow-hidden">
-                                <!-- Random user image from Unsplash -->
+                            <div class="circle-image w-full h-full relative">
+                                <!-- Profile image -->
                                 <img 
                                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format&q=80" 
                                     alt="Profile Image" 
-                                    class="w-full h-full object-cover rounded-full"
+                                    class="w-full h-full object-cover"
                                     loading="lazy"
                                 />
-                                <!-- Optional: Add a subtle overlay for better visual appeal -->
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#6e06f2]/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                                <!-- Hover overlay -->
+                                <div class="circle-overlay"></div>
                             </div>
                         </div>
                     </div>
@@ -308,6 +309,74 @@
     <script src="javascript/project-data.js"></script>
     <script src="javascript/projects.js"></script>
     <script src="javascript/index.js?v=9"></script>
+
+    <script>
+        // Initialize circle animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeHomeCircleAnimation();
+        });
+
+        function initializeHomeCircleAnimation() {
+            const circleContainer = document.querySelector('.contact-circle-container');
+            const circleBorder = document.querySelector('.circle-border');
+            const circleImage = document.querySelector('.circle-image');
+            const circleOverlay = document.querySelector('.circle-overlay');
+
+            if (!circleContainer || !circleBorder || !circleImage || !circleOverlay) {
+                console.log('Circle elements not found on home page');
+                return;
+            }
+
+            // Set initial GSAP states
+            gsap.set(circleBorder, { scale: 1, borderWidth: 2 });
+            gsap.set(circleImage, { scale: 1 });
+            gsap.set(circleOverlay, { opacity: 0 });
+
+            // Hover in animation
+            circleContainer.addEventListener('mouseenter', () => {
+                const tl = gsap.timeline();
+                
+                tl.to(circleBorder, {
+                    scale: 1.2,
+                    borderWidth: 4,
+                    duration: 0.8,
+                    ease: "power2.out"
+                })
+                .to(circleImage, {
+                    scale: 1.05,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.4")
+                .to(circleOverlay, {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.3");
+            });
+
+            // Hover out animation
+            circleContainer.addEventListener('mouseleave', () => {
+                const tl = gsap.timeline();
+                
+                tl.to(circleOverlay, {
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: "power2.in"
+                })
+                .to(circleImage, {
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "-=0.2")
+                .to(circleBorder, {
+                    scale: 1,
+                    borderWidth: 2,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.4");
+            });
+        }
+    </script>
 
 </body>
 </html>

@@ -29,17 +29,17 @@
     <main class="main-content">
         <!-- Project Hero Section -->
         <section class="py-16 pb-10 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:p-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:p-8 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-1 gap-0 items-center">
                     <!-- Left Side - Project Info -->
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <h1 id="project-title" class="text-4xl md:text-5xl font-bold text-gray-900">Project Title</h1>
-                            <a href="#" id="project-link" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
+                            <div class="flex items-center gap-4 w-full justify-between">
+                                <h1 id="project-title" class="text-4xl md:text-5xl font-bold text-gray-900">Project Title</h1>
+                                <a href="#" id="project-link" class="linkchanger linkchanger--thebe inline-flex items-center text-primary font-medium my-5 mt-0 transition-colors">
+                                    Visit Website
+                                </a>
+                            </div>
                         </div>
                         <p id="project-description" class="text-lg text-gray-600 mb-5">Project description will be loaded dynamically.</p>
                     </div>
@@ -50,8 +50,8 @@
                             <!-- Screenshot will be loaded dynamically -->
                         </div>
                         <!-- Purple accent curves -->
-                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-hover-bg rounded-full opacity-30"></div>
-                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-light rounded-full opacity-40"></div>
+                        <!-- <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-hover-bg rounded-full opacity-30"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-light rounded-full opacity-40"></div> -->
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     <!-- Sticky Metadata Box -->
                     <div class="lg:col-span-1">
                         <div class="sticky top-20">
-                            <div class="bg-white rounded-2xl p-6 border border-primary-light shadow-sm">
+                            <div class="bg-white rounded-2xl p-6 border-4" style="border-color: var(--primary-color);">
                                 <div class="space-y-4">
                                     <div>
                                         <p id="client-label" class="text-sm text-gray-500 mb-1">Client</p>
@@ -88,7 +88,7 @@
                         <div class="space-y-16">
                             <!-- About Section -->
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-900 mb-6">About</h2>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">About<span class="text-primary text-5xl">.</span></h2>
                                 <div id="about-content" class="space-y-4 text-gray-600 text-lg leading-relaxed">
                                     <!-- About content will be loaded dynamically -->
                                 </div>
@@ -96,7 +96,7 @@
 
                             <!-- Our Client Section -->
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Client</h2>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Client<span class="text-primary text-5xl">.</span></h2>
                                 <div id="client-content" class="space-y-4 text-gray-600 text-lg leading-relaxed">
                                     <!-- Client content will be loaded dynamically -->
                                 </div>
@@ -104,12 +104,12 @@
 
                             <!-- Challenges Section -->
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Challenges</h2>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Challenges<span class="text-primary text-5xl">.</span></h2>
                                 <div id="challenges-content" class="space-y-4 text-gray-600 text-lg leading-relaxed">
                                     <!-- Challenges content will be loaded dynamically -->
                                 </div>
                             </div>
-                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Results</h2>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Results<span class="text-primary text-5xl">.</span></h2>
                             <div id="results-content" class="space-y-4 text-gray-600 text-lg leading-relaxed mb-12 mt-0">
                                 <!-- Results content will be loaded dynamically -->
                             </div>
@@ -128,13 +128,13 @@
                     
                     <!-- Results Content -->
                     <div class="lg:col-span-3">
-                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Results</h2>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Results<span class="text-primary text-5xl">.</span></h2>
                         <div id="results-content" class="space-y-4 text-gray-600 text-lg leading-relaxed mb-12">
                             <!-- Results content will be loaded dynamically -->
                         </div>
                         
                         <!-- Results Screenshots Grid -->
-                        <div id="results-screenshots" class="grid grid-cols-5 grid-rows-5 gap-4 h-[600px]">
+                        <div id="results-screenshots" class="grid grid-cols-5 grid-rows-5 gap-4">
                             <!-- Result images will be loaded dynamically with grid layout -->
                         </div>
                     </div>
@@ -178,8 +178,8 @@
                     
                     <!-- Desktop Layout (lg and above) -->
                     <div class="hidden lg:flex items-center justify-between">
-                        <div class="text-center flex-1">
-                            <h2 class="text-3xl font-bold text-gray-900 mb-4">More Projects</h2>
+                        <div class="text-start flex-1">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">More Projects<span class="text-primary text-5xl">.</span></h2>
                             <p class="text-lg text-gray-600">Discover other amazing projects from my portfolio</p>
                         </div>
                         

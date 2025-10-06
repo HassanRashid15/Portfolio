@@ -182,7 +182,7 @@ function createProjectCard(projectId) {
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-full object-cover"
+                         class="w-full h-full object-contain"
                          loading="lazy">
                 ` : `
                     <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -191,18 +191,45 @@ function createProjectCard(projectId) {
             
             <!-- Default title and icon - always visible -->
             <div class="card-default">
-                <div class="default-title">${project.title}</div>
                 <div class="default-icon">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    ${project.logo ? `
+                        <img src="${project.logo}" 
+                             alt="${project.title} logo" 
+                             class="w-6 h-6 rounded-sm object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    ` : `
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    `}
                 </div>
+                <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
             </div>
             
             <!-- Detailed content - shows on hover -->
             <div class="card-content">
                 <div>
-                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-title-with-icon">
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 
+                                 class="project-logo"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
+                        <h3 class="project-title">${project.title}<span class="project-title-dot">.</span> </h3>
+                       
+                    </div>
                     <p class="project-description">${project.description}</p>
                     
                     <div class="project-meta">
@@ -211,10 +238,10 @@ function createProjectCard(projectId) {
                     </div>
                 </div>
                 
-                <div class="tech-tags">
-                    ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                    <div class="tech-tags">
+                        ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                    </div>
                 </div>
-            </div>
             
             <!-- Hidden content for modal -->
             <div class="hidden project-data">
@@ -248,7 +275,7 @@ function createProjectListItem(projectId) {
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-full object-cover"
+                         class="w-full h-full object-contain"
                          loading="lazy">
                 ` : `
                     <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -257,18 +284,43 @@ function createProjectListItem(projectId) {
             
             <!-- Default title and icon - always visible -->
             <div class="card-default">
-                <div class="default-title">${project.title}</div>
                 <div class="default-icon">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    ${project.logo ? `
+                        <img src="${project.logo}" 
+                             alt="${project.title} logo" 
+                             class="w-6 h-6 rounded-sm object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    ` : `
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    `}
                 </div>
+                <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
             </div>
             
             <!-- Detailed content - shows on hover -->
             <div class="card-content">
                 <div>
-                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-title-with-icon">
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 class="project-logo"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
+                        <h3 class="project-title">${project.title} <span class="project-title-dot">.</span> </h3>
+                    </div>
                     <p class="project-description">${project.description}</p>
                     
                     <div class="project-meta">
@@ -277,10 +329,10 @@ function createProjectListItem(projectId) {
                     </div>
                 </div>
                 
-                <div class="tech-tags">
-                    ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                    <div class="tech-tags">
+                        ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                    </div>
                 </div>
-            </div>
             
             <!-- Hidden content for modal -->
             <div class="hidden project-data">
@@ -347,10 +399,10 @@ function setupEventListeners() {
         });
     }
     
-    // Pagination buttons
+    // Pagination dots
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.pagination-btn')) {
-            const page = parseInt(e.target.closest('.pagination-btn').dataset.page);
+        if (e.target.closest('.pagination-dot')) {
+            const page = parseInt(e.target.closest('.pagination-dot').dataset.page);
             if (page && page !== currentPage) {
                 currentPage = page;
                 loadProjects();
@@ -579,11 +631,11 @@ function showProjectModal(projectId) {
                 <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img src="${project.logo}" 
                          alt="${project.client} logo" 
-                         class="w-full h-full object-cover"
+                         class="w-full h-full object-contain"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
                 </div>
-                <span>${project.title}</span>
+                <span>${project.title}<span class="project-title-dot">.</span> </span>
             </div>
         `;
     } else {
@@ -650,7 +702,7 @@ function showProjectModal(projectId) {
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                         class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                          loading="lazy">
                     <div class="absolute inset-0 bg-black bg-opacity-30"></div>
                 ` : `
@@ -721,47 +773,18 @@ function updatePagination(totalProjects, totalPages) {
         return;
     }
     
-    let paginationHTML = '';
+    // Create modern dots pagination
+    let paginationHTML = '<div class="pagination-dots">';
     
-    // Previous button
-    if (currentPage > 1) {
-        paginationHTML += `
-            <button class="pagination-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors" data-page="${currentPage - 1}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-            </button>
-        `;
-    }
-    
-    // Page numbers
     for (let i = 1; i <= totalPages; i++) {
-        if (i === currentPage) {
-            paginationHTML += `
-                <button class="pagination-btn px-4 py-2 bg-primary text-white rounded-lg font-medium" data-page="${i}">
-                    ${i}
-                </button>
-            `;
-        } else {
-            paginationHTML += `
-                <button class="pagination-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors" data-page="${i}">
-                    ${i}
-                </button>
-            `;
-        }
-    }
-    
-    // Next button
-    if (currentPage < totalPages) {
+        const isActive = i === currentPage ? 'active' : '';
         paginationHTML += `
-            <button class="pagination-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors" data-page="${currentPage + 1}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
+            <button class="pagination-dot ${isActive}" data-page="${i}" aria-label="Go to page ${i}">
             </button>
         `;
     }
     
+    paginationHTML += '</div>';
     paginationContainer.innerHTML = paginationHTML;
 }
 

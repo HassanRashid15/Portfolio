@@ -550,7 +550,7 @@ class FooterComponent {
                             
                             <!-- Call to Action -->
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in working together?</h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in work<span class="text-primary" >ing together?</span></h3>
                                 <div class="flex flex-col sm:flex-row gap-3">
                                     <a href="${this.pages.contact}" class="bg-primary text-white hover:bg-primary-hover hover:text-white font-semibold py-3 px-12 rounded-full transition-colors text-center ">
                                         <span>Get In Touch</span>
@@ -1203,11 +1203,11 @@ function showProjectModal(projectId) {
                 <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img src="${project.logo}" 
                          alt="${project.client} logo" 
-                         class="w-full h-full object-cover"
+                         class="w-full h-full object-contain"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
                 </div>
-                <span>${project.title}</span>
+                <span>${project.title}<span class="project-title-dot">.</span> </span>
             </div>
         `;
     } else {
@@ -1257,7 +1257,7 @@ function showProjectModal(projectId) {
                 ${projectDataItem.image ? `
                     <img src="${projectDataItem.image}" 
                          alt="${projectDataItem.title}" 
-                         class="w-full h-full object-cover"
+                         class="w-full h-full object-contain"
                          loading="lazy">
                 ` : `
                     <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -1652,21 +1652,53 @@ function loadHomeProjects() {
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
-                             class="w-full h-full object-cover"
+                             class="w-full h-full object-contain"
                              loading="lazy">
                     ` : `
                         <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
                     `}
                 </div>
                 
+                <!-- Default title and icon - always visible -->
+                <div class="card-default">
+                    <div class="default-icon">
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 class="w-6 h-6 rounded-sm object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
+                    </div>
+                    <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
+                </div>
+                
+                <!-- Detailed content - shows on hover -->
                 <div class="card-content">
                     <div>
-                        <h3 class="project-title">
-                            ${project.title}
-                        </h3>
-                        <p class="project-description">
-                            ${project.description}
-                        </p>
+                        <div class="project-title-with-icon">
+                            ${project.logo ? `
+                                <img src="${project.logo}" 
+                                     alt="${project.title}<span< logo" 
+                                     class="project-logo"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            ` : `
+                                <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            `}
+                            <h3 class="project-title">${project.title}<span class="project-title-dot">.</span> </h3>
+                        </div>
+                        <p class="project-description">${project.description}</p>
                         
                         <div class="project-meta">
                             <span class="project-client">${project.client}</span>
@@ -1822,7 +1854,7 @@ function createProjectCard(size, projectId) {
                     ${project.image ? `
                         <img src="${project.image}" 
                              alt="${project.title}" 
-                             class="w-full h-full object-cover"
+                             class="w-full h-full object-contain"
                              loading="lazy">
                     ` : `
                         <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -1831,18 +1863,43 @@ function createProjectCard(size, projectId) {
                 
                 <!-- Default title and icon - always visible -->
                 <div class="card-default">
-                    <div class="default-title">${project.title}</div>
                     <div class="default-icon">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 class="w-6 h-6 rounded-sm object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
                     </div>
+                    <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
                 </div>
                 
                 <!-- Detailed content - shows on hover -->
                 <div class="card-content">
                     <div>
-                        <h3 class="project-title">${project.title}</h3>
+                        <div class="project-title-with-icon">
+                            ${project.logo ? `
+                                <img src="${project.logo}" 
+                                     alt="${project.title} logo" 
+                                     class="project-logo"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            ` : `
+                                <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            `}
+                            <h3 class="project-title">${project.title}<span class="project-title-dot">.</span> </h3>
+                        </div>
                         <p class="project-description">${project.description}</p>
                         
                         <div class="project-meta">
