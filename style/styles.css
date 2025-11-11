@@ -6,10 +6,13 @@
 @layer base {
   :root {
     /* Dynamic Color Variables - Change these values to update colors everywhere */
-    --primary-color: #6e06f2; /* Red-600 equivalent */
-    --primary-color-hover: #6e06f2; /* Red-700 for hover states */
-  
-    --primary-bg-hover: #6e06f2; /* Red-200 for hover backgrounds */
+    --primary-custom-color: #6e06f2; /* Your custom primary color - Change this */
+    --primary-color: var(--primary-custom-color); /* Alias for backward compatibility */
+    --primary-color-hover: #6e06f2; /* Hover states */
+    --primary-bg-hover: #6e06f2; /* Hover backgrounds */
+    
+    /* RGB values for rgba() usage - Update these when changing primary color */
+    --primary-color-rgb: 110, 6, 242; /* RGB values for rgba() */
   }
   
   * {
@@ -1021,25 +1024,34 @@ body[data-page="contact"] .main-content {
 #home-projects-container {
   position: relative;
   display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(5, 1fr) !important;
-  gap: 1rem;
-  height: 600px;
-  min-height: 600px;
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-auto-rows: minmax(300px, auto) !important;
+  gap: 1.5rem;
+  height: auto;
+  min-height: auto;
+  z-index: 1;
 }
 
 /* Ensure desktop layout is applied on larger screens */
 @media (min-width: 1025px) {
   #home-projects-container {
-    grid-template-columns: repeat(5, 1fr) !important;
-    grid-template-rows: repeat(5, 1fr) !important;
-    height: 600px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-auto-rows: minmax(400px, auto) !important;
+    height: auto !important;
+    min-height: auto !important;
   }
 }
 
 #home-projects-container > div {
   position: relative;
   overflow: hidden;
+  height: 100%;
+  min-height: 300px;
+}
+
+#home-projects-container .project-card-simple {
+  height: 100%;
+  min-height: 300px;
 }
 
 #home-projects-container > div::before {
@@ -1064,7 +1076,8 @@ body[data-page="contact"] .main-content {
   #home-projects-container {
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: repeat(2, 1fr) !important;
-    height: 400px !important;
+    height: auto !important;
+    min-height: auto !important;
     gap: 0.75rem;
   }
   
@@ -1094,7 +1107,8 @@ body[data-page="contact"] .main-content {
   #home-projects-container {
     grid-template-columns: 1fr !important;
     grid-template-rows: repeat(4, 1fr) !important;
-    height: 1000px !important;
+    height: auto !important;
+    min-height: auto !important;
     gap: 1rem;
   }
   
@@ -1111,7 +1125,8 @@ body[data-page="contact"] .main-content {
 /* Small screens - compact single column */
 @media (max-width: 480px) {
   #home-projects-container {
-    height: 800px !important;
+    height: auto !important;
+    min-height: auto !important;
     gap: 0.75rem;
   }
   
@@ -1640,6 +1655,109 @@ button.tab-button.active span {
   flex-direction: column;
 }
 
+/* Bootstrap-style News Cards converted to Tailwind */
+.newsCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.newsCard img {
+  display: block;
+  object-fit: cover !important;
+  object-position: center center !important;
+  height: 100%;
+  width: 100%;
+}
+
+.newsCard .overlay {
+  background: rgb(40,26,54);
+  background: -moz-linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
+  background: linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#281a36",endColorstr="#593b74",GradientType=1);
+  display: block;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  bottom: 0;
+  z-index: 3;
+}
+
+.newsCard .newsCaption {
+  position: absolute;
+  top: auto;
+  bottom: 31px;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  z-index: 10;
+  padding: 15px;
+  -webkit-transform: translateY(80%);
+  transform: translateY(80%);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+.newsCard .newsCaption i {
+  font-size: 24px;
+}
+
+.newsCard .newsCaption-title {
+  margin-top: 0px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.newsCard .newsCaption-content {
+  margin: 0;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.newsCard .newsCaption-link {
+  color: #fff;
+  text-decoration: underline;
+  opacity: .8;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
+  transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
+}
+
+.news-Slide-up:hover .overlay {
+  background: rgb(64,10,111);
+  background: -moz-linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
+  background: linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#400a6f",endColorstr="#593b74",GradientType=1);
+}
+
+.news-Slide-up:hover .newsCaption {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+
+
 .project-card-simple::before {
   content: '';
   position: absolute;
@@ -1671,7 +1789,7 @@ button.tab-button.active span {
   max-width: 100%;
   max-height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   filter: grayscale(100%);
   transition: 2s;
@@ -1721,31 +1839,65 @@ button.tab-button.active span {
 
 /* Style for the purple dot after project titles */
 .project-title-dot {
-  color: var(--primary-color);
-  font-size: 1.5rem;
+  color: var(--primary-color) !important;
+  font-size: 1.5em;
   font-weight: 700;
-  margin-left: 0.25rem;
+  margin-left: 0.15em;
   line-height: 1;
   vertical-align: baseline;
   display: inline-block;
+  position: relative;
+  top: 0.05em;
 }
 
 /* Ensure proper alignment in different contexts */
 .project-card-simple .project-title .project-title-dot {
-  vertical-align: middle;
-  margin-left: 0.25rem;
+  vertical-align: baseline;
+  margin-left: 0.15em;
+  top: 0.05em;
 }
 
 .project-card-simple .default-title .project-title-dot {
-  vertical-align: middle;
-  margin-left: 0.25rem;
-  margin-bottom: 2px;
+  vertical-align: baseline;
+  margin-left: 0.15em;
+  top: 0.05em;
 }
 
-/* Modal title dot positioning */
-#modal-title .project-title-dot {
-  vertical-align: middle;
-  margin-left: 0.25rem;
+/* Style for periods in main headings (h1, h2, etc.) */
+h1 .text-primary:last-child,
+h2 .text-primary:last-child,
+h3 .text-primary:last-child,
+h1 span.text-primary.project-title-dot,
+h2 span.text-primary.project-title-dot,
+h3 span.text-primary.project-title-dot {
+  color: var(--primary-color) !important;
+  font-size: 1.5em;
+  font-weight: 700;
+  vertical-align: baseline;
+  display: inline-block;
+  position: relative;
+}
+
+/* Style for periods with size classes (text-3xl, text-5xl, text-6xl, etc.) */
+.text-primary.text-3xl,
+.text-primary.text-5xl,
+.text-primary.text-6xl {
+  color: var(--primary-color) !important;
+  font-weight: 700;
+  vertical-align: baseline;
+  display: inline-block;
+  line-height: 1;
+  margin-left: 0.15em;
+  position: relative;
+  top: 0.05em;
+}
+
+/* Responsive sizing for periods in headings */
+@media (min-width: 768px) {
+  h1 .text-primary:last-child,
+  h2 .text-primary:last-child {
+    font-size: 1.5em;
+  }
 }
 
 .project-card-simple .card-default .default-icon {
@@ -1959,6 +2111,16 @@ button.tab-button.active span {
   min-height: auto;
 }
 
+/* List view project items */
+.project-item-list {
+  cursor: pointer;
+  min-height: 200px;
+}
+
+.project-item-list:hover {
+  transform: translateY(-2px);
+}
+
 /* Home page grid specific styles */
 #home-projects-container .project-card-simple {
   height: 100%;
@@ -1993,7 +2155,7 @@ button.tab-button.active span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 2px solid #6e06f2;
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
@@ -2012,7 +2174,7 @@ button.tab-button.active span {
   right: 0;
   bottom: 0;
   background: linear-gradient(
-    180deg, rgba(110, 6, 242, 0.1), rgba(110, 6, 242, 0.1));
+    180deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--primary-color-rgb), 0.1));
   
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2024,8 +2186,8 @@ button.tab-button.active span {
 .contact-circle-container:hover .circle-border {
   transform: translate(-50%, -50%) scale(1.2);
   border-width: 4px;
-  border-color: #6e06f2;
-  box-shadow: 0 0 30px rgba(110, 6, 242, 0.4);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 30px rgba(var(--primary-color-rgb), 0.4);
 }
 
 .contact-circle-container:hover .circle-image {
@@ -2107,18 +2269,18 @@ button.tab-button.active span {
   font-weight: 600;
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
-  background: rgba(110, 6, 242, 0.2);
-  border: 1px solid rgba(110, 6, 242, 0.3);
+  background: rgba(var(--primary-color-rgb), 0.2);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.3);
   border-radius: 0.5rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
 .project-card-simple .visit-link:hover {
-  background: rgba(110, 6, 242, 0.4);
-  border-color: rgba(110, 6, 242, 0.5);
+  background: rgba(var(--primary-color-rgb), 0.4);
+  border-color: rgba(var(--primary-color-rgb), 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(110, 6, 242, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .project-card-simple .visit-link svg {
@@ -2142,8 +2304,8 @@ button.tab-button.active span {
   font-weight: 600;
   font-size: 0.75rem;
   padding: 0.375rem 0.75rem;
-  background: rgba(110, 6, 242, 0.2);
-  border: 1px solid rgba(110, 6, 242, 0.3);
+  background: rgba(var(--primary-color-rgb), 0.2);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.3);
   border-radius: 0.375rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
@@ -2151,10 +2313,10 @@ button.tab-button.active span {
 }
 
 .project-card-simple .visit-link-inline:hover {
-  background: rgba(110, 6, 242, 0.4);
-  border-color: rgba(110, 6, 242, 0.5);
+  background: rgba(var(--primary-color-rgb), 0.4);
+  border-color: rgba(var(--primary-color-rgb), 0.5);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(110, 6, 242, 0.3);
+  box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .project-card-simple .visit-link-inline svg {
@@ -2320,7 +2482,7 @@ button.tab-button.active span {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(110, 6, 242, 0.3);
+  background: rgba(var(--primary-color-rgb), 0.3);
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
@@ -2330,7 +2492,7 @@ button.tab-button.active span {
 .pagination-dot.active {
   background: var(--primary-color);
   transform: scale(1.2);
-  box-shadow: 0 0 0 3px rgba(110, 6, 242, 0.2);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .pagination-dot:hover {
@@ -2339,7 +2501,43 @@ button.tab-button.active span {
 }
 
 .pagination-dot:focus {
-  outline: 2px solid rgba(110, 6, 242, 0.5);
+  outline: 2px solid rgba(var(--primary-color-rgb), 0.5);
   outline-offset: 2px;
 }
 
+
+.img-custom-cards{
+  object-fit: unset !important;
+}
+
+/* Modern Portfolio Cards - 2x2 Grid Style */
+#home-projects-container a {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+#home-projects-container a:hover {
+  transform: translateY(-4px);
+}
+
+#home-projects-container .group:hover h3 {
+  color: var(--primary-color) !important;
+}
+
+/* Ensure Projects Section doesn't overflow */
+#projects {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Ensure Skills Section is visible */
+section.py-16.bg-gray-50 {
+  position: relative;
+  z-index: 2;
+}
+
+/* Projects section specific */
+#projects {
+  z-index: 1;
+}

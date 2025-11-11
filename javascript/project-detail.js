@@ -13,9 +13,13 @@ function getUrlParameter(name) {
 
 // Function to load project data
 function loadProjectData() {
+    console.log('=== loadProjectData called ===');
     const projectId = getUrlParameter('id');
+    console.log('Project ID from URL:', projectId);
+    console.log('Project data available:', typeof projectData !== 'undefined');
     
     if (!projectId || !projectData[projectId]) {
+        console.log('Project not found, redirecting to home page');
         // Redirect to home page if project not found
         window.location.href = 'index.html';
         return;
@@ -38,7 +42,7 @@ function loadProjectData() {
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <span class="text-sm font-medium text-gray-600" style="display: none;">${project.client.charAt(0)}</span>
                 </div>
-                <span>${project.title}<span class="text-primary text-6xl">.</span> </span>
+                <span>${project.title}<span class="project-title-dot">.</span> </span>
             </div>
         `;
     } else {
@@ -109,7 +113,7 @@ function loadProjectData() {
     const clientHeading = clientSection.querySelector('h2');
     if (clientHeading) {
         const clientText = project.clientType === 'individual' ? 'Our Client' : 'Our Organization';
-        clientHeading.innerHTML = `${clientText}<span class="text-primary text-5xl">.</span>`;
+        clientHeading.innerHTML = `${clientText}<span class="project-title-dot">.</span>`;
     }
     
     // Add Visit Website button after description for all projects
@@ -239,21 +243,45 @@ function loadProjectData() {
 
 // Function to load more projects
 function loadMoreProjects(currentProjectId) {
+    console.log('=== loadMoreProjects called with:', currentProjectId, '===');
     const moreProjectsContainer = document.querySelector('#more-projects');
     if (!moreProjectsContainer) {
+        console.log('More projects container not found');
+        return;
+    }
+    console.log('More projects container found:', moreProjectsContainer);
+    
+    // Check if projectData is available
+    if (typeof projectData === 'undefined') {
+        console.log('Project data not available, retrying...');
+        setTimeout(() => {
+            loadMoreProjects(currentProjectId);
+        }, 100);
         return;
     }
     
+    console.log('Loading more projects, current project:', currentProjectId);
+    console.log('Available projects:', Object.keys(projectData));
+    console.log('Project data object:', projectData);
+    
     const otherProjects = Object.keys(projectData).filter(id => id !== currentProjectId);
+    console.log('Other projects (excluding current):', otherProjects);
     
     if (otherProjects.length === 0) {
+        console.log('No other projects found');
         moreProjectsContainer.innerHTML = '<p class="text-center text-gray-500">No other projects available</p>';
         return;
+    }
+    
+    // Fallback: If we have projects but something goes wrong, show a simple message
+    if (otherProjects.length > 0) {
+        console.log('Found', otherProjects.length, 'other projects');
     }
     
     // Shuffle the array to get random projects
     const shuffledProjects = otherProjects.sort(() => Math.random() - 0.5);
     const selectedProjects = shuffledProjects.slice(0, 3); // Show 3 random projects
+    console.log('Selected projects for display:', selectedProjects);
     
     moreProjectsContainer.innerHTML = selectedProjects.map(projectId => {
         const project = projectData[projectId];
@@ -261,12 +289,12 @@ function loadMoreProjects(currentProjectId) {
             return '';
         }
         return `
-            <div class="project-card-simple shadow-lg cursor-pointer" data-project="${projectId}">
+            <div class="project-card-simple shadow-lg cursor-pointer h-80" data-project="${projectId}">
                 <div class="card-image">
                     ${project.image ? `
                         <img src="${project.image}" 
-                             alt="${project.title}" 
-                             class="w-full h-full object-contain"
+                             alt="${project.title}.project-card-simple " 
+                             class="w-full h-full img-custom-cards"
                              loading="lazy">
                     ` : `
                         <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -290,7 +318,7 @@ function loadMoreProjects(currentProjectId) {
                             </svg>
                         `}
                     </div>
-                    <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
+                    <div class="default-title">${project.title}</div>
                     </div>
                     
                 <!-- Detailed content - shows on hover -->
@@ -334,7 +362,14 @@ function loadMoreProjects(currentProjectId) {
         `;
     }).join('');
     
+    console.log('More projects HTML set successfully');
+    console.log('Container innerHTML length:', moreProjectsContainer.innerHTML.length);
+    console.log('Container visible:', moreProjectsContainer.offsetHeight > 0);
+    console.log('Container display:', window.getComputedStyle(moreProjectsContainer).display);
+    console.log('Container children count:', moreProjectsContainer.children.length);
     
+    // Force a reflow to ensure the content is visible
+    moreProjectsContainer.offsetHeight;
     
     // Add event listeners for the project cards
     setupModalEventListeners();
@@ -715,7 +750,32 @@ function openImagePreview(imageSrc, title) {
     document.body.style.overflow = 'hidden';
 }
 
+// Test function to manually load more projects
+function testLoadMoreProjects() {
+    console.log('=== Testing loadMoreProjects manually ===');
+    console.log('Project data available:', typeof projectData !== 'undefined');
+    if (typeof projectData !== 'undefined') {
+        console.log('Available projects:', Object.keys(projectData));
+        loadMoreProjects('cryptotracker');
+    }
+}
+
+// Make test function globally available
+window.testLoadMoreProjects = testLoadMoreProjects;
+
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    loadProjectData();
+    console.log('=== DOMContentLoaded event fired ===');
+    console.log('Project data available at load:', typeof projectData !== 'undefined');
+    
+    // If project data is not available, wait a bit and try again
+    if (typeof projectData === 'undefined') {
+        console.log('Project data not available, waiting...');
+        setTimeout(() => {
+            console.log('Retrying after delay, project data available:', typeof projectData !== 'undefined');
+            loadProjectData();
+        }, 500);
+    } else {
+        loadProjectData();
+    }
 });

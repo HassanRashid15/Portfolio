@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap News Cards - Tailwind Demo</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: #ccc;
+            padding: 2rem;
+        }
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .demo-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .demo-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">Bootstrap News Cards - Tailwind Version</h1>
+        <p class="demo-subtitle">50/50 Layout with Slide-up Animation - Hover to see the effect</p>
+        
+        <!-- Row 1 -->
+        <div class="flex flex-wrap -mx-2 mb-4">
+            <div class="w-full lg:w-1/2 p-2">
+                <a href="#" class="block">
+                    <figure class="newsCard news-Slide-up relative overflow-hidden rounded-lg cursor-pointer h-96">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop" 
+                             alt="Project Image" 
+                             class="w-full h-full object-cover"
+                             loading="lazy">
+                        
+                        <div class="newsCaption absolute bottom-0 left-0 w-full px-4 transform translate-y-20 transition-transform duration-400 ease-out">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="newsCaption-title text-white m-0 text-lg font-semibold">Devstitch<span class="project-title-dot">.</span></h5>
+                                <i class="fas fa-arrow-alt-circle-right text-white text-xl"></i>
+                            </div>
+                            <div class="newsCaption-content">
+                                <p class="text-white text-sm leading-relaxed">A modern web development platform with real-time collaboration features and advanced project management tools.</p>
+                            </div>
+                        </div>
+                        <span class="overlay absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-purple-900 via-purple-600 to-transparent opacity-80"></span>
+                    </figure>
+                </a>
+            </div>
+
+            <div class="w-full lg:w-1/2 p-2">
+                <a href="#" class="block">
+                    <figure class="newsCard news-Slide-up relative overflow-hidden rounded-lg cursor-pointer h-96">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop" 
+                             alt="Project Image" 
+                             class="w-full h-full object-cover"
+                             loading="lazy">
+                        
+                        <div class="newsCaption absolute bottom-0 left-0 w-full px-4 transform translate-y-20 transition-transform duration-400 ease-out">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="newsCaption-title text-white m-0 text-lg font-semibold">EcoCart<span class="project-title-dot">.</span></h5>
+                                <i class="fas fa-arrow-alt-circle-right text-white text-xl"></i>
+                            </div>
+                            <div class="newsCaption-content">
+                                <p class="text-white text-sm leading-relaxed">Sustainable e-commerce platform focused on eco-friendly products and carbon-neutral shipping.</p>
+                            </div>
+                        </div>
+                        <span class="overlay absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-purple-900 via-purple-600 to-transparent opacity-80"></span>
+                    </figure>
+                </a>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="flex flex-wrap -mx-2 mb-4">
+            <div class="w-full lg:w-1/2 p-2">
+                <a href="#" class="block">
+                    <figure class="newsCard news-Slide-up relative overflow-hidden rounded-lg cursor-pointer h-96">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop" 
+                             alt="Project Image" 
+                             class="w-full h-full object-cover"
+                             loading="lazy">
+                        
+                        <div class="newsCaption absolute bottom-0 left-0 w-full px-4 transform translate-y-20 transition-transform duration-400 ease-out">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="newsCaption-title text-white m-0 text-lg font-semibold">Jokester<span class="project-title-dot">.</span></h5>
+                                <i class="fas fa-arrow-alt-circle-right text-white text-xl"></i>
+                            </div>
+                            <div class="newsCaption-content">
+                                <p class="text-white text-sm leading-relaxed">Interactive joke sharing platform with AI-powered content recommendations and community features.</p>
+                            </div>
+                        </div>
+                        <span class="overlay absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-purple-900 via-purple-600 to-transparent opacity-80"></span>
+                    </figure>
+                </a>
+            </div>
+
+            <div class="w-full lg:w-1/2 p-2">
+                <a href="#" class="block">
+                    <figure class="newsCard news-Slide-up relative overflow-hidden rounded-lg cursor-pointer h-96">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop" 
+                             alt="Project Image" 
+                             class="w-full h-full object-cover"
+                             loading="lazy">
+                        
+                        <div class="newsCaption absolute bottom-0 left-0 w-full px-4 transform translate-y-20 transition-transform duration-400 ease-out">
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="newsCaption-title text-white m-0 text-lg font-semibold">Buoyant Health<span class="project-title-dot">.</span></h5>
+                                <i class="fas fa-arrow-alt-circle-right text-white text-xl"></i>
+                            </div>
+                            <div class="newsCaption-content">
+                                <p class="text-white text-sm leading-relaxed">Healthcare management platform with patient tracking, appointment scheduling, and medical record management.</p>
+                            </div>
+                        </div>
+                        <span class="overlay absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-purple-900 via-purple-600 to-transparent opacity-80"></span>
+                    </figure>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

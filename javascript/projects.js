@@ -19,7 +19,6 @@ function initProjectsPage() {
     setupTabListeners();
     updateProjectsCount();
     addParallaxEffect();
-    addTypingEffect();
     
     // Debug initial tab state
     setTimeout(() => {
@@ -79,7 +78,7 @@ function loadProjects(showTransition = true) {
                     console.log('Grid HTML length:', gridHTML.length);
                     projectsGrid.innerHTML = gridHTML;
                 } else {
-                    projectsGrid.className = 'space-y-6 list-view fade-in';
+                    projectsGrid.className = 'list-view fade-in';
                     const listHTML = projects.map(projectId => createProjectListItem(projectId)).join('');
                     console.log('List HTML length:', listHTML.length);
                     projectsGrid.innerHTML = listHTML;
@@ -114,7 +113,7 @@ function loadProjects(showTransition = true) {
                 console.log('Grid HTML length (direct load):', gridHTML.length);
                 projectsGrid.innerHTML = gridHTML;
             } else {
-                projectsGrid.className = 'space-y-6 list-view fade-in';
+                projectsGrid.className = 'list-view fade-in';
                 const listHTML = projects.map(projectId => createProjectListItem(projectId)).join('');
                 console.log('List HTML length (direct load):', listHTML.length);
                 projectsGrid.innerHTML = listHTML;
@@ -206,7 +205,7 @@ function createProjectCard(projectId) {
                         </svg>
                     `}
                 </div>
-                <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
+                <div class="default-title">${project.title}</div>
             </div>
             
             <!-- Detailed content - shows on hover -->
@@ -270,69 +269,78 @@ function createProjectListItem(projectId) {
     const techTags = generateTechTags(project);
     
     return `
-        <div class="project-item project-card-simple shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-project="${projectId}">
-            <div class="card-image">
+        <div class="project-item-list bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row" data-project="${projectId}">
+            <!-- Image Section -->
+            <div class="w-full md:w-1/3 h-64 md:h-auto bg-gray-100 flex items-center justify-center overflow-hidden">
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
                          class="w-full h-full object-contain"
                          loading="lazy">
                 ` : `
-                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
-                `}
-            </div>
-            
-            <!-- Default title and icon - always visible -->
-            <div class="card-default">
-                <div class="default-icon">
-                    ${project.logo ? `
-                        <img src="${project.logo}" 
-                             alt="${project.title} logo" 
-                             class="w-6 h-6 rounded-sm object-cover"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                    ` : `
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                    `}
-                </div>
-                <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
-            </div>
-            
-            <!-- Detailed content - shows on hover -->
-            <div class="card-content">
-                <div>
-                    <div class="project-title-with-icon">
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
                         ${project.logo ? `
                             <img src="${project.logo}" 
                                  alt="${project.title} logo" 
-                                 class="project-logo"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
+                                 class="w-24 h-24 object-contain">
                         ` : `
-                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-24 h-24 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         `}
-                        <h3 class="project-title">${project.title} <span class="project-title-dot">.</span> </h3>
                     </div>
-                    <p class="project-description">${project.description}</p>
+                `}
+            </div>
+            
+            <!-- Content Section -->
+            <div class="w-full md:w-2/3 p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 class="w-8 h-8 rounded-sm object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
+                        <h3 class="text-2xl font-bold text-gray-900">${project.title}<span class="project-title-dot">.</span></h3>
+                    </div>
                     
-                    <div class="project-meta">
-                        <span class="project-client">${project.client}</span>
-                        <span class="project-role">${project.role}</span>
+                    <p class="text-gray-600 mb-4 line-clamp-2">${project.description}</p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${techTags.slice(0, 4).map(tag => `
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold ${tag.bg} ${tag.text}">
+                                ${tag.name}
+                            </span>
+                        `).join('')}
                     </div>
                 </div>
                 
-                    <div class="tech-tags">
-                        ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                        <span class="font-semibold">${project.client}</span>
+                        <span>•</span>
+                        <span>${project.role}</span>
+                        <span>•</span>
+                        <span>${project.year}</span>
                     </div>
+                    ${project.link ? `
+                        <a href="${project.link}" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-primary hover:text-primary-hover font-semibold transition-colors">
+                            Visit Website →
+                        </a>
+                    ` : ''}
                 </div>
+            </div>
             
             <!-- Hidden content for modal -->
             <div class="hidden project-data">
@@ -352,13 +360,30 @@ function setupEventListeners() {
     const gridViewBtn = document.getElementById('grid-view');
     const listViewBtn = document.getElementById('list-view');
     
+    // Initialize button states based on currentView
+    if (gridViewBtn && listViewBtn) {
+        if (currentView === 'grid') {
+            gridViewBtn.classList.add('bg-primary-light', 'text-primary');
+            gridViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
+            listViewBtn.classList.add('bg-gray-100', 'text-gray-600');
+            listViewBtn.classList.remove('bg-primary-light', 'text-primary');
+        } else {
+            listViewBtn.classList.add('bg-primary-light', 'text-primary');
+            listViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
+            gridViewBtn.classList.add('bg-gray-100', 'text-gray-600');
+            gridViewBtn.classList.remove('bg-primary-light', 'text-primary');
+        }
+    }
+    
     if (gridViewBtn) {
         gridViewBtn.addEventListener('click', function() {
             currentView = 'grid';
             gridViewBtn.classList.add('bg-primary-light', 'text-primary');
             gridViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
-            listViewBtn.classList.add('bg-gray-100', 'text-gray-600');
-            listViewBtn.classList.remove('bg-primary-light', 'text-primary');
+            if (listViewBtn) {
+                listViewBtn.classList.add('bg-gray-100', 'text-gray-600');
+                listViewBtn.classList.remove('bg-primary-light', 'text-primary');
+            }
             loadProjects();
         });
     }
@@ -368,8 +393,10 @@ function setupEventListeners() {
             currentView = 'list';
             listViewBtn.classList.add('bg-primary-light', 'text-primary');
             listViewBtn.classList.remove('bg-gray-100', 'text-gray-600');
-            gridViewBtn.classList.add('bg-gray-100', 'text-gray-600');
-            gridViewBtn.classList.remove('bg-primary-light', 'text-primary');
+            if (gridViewBtn) {
+                gridViewBtn.classList.add('bg-gray-100', 'text-gray-600');
+                gridViewBtn.classList.remove('bg-primary-light', 'text-primary');
+            }
             loadProjects();
         });
     }
@@ -828,29 +855,6 @@ function addParallaxEffect() {
     });
 }
 
-function addTypingEffect() {
-    // Only apply typing effect on projects page
-    const currentPage = document.body.getAttribute('data-page');
-    if (currentPage !== 'projects') return;
-    
-    const titleElement = document.querySelector('h1');
-    if (!titleElement) return;
-    
-    const text = titleElement.textContent;
-    titleElement.textContent = '';
-    
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            titleElement.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    };
-    
-    // Start typing effect after a short delay
-    setTimeout(typeWriter, 500);
-}
 
 
 // Add some CSS for line clamping

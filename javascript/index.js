@@ -117,7 +117,11 @@ class NavbarComponent {
                         <!-- Logo -->
                         <div class="flex-shrink-0">
                             <a href="${this.pages.home}" class="flex items-center">
-                                <img src="Assets/Navlogo.png" alt="Logo" class="h-[60px] w-auto">
+                                <img src="Assets/Navlogo.png" 
+                                     alt="Logo" 
+                                     class="h-[60px] w-auto"
+                                     onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <span class="text-2xl font-bold text-primary" style="display: none;">Logo</span>
                             </a>
                         </div>
                         
@@ -550,12 +554,14 @@ class FooterComponent {
                             
                             <!-- Call to Action -->
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-4">Interested in work<span class="text-primary" >ing together?</span></h3>
+                                <h3 class="text-5xl md:text-3xl font-bold text-gray-900 mb-4">Interested in work<span class="m-0" style="margin: 0px; color: var(--primary-color);">ing together?</span></h3>
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <a href="${this.pages.contact}" class="bg-primary text-white hover:bg-primary-hover hover:text-white font-semibold py-3 px-12 rounded-full transition-colors text-center ">
-                                        <span>Get In Touch</span>
-                                    </a>
-                                    <a href="${this.pages.projects}" class="border border-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white font-semibold py-3 px-12 rounded-full transition-colors text-center ">
+                                 <a href="${this.pages.contact}" 
+   class="bg-primary text-white border border-transparent hover:bg-transparent hover:text-white hover:border-primary font-semibold py-3 px-12 rounded-full transition-colors text-center">
+    <span>Get In Touch</span>
+</a>
+
+                                    <a href="${this.pages.projects}" class="border border-gray-300 text-gray-700 hover:border-primary hover:text-slate-900 font-semibold py-3 px-12 rounded-full transition-colors text-center ">
                                         <span>Browse Projects</span>
                                     </a>
                                 </div>
@@ -615,7 +621,7 @@ class FooterComponent {
                             
                             <!-- Copyright -->
                             <div class="text-right">
-                                <p class="text-gray-600 font-medium mb-2">&copy; ${new Date().getFullYear()} All Rights Reserved.Made by <span class="text-primary font-bold"> HRTECH.</span></p>
+                                <p class="text-gray-600 font-medium mb-0">&copy; ${new Date().getFullYear()} All Rights Reserved.Made by <span class="text-primary font-bold"> HRTECH.</span></p>
                                
                                    
                           
@@ -1676,7 +1682,7 @@ function loadHomeProjects() {
                             </svg>
                         `}
                     </div>
-                    <div class="default-title">${project.title}<span class="project-title-dot">.</span></div>
+                    <div class="default-title">${project.title}.
                 </div>
                 
                 <!-- Detailed content - shows on hover -->
@@ -1942,15 +1948,15 @@ function generateTechTags(project) {
             { name: 'Vue.js', bg: 'bg-primary-light', text: 'text-primary-dark' },
             { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
-        'foodiefinder': [
+        'docmed': [
             { name: 'React Native', bg: 'bg-orange-100', text: 'text-orange-800' },
             { name: 'Maps API', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
-        'healthtracker': [
+        'aquavance': [
             { name: 'React', bg: 'bg-green-100', text: 'text-green-800' },
             { name: 'Node.js', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
-        'cryptotracker': [
+        'nexcent': [
             { name: 'React', bg: 'bg-yellow-100', text: 'text-yellow-800' },
             { name: 'Chart.js', bg: 'bg-blue-100', text: 'text-blue-800' }
         ],
@@ -1997,6 +2003,206 @@ function loadProjectImages() {
 
 // Function removed - no more "More Projects" section
 
+// Function to load projects with modern 2x2 portfolio cards layout
+function loadHomeProjectsNewsStyle() {
+    console.log('=== loadHomeProjectsNewsStyle called ===');
+    
+    // Check if projectData is available
+    if (typeof projectData === 'undefined') {
+        console.log('Project data not available, retrying...');
+        setTimeout(loadHomeProjectsNewsStyle, 100);
+        return;
+    }
+
+    const container = document.getElementById('home-projects-container');
+    if (!container) {
+        console.log('Container not found!');
+        return;
+    }
+    
+    console.log('Container found:', container);
+
+    // Get all project IDs and shuffle them
+    const projectIds = Object.keys(projectData);
+    console.log('Available project IDs:', projectIds);
+    
+    if (projectIds.length === 0) {
+        console.log('No projects found in projectData!');
+        return;
+    }
+    
+    const shuffledProjects = projectIds.sort(() => Math.random() - 0.5);
+    
+    // Take first 4 projects for 2x2 grid layout
+    const selectedProjects = shuffledProjects.slice(0, 4);
+    console.log('Selected projects:', selectedProjects);
+    
+    // Ensure we have exactly 4 projects
+    if (selectedProjects.length < 4) {
+        while (selectedProjects.length < 4 && selectedProjects.length < projectIds.length) {
+            const remainingProjects = projectIds.filter(id => !selectedProjects.includes(id));
+            if (remainingProjects.length > 0) {
+                selectedProjects.push(remainingProjects[0]);
+            } else {
+                break;
+            }
+        }
+    }
+
+    let projectsHTML = '';
+    
+    // Create 2x2 grid with modern portfolio cards
+    selectedProjects.forEach(projectId => {
+        const cardHTML = createModernPortfolioCard(projectId);
+        console.log(`Card HTML for ${projectId}:`, cardHTML.length, 'characters');
+        projectsHTML += cardHTML;
+    });
+
+    console.log('Total projects HTML length:', projectsHTML.length);
+    container.innerHTML = projectsHTML;
+    console.log('Modern portfolio cards HTML generated and inserted');
+    console.log('Container children count:', container.children.length);
+    
+    // Add click event listeners to the project cards
+    addProjectClickHandlers();
+    
+    // Initialize GSAP animations for home project cards
+    setTimeout(() => {
+        initializeHomeProjectCardAnimations();
+    }, 100);
+}
+
+// Function to create modern portfolio-style card (2x2 grid design) with hover effect
+function createModernPortfolioCard(projectId) {
+    const project = projectData[projectId];
+    if (!project) {
+        console.error(`Project not found for ID: ${projectId}`);
+        return '';
+    }
+
+    // Generate technology tags based on project type
+    let techTags = [];
+    try {
+        techTags = generateTechTags(project);
+    } catch (error) {
+        console.error('Error generating tech tags:', error);
+        techTags = [];
+    }
+
+    return `
+        <div class="project-card-simple shadow-lg cursor-pointer" data-project="${projectId}">
+            <div class="card-image">
+                ${project.image ? `
+                    <img src="${project.image}" 
+                         alt="${project.title}" 
+                         class="w-full h-full img-custom-cards"
+                         loading="lazy">
+                ` : `
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
+                `}
+            </div>
+            
+            <!-- Default title and icon - always visible -->
+            <div class="card-default">
+                <div class="default-icon">
+                    ${project.logo ? `
+                        <img src="${project.logo}" 
+                             alt="${project.title} logo" 
+                             class="w-6 h-6 rounded-sm object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    ` : `
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    `}
+                </div>
+                <div class="default-title">
+                        <h5>
+                        ${project.title}<span class="project-title-dot">.</span></h5>
+                        </div>
+            </div>
+            
+            <!-- Detailed content - shows on hover -->
+            <div class="card-content">
+                <div>
+                    <div class="project-title-with-icon">
+                        ${project.logo ? `
+                            <img src="${project.logo}" 
+                                 alt="${project.title} logo" 
+                                 class="project-logo"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        ` : `
+                            <svg class="project-logo-fallback" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        `}
+                        <h3 class="project-title">${project.title}<span class="project-title-dot">.</span> </h3>
+                    </div>
+                    <p class="project-description">${project.description}</p>
+                    
+                    <div class="project-meta">
+                        <span class="project-client">${project.client}</span>
+                        <span class="project-role">${project.role}</span>
+                    </div>
+                </div>
+                
+                <div class="tech-tags">
+                    ${techTags.slice(0, 3).map(tag => `<span class="tech-tag">${tag.name}</span>`).join('')}
+                </div>
+            </div>
+            
+            <!-- Hidden content for modal -->
+            <div class="hidden project-data">
+                <div class="project-description">${project.description}</div>
+                <div class="project-client">${project.client}</div>
+                <div class="project-role">${project.role}</div>
+                <div class="project-year">${project.year}</div>
+                <div class="project-image">${project.image || ''}</div>
+                <div class="project-logo">${project.logo || ''}</div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to create Bootstrap-style news card converted to Tailwind
+function createBootstrapNewsCard(projectId) {
+    const project = projectData[projectId];
+    if (!project) return '';
+
+    return `
+        <div class="w-full lg:w-1/2 p-2">
+            <a href="#" class="block" data-project="${projectId}">
+                <figure class="newsCard news-Slide-up h-96">
+                    ${project.image ? `
+                        <img src="${project.image}" 
+                             alt="${project.title}" 
+                             loading="lazy">
+                    ` : `
+                        <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
+                    `}
+                    
+                    <div class="newsCaption">
+                        <div class="d-flex align-items-center justify-content-between cnt-title">
+                            <h5 class="newsCaption-title text-white m-0">${project.title}<span class="project-title-dot">.</span></h5>
+                            <i class="fas fa-arrow-alt-circle-right"></i>
+                        </div>
+                        <div class="newsCaption-content d-flex">
+                            <p class="col-10 py-3 px-0">${project.description}</p>
+                        </div>
+                    </div>
+                    <span class="overlay"></span>
+                </figure>
+            </a>
+        </div>
+    `;
+}
+
 // Initialize mobile tabs when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Load experience data for both desktop and mobile views
@@ -2007,9 +2213,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load home projects if we're on the home page
     if (document.body.getAttribute('data-page') === 'home') {
         // Load immediately and also with a small delay as backup
-        loadHomeProjects();
+        loadHomeProjectsNewsStyle();
         setTimeout(() => {
-            loadHomeProjects();
+            loadHomeProjectsNewsStyle();
         }, 50);
     } else {
         // Load project images for other pages (legacy)
@@ -2023,7 +2229,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('visibilitychange', function() {
     if (!document.hidden && document.body.getAttribute('data-page') === 'home') {
         setTimeout(() => {
-            loadHomeProjects();
+            loadHomeProjectsNewsStyle();
         }, 100);
     }
 });

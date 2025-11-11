@@ -215,16 +215,16 @@ const projectData = {
             </div>`
         ]
     },
-    foodiefinder: {
-        title: "FoodieFinder",
-        description: "Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.",
-        link: "https://foodiefinder-demo.com",
-        client: "Michael Chen",
-        clientType: "individual",
+    docmed: {
+        title: "Docmed",
+        description: "Docmed is a medical appointment booking platform that allows users to book appointments with doctors and hospitals.",
+        link: "https://docmed-demo.com",
+    client: "Mental Health Center",
+        clientType: "organization",
         year: "2023",
         role: "Frontend Developer",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center",
-        logo: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=64&h=64&fit=crop&crop=center",
+        image: "Assets/docmed.png",
+        logo: "Assets/docmed-favicon.ico",
         category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
@@ -283,16 +283,16 @@ const projectData = {
             </div>`
         ]
     },
-    healthtracker: {
-        title: "HealthTracker",
-        description: "Comprehensive health and fitness tracking app with AI-powered insights and personalized recommendations.",
-        link: "https://healthtracker-demo.com",
-        client: "Wellness Solutions Ltd",
-        clientType: "organization",
-        year: "2024",
-        role: "Full Stack Developer",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center",
-        logo: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=64&h=64&fit=crop&crop=center",
+    aquavance: {
+        title: "Aquavance",
+        description: "Aquavance is a platform for creating and managing your own cryptocurrency.",
+        link: "https://aquavance-demo.com",
+        client: "Aquavance",
+        clientType: "individual",
+        year: "2025",
+        role: "Frontend Developer",
+        image: "Assets/Project2a.png",
+        logo: "Assets/aquavance-favicon.ico",
         category: "live-projects",
         screenshot: `
             <div class="bg-white rounded-xl p-4">
@@ -354,16 +354,16 @@ const projectData = {
             </div>`
         ]
     },
-    cryptotracker: {
-        title: "CryptoTracker",
-        description: "Real-time cryptocurrency portfolio tracker with advanced analytics and market insights.",
-        link: "https://cryptotracker-demo.com",
-        client: "Digital Finance Corp",
+    nexcent: {
+        title: "Nexcent",
+        description: "Nexcent is a platform for creating and managing your own cryptocurrency.",
+        link: "https://nexcent-demo.com",
+        client: "Nexcent",
         clientType: "organization",
         year: "2024",
-        role: "Frontend Developer",
-        image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center",
-        logo: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=64&h=64&fit=crop&crop=center",
+        role: "Full Stack Developer",
+        image: "Assets/Project2a.png",
+        logo: "Assets/nexcent-favicon.ico",
         category: "figma-converters",
         screenshot: `
             <div class="bg-white rounded-xl p-4">

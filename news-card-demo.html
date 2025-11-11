@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Card Style Demo</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <style>
+        body {
+            background: #ccc;
+            padding: 2rem;
+        }
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .demo-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .demo-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">News Card Style Demo</h1>
+        <p class="demo-subtitle">Hover over the cards to see the slide-up animation effect</p>
+        
+        <div class="demo-grid">
+            <!-- News Card Style -->
+            <div class="project-card-news shadow-lg cursor-pointer">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop" 
+                         alt="Project Image" 
+                         loading="lazy">
+                </figure>
+                
+                <div class="overlay"></div>
+                
+                <div class="newsCaption">
+                    <h3 class="newsCaption-title">Devstitch<span class="project-title-dot">.</span></h3>
+                    <p class="newsCaption-content">A modern web development platform with real-time collaboration features and advanced project management tools.</p>
+                    <div class="project-meta">
+                        <span class="project-client">Tech Startup</span>
+                        <span class="project-role">Frontend Developer</span>
+                    </div>
+                    <a href="#" class="newsCaption-link">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Another News Card -->
+            <div class="project-card-news shadow-lg cursor-pointer">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=400&fit=crop" 
+                         alt="Project Image" 
+                         loading="lazy">
+                </figure>
+                
+                <div class="overlay"></div>
+                
+                <div class="newsCaption">
+                    <h3 class="newsCaption-title">EcoCart<span class="project-title-dot">.</span></h3>
+                    <p class="newsCaption-content">Sustainable e-commerce platform focused on eco-friendly products and carbon-neutral shipping.</p>
+                    <div class="project-meta">
+                        <span class="project-client">Green Tech</span>
+                        <span class="project-role">Full Stack Developer</span>
+                    </div>
+                    <a href="#" class="newsCaption-link">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Third News Card -->
+            <div class="project-card-news shadow-lg cursor-pointer">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop" 
+                         alt="Project Image" 
+                         loading="lazy">
+                </figure>
+                
+                <div class="overlay"></div>
+                
+                <div class="newsCaption">
+                    <h3 class="newsCaption-title">Jokester<span class="project-title-dot">.</span></h3>
+                    <p class="newsCaption-content">Interactive joke sharing platform with AI-powered content recommendations and community features.</p>
+                    <div class="project-meta">
+                        <span class="project-client">Entertainment Co.</span>
+                        <span class="project-role">React Developer</span>
+                    </div>
+                    <a href="#" class="newsCaption-link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
