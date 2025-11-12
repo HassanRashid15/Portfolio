@@ -1418,7 +1418,7 @@ function initWhatsAppButton() {
     });
 }
 
-// Rotating placeholder text for chatbot input
+// Rotating placeholder text for chatbot input (inspired by CodePen)
 let placeholderTimeout = null;
 let placeholderState = {
     currentText: '',
@@ -1429,7 +1429,7 @@ let placeholderState = {
 
 const placeholders = [
     'Type your message...',
-    'Ask about services we offered...',
+    'Ask about services...',
     'Ask about portfolio...',
     'Ask about availability...',
     'Ask about contact...',
@@ -1452,18 +1452,23 @@ function startRotatingPlaceholder() {
     placeholderState.placeholderIndex = 0;
     placeholderState.animationRunning = false;
     
+    // Add rotating class for CSS animation
+    chatbotInput.classList.add('rotating-placeholder');
+    
     function typePlaceholder() {
         if (!chatbotInput || !chatbotWindow) return;
         
         // Stop if chatbot window is closed
         if (!chatbotWindow.classList.contains('active')) {
             placeholderState.animationRunning = false;
+            chatbotInput.classList.remove('rotating-placeholder');
             return;
         }
         
         // Stop animation if input is focused or has value
         if (document.activeElement === chatbotInput || chatbotInput.value) {
             placeholderState.animationRunning = false;
+            chatbotInput.classList.remove('rotating-placeholder');
             return;
         }
         
@@ -1476,16 +1481,17 @@ function startRotatingPlaceholder() {
             placeholderState.currentText = fullText.substring(0, placeholderState.currentText.length + 1);
         }
         
+        // Update placeholder with blinking cursor
         chatbotInput.placeholder = placeholderState.currentText + '|';
         
         if (!placeholderState.isDeleting && placeholderState.currentText === fullText) {
-            // Pause at end of typing
+            // Pause at end of typing (longer pause for readability)
             placeholderTimeout = setTimeout(() => {
                 if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
                     placeholderState.isDeleting = true;
                     typePlaceholder();
                 }
-            }, 2000);
+            }, 2500);
         } else if (placeholderState.isDeleting && placeholderState.currentText === '') {
             // Move to next placeholder
             placeholderState.isDeleting = false;
@@ -1494,10 +1500,10 @@ function startRotatingPlaceholder() {
                 if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
                     typePlaceholder();
                 }
-            }, 500);
+            }, 300);
         } else {
-            // Continue typing/deleting
-            const speed = placeholderState.isDeleting ? 50 : 100;
+            // Continue typing/deleting with smooth speed
+            const speed = placeholderState.isDeleting ? 30 : 80;
             placeholderTimeout = setTimeout(() => {
                 if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
                     typePlaceholder();
@@ -1506,12 +1512,12 @@ function startRotatingPlaceholder() {
         }
     }
     
-    // Start animation when chatbot opens
+    // Start animation when chatbot opens (slight delay for smooth transition)
     placeholderTimeout = setTimeout(() => {
         if (chatbotWindow.classList.contains('active') && !chatbotInput.value && document.activeElement !== chatbotInput) {
             typePlaceholder();
         }
-    }, 1000);
+    }, 800);
 }
 
 function stopRotatingPlaceholder() {
@@ -1522,6 +1528,7 @@ function stopRotatingPlaceholder() {
     placeholderState.animationRunning = false;
     const chatbotInput = document.getElementById('chatbot-input');
     if (chatbotInput) {
+        chatbotInput.classList.remove('rotating-placeholder');
         chatbotInput.placeholder = 'Type your message...';
     }
 }
@@ -1801,7 +1808,40 @@ function initChatbot() {
     }
     
     // Function to add message to chat
+    // Function to show typing indicator
+    function showTypingIndicator() {
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        if (!chatbotMessages) return null;
+        
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chatbot-message chatbot-message-bot chatbot-typing-indicator';
+        typingDiv.id = 'chatbot-typing-indicator';
+        typingDiv.innerHTML = `
+            <div class="chatbot-message-content">
+                <div class="typing-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        `;
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        return typingDiv;
+    }
+    
+    // Function to remove typing indicator
+    function removeTypingIndicator() {
+        const typingIndicator = document.getElementById('chatbot-typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+    
     function addMessage(text, isUser = false, responseType = null) {
+        // Remove typing indicator if it exists
+        removeTypingIndicator();
+        
         const messageDiv = document.createElement('div');
         messageDiv.className = `chatbot-message ${isUser ? 'chatbot-message-user' : 'chatbot-message-bot'}`;
         
@@ -1958,9 +1998,14 @@ Click below to chat directly with Hassan on WhatsApp - he usually responds withi
         // Check if user wants to talk more (intent detection)
         const wantsToTalk = wantsToTalkMore(message);
         
-        // Simulate typing delay
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Simulate typing delay (random between 800-1500ms for natural feel)
+        const typingDelay = 800 + Math.random() * 700;
         setTimeout(() => {
             const botResponse = getBotResponse(message);
+            removeTypingIndicator();
             addMessage(botResponse.text, false, botResponse.type);
             
             // Show WhatsApp prompt if:
@@ -2010,6 +2055,13 @@ Click below to chat directly with Hassan on WhatsApp - he usually responds withi
         const wasActive = chatbotWindow.classList.contains('active');
         chatbotWindow.classList.toggle('active');
         
+        // Toggle active class on button for animation control
+        if (chatbotWindow.classList.contains('active')) {
+            chatbotToggle.classList.add('active');
+        } else {
+            chatbotToggle.classList.remove('active');
+        }
+        
         if (chatbotWindow.classList.contains('active')) {
             // Start rotating placeholder when chatbot opens
             setTimeout(() => {
@@ -2042,6 +2094,7 @@ Click below to chat directly with Hassan on WhatsApp - he usually responds withi
     // Close chatbot window
     chatbotClose.addEventListener('click', () => {
         chatbotWindow.classList.remove('active');
+        chatbotToggle.classList.remove('active');
         
         // Stop rotating placeholder when chatbot closes
         stopRotatingPlaceholder();
@@ -2099,15 +2152,22 @@ Click below to chat directly with Hassan on WhatsApp - he usually responds withi
     // Handle input blur - resume placeholder animation if empty
     chatbotInput.addEventListener('blur', () => {
         if (!chatbotInput.value && chatbotWindow.classList.contains('active')) {
-            // Reset state and restart
+            // Reset state and restart with smooth transition
             placeholderState.currentText = '';
             placeholderState.placeholderIndex = 0;
             placeholderState.isDeleting = false;
             setTimeout(() => {
-                if (chatbotWindow.classList.contains('active') && !chatbotInput.value) {
+                if (chatbotWindow.classList.contains('active') && !chatbotInput.value && document.activeElement !== chatbotInput) {
                     startRotatingPlaceholder();
                 }
-            }, 500);
+            }, 300);
+        }
+    });
+    
+    // Handle input value changes - stop animation if user types
+    chatbotInput.addEventListener('input', () => {
+        if (chatbotInput.value) {
+            stopRotatingPlaceholder();
         }
     });
     

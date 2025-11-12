@@ -2625,6 +2625,60 @@ section.py-16.bg-gray-50 {
 .chatbot-icon {
   width: 28px;
   height: 28px;
+  transition: opacity 0.3s ease;
+}
+
+.chatbot-toggle:hover .chatbot-icon {
+  opacity: 0.8;
+}
+
+/* Typing dots animation */
+.chatbot-typing-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-typing-dots .dot {
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: typingDots 1.4s infinite ease-in-out;
+  opacity: 0.4;
+}
+
+.chatbot-typing-dots .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.chatbot-typing-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chatbot-typing-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDots {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.chatbot-toggle.active .chatbot-typing-dots,
+.chatbot-toggle:hover .chatbot-typing-dots {
+  display: none;
 }
 
 .chatbot-notification {
@@ -2848,6 +2902,61 @@ section.py-16.bg-gray-50 {
   line-height: 1.5;
 }
 
+/* Typing indicator */
+.chatbot-typing-indicator {
+  opacity: 0;
+  animation: typingIndicatorFadeIn 0.3s ease forwards;
+}
+
+@keyframes typingIndicatorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.typing-dots .dot {
+  width: 8px;
+  height: 8px;
+  background: #94a3b8;
+  border-radius: 50%;
+  animation: typingDotBounce 1.4s infinite ease-in-out;
+}
+
+.typing-dots .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDotBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
 .chatbot-quick-options {
   display: flex;
   flex-direction: column;
@@ -2976,6 +3085,12 @@ section.py-16.bg-gray-50 {
 
 .chatbot-input:focus::placeholder {
   opacity: 0.6;
+}
+
+/* Rotating placeholder animation - smooth fade effect */
+.chatbot-input.rotating-placeholder::placeholder {
+  color: #94a3b8;
+  transition: opacity 0.2s ease;
 }
 
 .chatbot-send {
