@@ -35,7 +35,7 @@ function loadProjectData() {
     if (project.logo) {
         titleElement.innerHTML = `
             <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img src="${project.logo}" 
                          alt="${project.client} logo" 
                          class="w-full h-full object-contain"
@@ -87,7 +87,7 @@ function loadProjectData() {
     if (project.logo && clientNameElement) {
         // Add logo before client name
         const logoElement = document.createElement('div');
-        logoElement.className = 'w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden mb-2';
+        logoElement.className = 'w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden mb-2';
         logoElement.innerHTML = `
             <img src="${project.logo}" 
                  alt="${project.client} logo" 
@@ -146,7 +146,7 @@ function loadProjectData() {
     const resultsContent = document.getElementById('results-content');
     resultsContent.innerHTML = project.results.map(paragraph => `<p>${paragraph}</p>`).join('');
     
-    // Update results screenshots with 5x5 grid layout
+    // Update results screenshots with 50/50 layout
     const resultsScreenshots = document.getElementById('results-screenshots');
     console.log('=== PROJECT DETAIL DEBUG ===');
     console.log('Project ID:', projectId);
@@ -154,85 +154,21 @@ function loadProjectData() {
     console.log('Number of screenshots:', project.resultScreenshots ? project.resultScreenshots.length : 0);
     console.log('Timestamp:', new Date().toISOString());
     
-    if (project.resultScreenshots && project.resultScreenshots.length >= 4) {
-        // Define the grid layout for result images
-        const gridLayout = [
-            { 
-                screenshot: project.resultScreenshots[0], 
-                classes: 'col-span-2 row-span-3',
-                gradient: 'from-purple-500 to-blue-600'
-            },
-            { 
-                screenshot: project.resultScreenshots[1], 
-                classes: 'col-span-3 row-span-3 col-start-3',
-                gradient: 'from-green-500 to-teal-600'
-            },
-            { 
-                screenshot: project.resultScreenshots[2], 
-                classes: 'col-span-2 row-span-2 row-start-4',
-                gradient: 'from-orange-500 to-red-600'
-            },
-            { 
-                screenshot: project.resultScreenshots[3], 
-                classes: 'col-span-3 row-span-2 col-start-3 row-start-4',
-                gradient: 'from-indigo-500 to-purple-600'
-            }
-        ];
-
+    if (project.resultScreenshots && project.resultScreenshots.length > 0) {
         let screenshotsHTML = '';
         
-        gridLayout.forEach((item, index) => {
+        // Simple 50/50 layout - each image takes 50% width
+        project.resultScreenshots.forEach((screenshot, index) => {
+            const imageSrc = screenshot.match(/src="([^"]*)"/)?.[1] || '';
             screenshotsHTML += `
-                <div class="${item.classes} rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${item.screenshot.match(/src="([^"]*)"/)?.[1] || ''}', 'Result ${index + 1}')">
-                    ${item.screenshot}
+                <div class="rounded-2xl cursor-pointer shadow-xl" onclick="openImagePreview('${imageSrc}', 'Result ${index + 1}')">
+                    ${screenshot}
                 </div>
             `;
         });
         
         resultsScreenshots.innerHTML = screenshotsHTML;
-        console.log('✅ Using 4+ screenshots grid layout');
-        console.log('Grid HTML length:', screenshotsHTML.length);
-    } else if (project.resultScreenshots && project.resultScreenshots.length > 0) {
-        console.log('Using fallback layout for', project.resultScreenshots.length, 'screenshots');
-        // Fallback for fewer than 4 screenshots - still use grid layout
-        const availableScreenshots = project.resultScreenshots;
-        // const gradients = ['from-purple-500 to-blue-600', 'from-green-500 to-teal-600', 'from-orange-500 to-red-600', 'from-indigo-500 to-purple-600'];
-        
-        let fallbackHTML = '';
-        
-        if (availableScreenshots.length === 1) {
-            console.log('Using 1 screenshot layout');
-            fallbackHTML = `
-                <div class="col-span-5 row-span-5 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Project Result')">
-                    ${availableScreenshots[0]}
-                </div>
-            `;
-        } else if (availableScreenshots.length === 2) {
-            console.log('Using 2 screenshots layout');
-            fallbackHTML = `
-                <div class="col-span-3 row-span-5 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 1')">
-                    ${availableScreenshots[0]}
-                </div>
-                <div class="col-span-2 row-span-5 col-start-4 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[1].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 2')">
-                    ${availableScreenshots[1]}
-                </div>
-            `;
-        } else if (availableScreenshots.length === 3) {
-            console.log('Using 3 screenshots layout');
-            fallbackHTML = `
-                <div class="col-span-2 row-span-3 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[0].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 1')">
-                    ${availableScreenshots[0]}
-                </div>
-                <div class="col-span-3 row-span-3 col-start-3 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[1].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 2')">
-                    ${availableScreenshots[1]}
-                </div>
-                <div class="col-span-5 row-span-2 row-start-4 rounded-xl border-2 border-gray-300 cursor-pointer" onclick="openImagePreview('${availableScreenshots[2].match(/src="([^"]*)"/)?.[1] || ''}', 'Result 3')">
-                    ${availableScreenshots[2]}
-                </div>
-            `;
-        }
-        
-        resultsScreenshots.innerHTML = fallbackHTML;
+        console.log('✅ Using 50/50 layout for', project.resultScreenshots.length, 'screenshots');
     }
     
     // Load more projects (exclude current project)

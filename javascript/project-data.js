@@ -4,7 +4,7 @@ const projectData = {
     Devstitch: {
         title: "DevStitch",
         description: "DevStitch is a custom web solutions development agency specializing in modern web development, web applications, e-commerce platforms, and dedicated development teams. With over 50 completed projects, 20+ satisfied clients, and a 4.9 Clutch rating, DevStitch ensures innovative, scalable, and high-performance solutions tailored to client needs.",
-        link: "https://devstitch-demo.com",
+        link: "https://devstitch.com",
         client: "Software Agency",
         clientType: "organization",
         year: "2024",   
@@ -43,26 +43,26 @@ const projectData = {
   "My focus on clean, maintainable, and reusable code practices ensured long-term scalability for the projects, making future updates and feature enhancements smoother. The final solutions not only met client expectations but also contributed to positive feedback and strengthened DevStitch’s reputation for delivering quality web solutions on time."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/dsa.png" 
                      alt="Dashboard Analytics" 
                      class="w-full h-full object-contain">
               
             </div>`,
-            `<div class="rounded-xl relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+               <img src="Assets/projectimage/dsb.png"  
                      alt="Analytics Charts" 
                      class="w-full h-full object-contain">
               
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full h-full">
+                              <img src="Assets/projectimage/dsc.png"  
                      alt="Team Collaboration" 
                      class="w-full h-full object-contain">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                           <img src="Assets/projectimage/dsb.png"  
                      alt="Project Success" 
                      class="w-full h-full object-contain">
             
@@ -108,25 +108,25 @@ const projectData = {
             "The platform has helped reduce carbon footprint by 30% compared to traditional e-commerce through optimized shipping and packaging solutions."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Shopping" 
                      class="w-full h-full object-contain">
          
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&h=600&fit=crop&crop=center" 
                      alt="Online Shopping Cart" 
                      class="w-full h-full object-contain">
               
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center" 
                      alt="E-commerce Product Gallery" 
                      class="w-full h-full object-contain">
               
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop&crop=center" 
                      alt="Eco Impact" 
                      class="w-full h-full object-contain">
@@ -137,12 +137,12 @@ const projectData = {
     jokester: {
         title: "Jokester",
         description: "Jokester is a web application that allows users to share and discover jokes.",
-        link: "https://jokester-demo.com",
+        link: "https://jokester.live",
         client: "Sarah Johnson",
-        clientType: "individual",
-        year: "2022",
-        role: "UI/UX Designer",
-        image: "Assets/Project2a.png",
+        clientType: "organization",
+        year: "2025",
+        role: "Frontend Developer",
+        image: "Assets/projectimage/jka.png",
         logo: "Assets/jokester-favicon.ico",
         category: "live-projects",
         screenshot: `
@@ -190,27 +190,27 @@ const projectData = {
             "Client satisfaction increased by 40%, and the platform has become the standard tool for event management within the organization."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="Assets/Project2a.png" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/jka.png" 
                      alt="Event Planning Calendar" 
-                     class="w-full h-full object-contain">
+                     class="w-full h-full">
           
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="Assets/Project2b.png" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/jkb.png" 
                      alt="Event Guests Management" 
-                     class="w-full h-full object-contain">
+                     class="w-full h-full">
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="Assets/Project2c.png" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/jkc.png" 
                      alt="Event Vendors Management" 
-                     class="w-full h-full object-contain">
+                     class="w-full h-full">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="Assets/Project2d.png" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/jkd.png" 
                      alt="Event Success" 
-                     class="w-full h-full object-contain">
+                     class="w-full h-full">
         
             </div>`
         ]
@@ -218,12 +218,12 @@ const projectData = {
     docmed: {
         title: "Docmed",
         description: "Docmed is a medical appointment booking platform that allows users to book appointments with doctors and hospitals.",
-        link: "https://docmed-demo.com",
+        link: "https://docmed-ten.vercel.app/",
     client: "Mental Health Center",
         clientType: "organization",
         year: "2023",
         role: "Frontend Developer",
-        image: "Assets/docmed.png",
+        image: "Assets/projectimage/dma.png",
         logo: "Assets/docmed-favicon.ico",
         category: "figma-converters",
         screenshot: `
@@ -257,26 +257,26 @@ const projectData = {
             "Restaurant partners reported a 35% increase in foot traffic, and users spent an average of 8 minutes per session exploring restaurants."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/dma.png" 
                      alt="Restaurant Search Interface" 
                      class="w-full h-full object-contain">
         
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/dmb.png" 
                      alt="Restaurant Listing" 
                      class="w-full h-full object-contain">
            
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/dmc.png" 
                      alt="Restaurant Map View" 
                      class="w-full h-full object-contain">
            
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop&crop=center" 
+            `<div class="rounded-xl  relative overflow-hidden h-full">
+                <img src="Assets/projectimage/dmd.png" 
                      alt="Restaurant Success" 
                      class="w-full h-full object-contain">
             
@@ -328,25 +328,25 @@ const projectData = {
             "The app processed over 2 million health data points daily and helped users collectively lose over 10,000 pounds in the first six months."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Dashboard" 
                      class="w-full h-full object-contain">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&crop=center" 
                      alt="Fitness Tracking" 
                      class="w-full h-full object-contain">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Analytics" 
                      class="w-full h-full object-contain">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&crop=center" 
                      alt="Health Success" 
                      class="w-full h-full object-contain">
@@ -399,7 +399,7 @@ const projectData = {
             "The app achieved a 4.8/5 user rating and was featured in major fintech publications for its innovative approach to crypto portfolio management."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center" 
                      alt="Crypto Dashboard" 
                      class="w-full h-full object-contain">
@@ -408,19 +408,19 @@ const projectData = {
                     <p class="text-lg font-bold text-red-800">+5.2%</p>
                 </div>
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=600&fit=crop&crop=center" 
                      alt="Market Analysis" 
                      class="w-full h-full object-contain">
            
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center" 
                      alt="Trading Charts" 
                      class="w-full h-full object-contain">
            
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1642790103337-344b4477a0b1?w=800&h=600&fit=crop&crop=center" 
                      alt="Analytics" 
                      class="w-full h-full object-contain">
@@ -467,25 +467,25 @@ const projectData = {
             "The platform achieved a 4.7/5 user rating and was recognized as a top professional networking tool by industry publications."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Network" 
                      class="w-full h-full object-contain">
           
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center" 
                      alt="Connection Matching" 
                      class="w-full h-full object-contain">
               
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&crop=center" 
                      alt="Professional Events" 
                      class="w-full h-full object-contain">
                
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center" 
                      alt="Career Success" 
                      class="w-full h-full object-contain">
@@ -538,25 +538,25 @@ const projectData = {
             "The platform processed over 1 million data points daily and was recognized as a leading smart city solution, winning the Urban Innovation Award 2024."
         ],
         resultScreenshots: [
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center" 
                      alt="City Dashboard" 
                      class="w-full h-full object-contain">
             
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center" 
                      alt="IoT Sensors" 
                      class="w-full h-full object-contain">
              
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop&crop=center" 
                      alt="City Analytics" 
                      class="w-full h-full object-contain">
           
             </div>`,
-            `<div class="rounded-xl  relative overflow-hidden">
+            `<div class="rounded-xl  relative overflow-hidden h-full">
                 <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop&crop=center" 
                      alt="City Success" 
                      class="w-full h-full object-contain">
@@ -600,17 +600,17 @@ const projectData = {
     //         "Second result..."
     //     ],
     //     resultScreenshots: [
-    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden">
+    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden h-full">
     //             <div class="absolute inset-4 bg-white rounded-lg p-4">
     //                 <h3 class="text-sm font-bold text-gray-900">Result 1</h3>
     //             </div>
     //         </div>`,
-    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden">
+    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden h-full">
     //             <div class="absolute inset-4 bg-white rounded-lg p-4">
     //                 <h3 class="text-sm font-bold text-gray-900">Result 2</h3>
     //             </div>
     //         </div>`,
-    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden">
+    //         `<div class="bg-gray-100 rounded-xl  relative overflow-hidden h-full">
     //             <div class="absolute inset-4 bg-white rounded-lg p-4">
     //                 <h3 class="text-sm font-bold text-gray-900">Result 3</h3>
     //             </div>

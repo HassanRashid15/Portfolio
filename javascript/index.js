@@ -730,9 +730,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     // Initialize WhatsApp floating button
+    // Commented out - using chatbot WhatsApp integration instead
+    // setTimeout(() => {
+    //     initWhatsAppButton();
+    // }, 2000); // Show after 2 seconds
+    
+    // Initialize Chatbot
     setTimeout(() => {
-        initWhatsAppButton();
-    }, 2000); // Show after 2 seconds
+        initChatbot();
+    }, 2500); // Show after 2.5 seconds
     
     // Initialize grid layout functionality
     setTimeout(() => {
@@ -1411,6 +1417,945 @@ function initWhatsAppButton() {
         console.log('WhatsApp button clicked');
     });
 }
+
+// Rotating placeholder text for chatbot input
+let placeholderTimeout = null;
+let placeholderState = {
+    currentText: '',
+    isDeleting: false,
+    placeholderIndex: 0,
+    animationRunning: false
+};
+
+const placeholders = [
+    'Type your message...',
+    'Ask about services we offered...',
+    'Ask about portfolio...',
+    'Ask about availability...',
+    'Ask about contact...',
+    'How can I help you?',
+    'What would you like to know?'
+];
+
+function startRotatingPlaceholder() {
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    
+    if (!chatbotInput || !chatbotWindow) return;
+    
+    // Stop any existing animation
+    stopRotatingPlaceholder();
+    
+    // Reset state
+    placeholderState.currentText = '';
+    placeholderState.isDeleting = false;
+    placeholderState.placeholderIndex = 0;
+    placeholderState.animationRunning = false;
+    
+    function typePlaceholder() {
+        if (!chatbotInput || !chatbotWindow) return;
+        
+        // Stop if chatbot window is closed
+        if (!chatbotWindow.classList.contains('active')) {
+            placeholderState.animationRunning = false;
+            return;
+        }
+        
+        // Stop animation if input is focused or has value
+        if (document.activeElement === chatbotInput || chatbotInput.value) {
+            placeholderState.animationRunning = false;
+            return;
+        }
+        
+        placeholderState.animationRunning = true;
+        const fullText = placeholders[placeholderState.placeholderIndex];
+        
+        if (placeholderState.isDeleting) {
+            placeholderState.currentText = fullText.substring(0, placeholderState.currentText.length - 1);
+        } else {
+            placeholderState.currentText = fullText.substring(0, placeholderState.currentText.length + 1);
+        }
+        
+        chatbotInput.placeholder = placeholderState.currentText + '|';
+        
+        if (!placeholderState.isDeleting && placeholderState.currentText === fullText) {
+            // Pause at end of typing
+            placeholderTimeout = setTimeout(() => {
+                if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
+                    placeholderState.isDeleting = true;
+                    typePlaceholder();
+                }
+            }, 2000);
+        } else if (placeholderState.isDeleting && placeholderState.currentText === '') {
+            // Move to next placeholder
+            placeholderState.isDeleting = false;
+            placeholderState.placeholderIndex = (placeholderState.placeholderIndex + 1) % placeholders.length;
+            placeholderTimeout = setTimeout(() => {
+                if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
+                    typePlaceholder();
+                }
+            }, 500);
+        } else {
+            // Continue typing/deleting
+            const speed = placeholderState.isDeleting ? 50 : 100;
+            placeholderTimeout = setTimeout(() => {
+                if (placeholderState.animationRunning && !chatbotInput.value && document.activeElement !== chatbotInput && chatbotWindow.classList.contains('active')) {
+                    typePlaceholder();
+                }
+            }, speed);
+        }
+    }
+    
+    // Start animation when chatbot opens
+    placeholderTimeout = setTimeout(() => {
+        if (chatbotWindow.classList.contains('active') && !chatbotInput.value && document.activeElement !== chatbotInput) {
+            typePlaceholder();
+        }
+    }, 1000);
+}
+
+function stopRotatingPlaceholder() {
+    if (placeholderTimeout) {
+        clearTimeout(placeholderTimeout);
+        placeholderTimeout = null;
+    }
+    placeholderState.animationRunning = false;
+    const chatbotInput = document.getElementById('chatbot-input');
+    if (chatbotInput) {
+        chatbotInput.placeholder = 'Type your message...';
+    }
+}
+
+// Chatbot Widget Functionality
+function initChatbot() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    
+    if (!chatbotToggle || !chatbotWindow) {
+        console.warn('Chatbot elements not found');
+        return;
+    }
+    
+    // Tooltip elements
+    const chatbotTooltip = document.getElementById('chatbot-tooltip');
+    const chatbotTooltipClose = document.getElementById('chatbot-tooltip-close');
+    let tooltipShown = false;
+    let tooltipTimeout = null;
+    
+    // Function to show tooltip
+    function showTooltip() {
+        if (!chatbotTooltip || tooltipShown) return;
+        
+        // Check if chatbot window is already open
+        if (chatbotWindow.classList.contains('active')) {
+            return; // Don't show if chatbot is open
+        }
+        
+        tooltipShown = true;
+        chatbotTooltip.classList.add('show');
+        
+        // Auto-hide after 8 seconds
+        tooltipTimeout = setTimeout(() => {
+            hideTooltip();
+        }, 8000);
+    }
+    
+    // Function to hide tooltip
+    function hideTooltip() {
+        if (!chatbotTooltip) return;
+        
+        chatbotTooltip.classList.remove('show');
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
+        }
+    }
+    
+    // Show tooltip after delay (3 seconds after page load)
+    setTimeout(() => {
+        showTooltip();
+    }, 3000);
+    
+    // Close tooltip button
+    if (chatbotTooltipClose) {
+        chatbotTooltipClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hideTooltip();
+        });
+    }
+    
+    // Conversation tracking
+    let messageCount = 0;
+    let userMessageCount = 0;
+    let whatsappPromptShown = false;
+    const LONG_CONVERSATION_THRESHOLD = 4; // Show WhatsApp prompt after 4 user messages
+    const WHATSAPP_PHONE = "923349878525";
+    
+    // Keywords that indicate user wants to talk more or discuss further
+    const wantToTalkKeywords = [
+        "more", "discuss", "talk", "help", "need", "want", "interested", 
+        "project", "quote", "price", "cost", "budget", "timeline", 
+        "start", "begin", "hire", "work together", "collaborate",
+        "details", "explain", "tell me more", "elaborate", "further",
+        "how much", "pricing", "payment", "when can", "how long",
+        "proposal", "estimate", "scope", "requirements", "specifications"
+    ];
+    
+    // Knowledge base for chatbot responses
+    const knowledgeBase = {
+        greetings: [
+            "Hello! 👋 How can I help you today?",
+            "Hi there! What would you like to know?",
+            "Hey! I'm here to help. What can I do for you?"
+        ],
+        services: {
+            keywords: ["service", "skill", "technology", "tech", "what can you do", "expertise", "specialize"],
+            response: "Hassan specializes in Frontend Development with expertise in:\n\n• React & Next.js\n• JavaScript (ES6+)\n• HTML5 & CSS3\n• UI/UX Design\n• Responsive Web Design\n• Modern Web Applications\n\nWould you like to know more about any specific technology?"
+        },
+        availability: {
+            keywords: ["available", "hire", "freelance", "project", "work", "collaborate", "when"],
+            response: "Hassan is available for freelance projects and collaborations! 🚀\n\nHe typically responds within 24-48 hours. For urgent inquiries, you can contact him directly via:\n\n• Email: hassanrashid0018@gmail.com\n• WhatsApp: +92-334-9878525\n\nWould you like to discuss a project?"
+        },
+        portfolio: {
+            keywords: ["project", "portfolio", "work", "example", "showcase", "what have you built"],
+            response: "Hassan has worked on various projects including:\n\n• DevStitch - Web Development Agency\n• Jokester - Live Comedy Platform\n• Docmed - Medical Appointment Booking\n• SocialConnect - Professional Networking\n\nCheck out the Projects page to see detailed case studies! Would you like to know more about any specific project?"
+        },
+        contact: {
+            keywords: ["contact", "email", "phone", "reach", "get in touch", "how to contact"],
+            response: "You can reach Hassan through:\n\n📧 Email: hassanrashid0018@gmail.com\n📱 Phone: +92-334-9878525\n💬 WhatsApp: Click the green button below!\n\nHe usually responds within 24-48 hours. For faster response, use WhatsApp! 😊"
+        },
+        default: "I'm not sure I understand. Could you rephrase that? You can ask me about:\n\n• Services & Skills\n• Availability\n• Portfolio Projects\n• Contact Information\n\nOr feel free to contact Hassan directly via WhatsApp for more specific questions!"
+    };
+    
+    // Function to get bot response and response type
+    function getBotResponse(userMessage) {
+        const message = userMessage.toLowerCase().trim();
+        let responseType = 'default';
+        let response = '';
+        
+        // Check for greetings
+        if (message.match(/^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/)) {
+            response = knowledgeBase.greetings[Math.floor(Math.random() * knowledgeBase.greetings.length)];
+            responseType = 'greeting';
+        }
+        // Check for services
+        else if (knowledgeBase.services.keywords.some(keyword => message.includes(keyword))) {
+            response = knowledgeBase.services.response;
+            responseType = 'services';
+        }
+        // Check for availability
+        else if (knowledgeBase.availability.keywords.some(keyword => message.includes(keyword))) {
+            response = knowledgeBase.availability.response;
+            responseType = 'availability';
+        }
+        // Check for portfolio
+        else if (knowledgeBase.portfolio.keywords.some(keyword => message.includes(keyword))) {
+            response = knowledgeBase.portfolio.response;
+            responseType = 'portfolio';
+        }
+        // Check for contact
+        else if (knowledgeBase.contact.keywords.some(keyword => message.includes(keyword))) {
+            response = knowledgeBase.contact.response;
+            responseType = 'contact';
+        }
+        // Default response
+        else {
+            response = knowledgeBase.default;
+            responseType = 'default';
+        }
+        
+        return { text: response, type: responseType };
+    }
+    
+    // Function to get action buttons based on response type
+    function getActionButtons(responseType) {
+        const buttons = [];
+        
+        switch(responseType) {
+            case 'services':
+                buttons.push(
+                    { text: 'View Projects', action: 'view-projects' },
+                    { text: 'Get Quote', action: 'quote' },
+                    { text: 'Chat on WhatsApp', action: 'whatsapp', isWhatsApp: true }
+                );
+                break;
+            case 'availability':
+                buttons.push(
+                    { text: 'Discuss Project', action: 'whatsapp', isWhatsApp: true },
+                    { text: 'View Portfolio', action: 'view-projects' },
+                    { text: 'Contact Info', action: 'contact' }
+                );
+                break;
+            case 'portfolio':
+                buttons.push(
+                    { text: 'View All Projects', action: 'view-projects' },
+                    { text: 'Discuss Project', action: 'whatsapp', isWhatsApp: true },
+                    { text: 'Get Quote', action: 'quote' }
+                );
+                break;
+            case 'contact':
+                buttons.push(
+                    { text: 'Chat on WhatsApp', action: 'whatsapp', isWhatsApp: true },
+                    { text: 'Send Email', action: 'email' },
+                    { text: 'View Projects', action: 'view-projects' }
+                );
+                break;
+            case 'email-success':
+                buttons.push(
+                    { text: 'Chat on WhatsApp', action: 'whatsapp', isWhatsApp: true },
+                    { text: 'View Projects', action: 'view-projects' },
+                    { text: 'Ask More Questions', action: 'continue-chat' }
+                );
+                break;
+            default:
+                buttons.push(
+                    { text: 'Services', action: 'services' },
+                    { text: 'Portfolio', action: 'portfolio' },
+                    { text: 'Chat on WhatsApp', action: 'whatsapp', isWhatsApp: true }
+                );
+        }
+        
+        // Add "End Conversation" button to all responses
+        buttons.push(
+            { text: 'End Conversation', action: 'end-conversation', isEndConversation: true }
+        );
+        
+        return buttons;
+    }
+    
+    // Function to handle action button clicks
+    function handleActionButton(action) {
+        switch(action) {
+            case 'whatsapp':
+                window.open(`https://wa.me/${WHATSAPP_PHONE}?text=Hi! I'm interested in discussing a project. Let's talk!`, '_blank');
+                break;
+            case 'view-projects':
+                if (window.location.pathname.includes('projects.html')) {
+                    // Already on projects page
+                    addMessage('You\'re already on the Projects page! Check out the projects above. 🎨', false);
+                } else {
+                    window.location.href = 'projects.html';
+                }
+                break;
+            case 'email':
+                showEmailModal();
+                break;
+            case 'quote':
+            case 'services':
+            case 'portfolio':
+            case 'contact':
+                // Trigger the corresponding response
+                const actionMessages = {
+                    'quote': 'I need a quote for a project',
+                    'services': 'What services do you offer',
+                    'portfolio': 'Show me your portfolio',
+                    'contact': 'How can I contact you'
+                };
+                chatbotInput.value = actionMessages[action];
+                sendMessage();
+                break;
+            case 'end-conversation':
+                // End conversation
+                endConversation();
+                break;
+            case 'continue-chat':
+                // Just focus on input to continue chatting
+                const inputField = document.getElementById('chatbot-input');
+                if (inputField) {
+                    inputField.focus();
+                }
+                break;
+        }
+    }
+    
+    // Function to end conversation
+    function endConversation() {
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        
+        // Add farewell message
+        if (chatbotMessages) {
+            const farewellMsg = document.createElement('div');
+            farewellMsg.className = 'chatbot-message chatbot-message-bot';
+            farewellMsg.innerHTML = `
+                <div class="chatbot-message-content">
+                    <p>Thank you for chatting! Feel free to reach out anytime. Have a great day! 👋</p>
+                </div>
+            `;
+            chatbotMessages.appendChild(farewellMsg);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        // Close chatbot after a delay
+        setTimeout(() => {
+            if (chatbotWindow) {
+                chatbotWindow.classList.remove('active');
+            }
+            // Reset conversation tracking
+            resetConversationTracking();
+        }, 2000);
+    }
+    
+    // Function to add message to chat
+    function addMessage(text, isUser = false, responseType = null) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chatbot-message ${isUser ? 'chatbot-message-user' : 'chatbot-message-bot'}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'chatbot-message-content';
+        
+        // Handle line breaks in text
+        const lines = text.split('\n');
+        lines.forEach((line, index) => {
+            if (line.trim()) {
+                const p = document.createElement('p');
+                p.textContent = line.trim();
+                if (index > 0) {
+                    p.style.marginTop = '4px';
+                }
+                contentDiv.appendChild(p);
+            }
+        });
+        
+        // Add action buttons for bot messages
+        if (!isUser && responseType) {
+            const actionButtons = getActionButtons(responseType);
+            if (actionButtons.length > 0) {
+                const buttonsContainer = document.createElement('div');
+                buttonsContainer.className = 'chatbot-action-buttons';
+                
+                actionButtons.forEach(btn => {
+                    const button = document.createElement('button');
+                    let buttonClass = 'chatbot-action-btn';
+                    
+                    if (btn.isWhatsApp) {
+                        buttonClass += ' whatsapp-btn';
+                    }
+                    if (btn.isEndConversation) {
+                        buttonClass += ' end-conversation-btn';
+                    }
+                    
+                    button.className = buttonClass;
+                    
+                    if (btn.isWhatsApp) {
+                        button.innerHTML = `
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                            ${btn.text}
+                        `;
+                    } else if (btn.isEndConversation) {
+                        button.innerHTML = `
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            ${btn.text}
+                        `;
+                    } else {
+                        button.textContent = btn.text;
+                    }
+                    
+                    button.addEventListener('click', () => {
+                        handleActionButton(btn.action);
+                    });
+                    
+                    buttonsContainer.appendChild(button);
+                });
+                
+                contentDiv.appendChild(buttonsContainer);
+            }
+        }
+        
+        messageDiv.appendChild(contentDiv);
+        chatbotMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        
+        return messageDiv;
+    }
+    
+    // Function to detect if user wants to discuss more
+    function wantsToTalkMore(message) {
+        const lowerMessage = message.toLowerCase();
+        return wantToTalkKeywords.some(keyword => lowerMessage.includes(keyword));
+    }
+    
+    // Function to show WhatsApp prompt
+    function showWhatsAppPrompt() {
+        if (whatsappPromptShown) return; // Don't show multiple times
+        
+        whatsappPromptShown = true;
+        
+        // Create WhatsApp prompt message
+        const promptMessage = `
+Let's continue this conversation on WhatsApp! 💬
+
+I can help you with:
+• Detailed project discussions
+• Custom quotes and pricing
+• Timeline and availability
+• Technical requirements
+
+Click below to chat directly with Hassan on WhatsApp - he usually responds within a few hours! ⚡
+        `.trim();
+        
+        // Add prompt message
+        setTimeout(() => {
+            const promptDiv = addMessage(promptMessage, false);
+            
+            // Add WhatsApp button inside the message
+            setTimeout(() => {
+                const whatsappButtonDiv = document.createElement('div');
+                whatsappButtonDiv.className = 'chatbot-whatsapp-prompt';
+                whatsappButtonDiv.innerHTML = `
+                    <a href="https://wa.me/${WHATSAPP_PHONE}?text=Hi! I'm interested in discussing a project. Let's talk!" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="chatbot-whatsapp-button">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                        <span>Continue on WhatsApp</span>
+                    </a>
+                `;
+                
+                const contentDiv = promptDiv.querySelector('.chatbot-message-content');
+                if (contentDiv) {
+                    contentDiv.appendChild(whatsappButtonDiv);
+                }
+                
+                // Highlight WhatsApp floating button
+                const whatsappFloatBtn = document.getElementById('whatsapp-float-btn');
+                if (whatsappFloatBtn) {
+                    whatsappFloatBtn.classList.add('show');
+                    whatsappFloatBtn.style.animation = 'pulse 1s ease-in-out 5';
+                    setTimeout(() => {
+                        whatsappFloatBtn.style.animation = '';
+                    }, 5000);
+                }
+            }, 300);
+        }, 1000);
+    }
+    
+    // Function to send message
+    function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+        
+        // Track conversation
+        userMessageCount++;
+        messageCount += 2; // User message + bot response
+        
+        // Add user message
+        addMessage(message, true);
+        chatbotInput.value = '';
+        
+        // Check if user wants to talk more (intent detection)
+        const wantsToTalk = wantsToTalkMore(message);
+        
+        // Simulate typing delay
+        setTimeout(() => {
+            const botResponse = getBotResponse(message);
+            addMessage(botResponse.text, false, botResponse.type);
+            
+            // Show WhatsApp prompt if:
+            // 1. User has sent 4+ messages (long conversation)
+            // 2. User shows intent to discuss more (keywords detected)
+            if ((userMessageCount >= LONG_CONVERSATION_THRESHOLD || wantsToTalk) && !whatsappPromptShown) {
+                setTimeout(() => {
+                    showWhatsAppPrompt();
+                }, 1500);
+            }
+            
+            // Check if response mentions WhatsApp
+            if (botResponse.text.toLowerCase().includes('whatsapp')) {
+                setTimeout(() => {
+                    const whatsappButton = document.getElementById('whatsapp-float-btn');
+                    if (whatsappButton) {
+                        whatsappButton.classList.add('show');
+                        whatsappButton.style.animation = 'pulse 1s ease-in-out 3';
+                    }
+                }, 500);
+            }
+        }, 800);
+    }
+    
+    // Function to reset conversation tracking (when starting new conversation)
+    function resetConversationTracking() {
+        messageCount = 0;
+        userMessageCount = 0;
+        whatsappPromptShown = false;
+    }
+    
+    // Function to toggle WhatsApp button visibility
+    function toggleWhatsAppButton(show) {
+        const whatsappFloatBtn = document.getElementById('whatsapp-float-btn');
+        if (whatsappFloatBtn) {
+            if (show) {
+                whatsappFloatBtn.classList.add('show');
+            } else {
+                // Don't hide completely, just keep it visible but less prominent
+                // Or you can hide it: whatsappFloatBtn.classList.remove('show');
+            }
+        }
+    }
+    
+    // Toggle chatbot window
+    chatbotToggle.addEventListener('click', () => {
+        const wasActive = chatbotWindow.classList.contains('active');
+        chatbotWindow.classList.toggle('active');
+        
+        if (chatbotWindow.classList.contains('active')) {
+            // Start rotating placeholder when chatbot opens
+            setTimeout(() => {
+                startRotatingPlaceholder();
+            }, 500);
+            
+            // Don't auto-focus to allow placeholder animation
+            // chatbotInput.focus();
+            
+            // Hide tooltip when chatbot opens
+            hideTooltip();
+            // Hide WhatsApp button when chatbot is open (optional - reduces clutter)
+            // Uncomment if you want to hide it:
+            // toggleWhatsAppButton(false);
+        } else if (wasActive) {
+            // Stop rotating placeholder when chatbot closes
+            stopRotatingPlaceholder();
+            
+            // Show WhatsApp button when chatbot closes
+            toggleWhatsAppButton(true);
+            // If closing, reset tracking after a delay (in case user reopens quickly)
+            setTimeout(() => {
+                if (!chatbotWindow.classList.contains('active')) {
+                    resetConversationTracking();
+                }
+            }, 5000); // Reset after 5 seconds of being closed
+        }
+    });
+    
+    // Close chatbot window
+    chatbotClose.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+        
+        // Stop rotating placeholder when chatbot closes
+        stopRotatingPlaceholder();
+        
+        // Show WhatsApp button when chatbot closes
+        toggleWhatsAppButton(true);
+        // Show tooltip again after closing (optional - can be removed if you don't want it to reappear)
+        // setTimeout(() => {
+        //     if (!chatbotWindow.classList.contains('active') && !tooltipShown) {
+        //         showTooltip();
+        //     }
+        // }, 2000);
+        // Reset tracking after closing
+        setTimeout(() => {
+            if (!chatbotWindow.classList.contains('active')) {
+                resetConversationTracking();
+            }
+        }, 5000);
+    });
+    
+    // Handle quick button clicks
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('chatbot-quick-btn')) {
+            const action = e.target.getAttribute('data-action');
+            const actionMessages = {
+                'services': 'What services do you offer',
+                'availability': 'Are you available for projects',
+                'portfolio': 'Show me your portfolio projects',
+                'contact': 'How can I contact you'
+            };
+            
+            if (actionMessages[action]) {
+                chatbotInput.value = actionMessages[action];
+                sendMessage();
+            }
+        }
+    });
+    
+    // Send message on button click
+    chatbotSend.addEventListener('click', sendMessage);
+    
+    // Send message on Enter key
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Handle input focus - stop placeholder animation
+    chatbotInput.addEventListener('focus', () => {
+        stopRotatingPlaceholder();
+        chatbotInput.placeholder = 'Type your message...';
+    });
+    
+    // Handle input blur - resume placeholder animation if empty
+    chatbotInput.addEventListener('blur', () => {
+        if (!chatbotInput.value && chatbotWindow.classList.contains('active')) {
+            // Reset state and restart
+            placeholderState.currentText = '';
+            placeholderState.placeholderIndex = 0;
+            placeholderState.isDeleting = false;
+            setTimeout(() => {
+                if (chatbotWindow.classList.contains('active') && !chatbotInput.value) {
+                    startRotatingPlaceholder();
+                }
+            }, 500);
+        }
+    });
+    
+    // Close on outside click (optional)
+    document.addEventListener('click', (e) => {
+        if (chatbotWindow.classList.contains('active') && 
+            !chatbotWindow.contains(e.target) && 
+            !chatbotToggle.contains(e.target)) {
+            // Optional: Uncomment to close on outside click
+            // chatbotWindow.classList.remove('active');
+        }
+    });
+    
+    console.log('✅ Chatbot initialized');
+}
+
+// Email Modal Functionality
+function showEmailModal() {
+    const emailModal = document.getElementById('email-modal');
+    if (emailModal) {
+        emailModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on first input
+        setTimeout(() => {
+            const firstInput = document.getElementById('client-email');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }, 100);
+    }
+}
+
+// Reset email form when modal closes
+function resetEmailForm() {
+    const emailForm = document.getElementById('email-form');
+    if (emailForm) {
+        emailForm.reset();
+        // Remove any error messages
+        const errorMsg = emailForm.querySelector('.email-error-message');
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+        // Reset submit button
+        const submitBtn = emailForm.querySelector('.email-submit-btn');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Send Email
+            `;
+            submitBtn.style.background = '';
+        }
+    }
+}
+
+function hideEmailModal() {
+    const emailModal = document.getElementById('email-modal');
+    if (emailModal) {
+        emailModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        
+        // Reset form
+        resetEmailForm();
+    }
+}
+
+// Initialize email modal
+document.addEventListener('DOMContentLoaded', function() {
+    const emailModal = document.getElementById('email-modal');
+    const emailModalClose = document.getElementById('email-modal-close');
+    const emailForm = document.getElementById('email-form');
+    
+    if (!emailModal) return;
+    
+    // Close modal button
+    if (emailModalClose) {
+        emailModalClose.addEventListener('click', hideEmailModal);
+    }
+    
+    // Close on outside click
+    emailModal.addEventListener('click', (e) => {
+        if (e.target === emailModal) {
+            hideEmailModal();
+        }
+    });
+    
+    // Initialize EmailJS (replace with your public key after setup)
+    // Get your keys from: https://dashboard.emailjs.com/admin/integration
+    if (typeof emailjs !== 'undefined') {
+        // Replace 'YOUR_PUBLIC_KEY' with your EmailJS public key
+        // emailjs.init('YOUR_PUBLIC_KEY');
+    }
+    
+    // Handle form submission
+    if (emailForm) {
+        emailForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const clientEmail = document.getElementById('client-email').value;
+            const subject = document.getElementById('email-subject').value;
+            const message = document.getElementById('email-message').value;
+            const submitBtn = emailForm.querySelector('.email-submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            
+            // EmailJS Configuration
+            const serviceID = 'service_uh46zig';
+            const templateID = 'template_qet9f3d';
+            const publicKey = 'FY_OotUce1A8cX5ZG';
+            const WHATSAPP_PHONE = '923349878525';
+            
+            // Wait for EmailJS to load, then send
+            let retryCount = 0;
+            const maxRetries = 20; // Wait up to 2 seconds for EmailJS to load
+            
+            function sendEmailWithEmailJS() {
+                // Check if EmailJS is loaded
+                if (typeof emailjs === 'undefined') {
+                    retryCount++;
+                    if (retryCount < maxRetries) {
+                        // EmailJS not loaded yet, wait a bit more
+                        setTimeout(sendEmailWithEmailJS, 100);
+                        return;
+                    } else {
+                        // EmailJS failed to load - show WhatsApp option
+                        console.error('EmailJS failed to load');
+                        showEmailErrorWithWhatsApp(clientEmail, subject, message, submitBtn, originalBtnText, emailForm);
+                        return;
+                    }
+                }
+                
+                // Initialize EmailJS
+                try {
+                    emailjs.init(publicKey);
+                } catch (error) {
+                    console.error('EmailJS init error:', error);
+                    showEmailErrorWithWhatsApp(clientEmail, subject, message, submitBtn, originalBtnText, emailForm);
+                    return;
+                }
+                
+                // Get current time
+                const currentTime = new Date().toLocaleString('en-US', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Send email via EmailJS
+                emailjs.send(serviceID, templateID, {
+                    to_email: 'hassanrashid0018@gmail.com',
+                    from_email: clientEmail,
+                    subject: subject,
+                    message: message,
+                    reply_to: clientEmail,
+                    time: currentTime,
+                    name: clientEmail.split('@')[0]
+                })
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    // Success
+                    submitBtn.innerHTML = '<span>✅ Sent!</span>';
+                    submitBtn.style.background = '#10b981';
+                    
+                    setTimeout(() => {
+                        hideEmailModal();
+                        showEmailSuccessInChatbot('✅ Email sent successfully! Hassan will get back to you soon.');
+                    }, 1000);
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Send Error:', error);
+                    console.error('Error Details:', {
+                        status: error.status,
+                        text: error.text,
+                        serviceID: serviceID,
+                        templateID: templateID
+                    });
+                    
+                    // Show specific error message
+                    let errorMessage = 'Email failed to send.';
+                    if (error.text) {
+                        if (error.text.includes('template ID not found')) {
+                            errorMessage = 'Template not found. Please check your EmailJS template ID.';
+                        } else if (error.text.includes('service')) {
+                            errorMessage = 'Email service error. Please check your EmailJS service configuration.';
+                        } else {
+                            errorMessage = `Error: ${error.text}`;
+                        }
+                    }
+                    
+                    // Error - show WhatsApp option
+                    showEmailErrorWithWhatsApp(clientEmail, subject, message, submitBtn, originalBtnText, emailForm, errorMessage);
+                });
+            }
+            
+            // Start sending
+            sendEmailWithEmailJS();
+        });
+    }
+    
+    // Function to show error with WhatsApp option
+    function showEmailErrorWithWhatsApp(clientEmail, subject, message, submitBtn, originalBtnText, emailForm, customErrorMsg = null) {
+        const WHATSAPP_PHONE = '923349878525';
+        
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        
+        const errorText = customErrorMsg || '❌ Email failed to send. Try WhatsApp instead:';
+        
+        // Show error with WhatsApp option
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'email-error-message';
+        errorMsg.style.cssText = 'margin-top: 15px; padding: 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #991b1b; font-size: 13px;';
+        errorMsg.innerHTML = `
+            <p style="margin: 0 0 10px 0;">${errorText}</p>
+            <a href="https://wa.me/${WHATSAPP_PHONE}?text=Hi! I need to send you an email.%0D%0A%0D%0AMy email: ${encodeURIComponent(clientEmail)}%0D%0ASubject: ${encodeURIComponent(subject)}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}" 
+               target="_blank" 
+               style="display: inline-block; padding: 8px 16px; background: #25D366; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; margin-top: 8px;">
+                💬 Open WhatsApp
+            </a>
+        `;
+        
+        // Remove any existing error message
+        const existingError = emailForm.querySelector('.email-error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        emailForm.appendChild(errorMsg);
+    }
+    
+    
+    // Show success message in chatbot with action buttons
+    function showEmailSuccessInChatbot(customMessage = null) {
+        const messageText = customMessage || '✅ Email sent successfully! Hassan will get back to you soon.';
+        // Use addMessage function to get action buttons automatically
+        addMessage(messageText, false, 'email-success');
+    }
+    
+});
 
 // GSAP Animated Mobile Menu - Exact CodePen Implementation
 function initAnimatedMobileMenu(retryCount = 0) {

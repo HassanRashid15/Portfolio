@@ -181,7 +181,7 @@ function createProjectCard(projectId) {
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-full object-contain"
+                         class="w-full h-full"
                          loading="lazy">
                 ` : `
                     <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
@@ -275,7 +275,7 @@ function createProjectListItem(projectId) {
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
-                         class="w-full h-full object-contain"
+                         class="w-full h-full"
                          loading="lazy">
                 ` : `
                     <div class="w-full h-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
