@@ -2,26 +2,22 @@
   "version": 2,
   "buildCommand": "npm run build-css-prod",
   "outputDirectory": ".",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/about",
+      "destination": "/about.html"
     },
     {
-      "src": "/about",
-      "dest": "/about.html"
+      "source": "/contact",
+      "destination": "/contact.html"
     },
     {
-      "src": "/contact",
-      "dest": "/contact.html"
+      "source": "/projects",
+      "destination": "/projects.html"
     },
     {
-      "src": "/projects",
-      "dest": "/projects.html"
-    },
-    {
-      "src": "/project/(.*)",
-      "dest": "/project-detail.html"
+      "source": "/project/:path*",
+      "destination": "/project-detail.html"
     }
   ],
   "headers": [
