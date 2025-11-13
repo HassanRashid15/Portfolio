@@ -269,9 +269,9 @@ function createProjectListItem(projectId) {
     const techTags = generateTechTags(project);
     
     return `
-        <div class="project-item-list bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row" data-project="${projectId}">
+        <div class="project-item-list rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row" style="background-color: var(--bg-color);" data-project="${projectId}">
             <!-- Image Section -->
-            <div class="w-full md:w-1/3 h-64 md:h-auto bg-gray-100 flex items-center justify-center overflow-hidden">
+            <div class="w-full md:w-1/3 h-64 md:h-auto flex items-center justify-center overflow-hidden" style="background-color: var(--bg-secondary);">
                 ${project.image ? `
                     <img src="${project.image}" 
                          alt="${project.title}" 
@@ -309,10 +309,10 @@ function createProjectListItem(projectId) {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
                         `}
-                        <h3 class="text-2xl font-bold text-gray-900">${project.title}<span class="project-title-dot">.</span></h3>
+                        <h3 class="text-2xl font-bold" style="color: var(--text-color);">${project.title}<span class="project-title-dot">.</span></h3>
                     </div>
                     
-                    <p class="text-gray-600 mb-4 line-clamp-2">${project.description}</p>
+                    <p class="mb-4 line-clamp-2" style="color: var(--text-secondary);">${project.description}</p>
                     
                     <div class="flex flex-wrap gap-2 mb-4">
                         ${techTags.slice(0, 4).map(tag => `
@@ -323,8 +323,8 @@ function createProjectListItem(projectId) {
                     </div>
                 </div>
                 
-                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                <div class="flex items-center justify-between pt-4 border-t" style="border-color: var(--border-color);">
+                    <div class="flex items-center gap-4 text-sm" style="color: var(--text-secondary);">
                         <span class="font-semibold">${project.client}</span>
                         <span>•</span>
                         <span>${project.role}</span>

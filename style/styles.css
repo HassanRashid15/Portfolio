@@ -13,6 +13,24 @@
     
     /* RGB values for rgba() usage - Update these when changing primary color */
     --primary-color-rgb: 110, 6, 242; /* RGB values for rgba() */
+    
+    /* Light theme colors */
+    --bg-color: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-color: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  [data-theme="dark"] {
+    /* Dark theme colors */
+    --bg-color: #111827;
+    --bg-secondary: #1f2937;
+    --text-color: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #374151;
+    --shadow-color: rgba(0, 0, 0, 0.3);
   }
   
   * {
@@ -28,6 +46,68 @@ body {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode transitions for all elements */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-secondary);
+}
+
+.theme-toggle:hover svg {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
+    opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: block;
+    opacity: 1;
 }
 .visit-website-btn{
   display: none;

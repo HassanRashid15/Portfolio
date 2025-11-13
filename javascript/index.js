@@ -106,12 +106,12 @@ class NavbarComponent {
         
         return this.currentPage === page 
             ? 'text-primary font-bold' 
-            : 'text-gray-700 link transition-colors font-bold';
+            : 'link transition-colors font-bold';
     }
 
     render() {
         const navbarHTML = `
-            <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+            <nav class="fixed w-full top-0 z-50 shadow-sm" style="background-color: var(--bg-color); border-bottom: 1px solid var(--border-color);">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="padding-left: 0px;">
                     <div class="flex justify-between items-center h-16">
                         <!-- Logo -->
@@ -128,14 +128,24 @@ class NavbarComponent {
                         <!-- Desktop Menu - Centered -->
                         <div class="hidden md:block">
                             <div class="flex items-center space-x-8">
-                                <a href="${this.pages.home}" class="${this.getLinkClass('home')}">Home</a>
-                                <a href="${this.pages.projects}" class="${this.getLinkClass('projects')}">Projects</a>
-                                <a href="${this.pages.about}" class="${this.getLinkClass('about')}">About</a>
+                                <a href="${this.pages.home}" class="${this.getLinkClass('home')}" style="${this.currentPage !== 'home' ? 'color: var(--text-color);' : ''}">Home</a>
+                                <a href="${this.pages.projects}" class="${this.getLinkClass('projects')}" style="${this.currentPage !== 'projects' ? 'color: var(--text-color);' : ''}">Projects</a>
+                                <a href="${this.pages.about}" class="${this.getLinkClass('about')}" style="${this.currentPage !== 'about' ? 'color: var(--text-color);' : ''}">About</a>
                             </div>
                         </div>
 
-                        <!-- Right side - Chat icon (Desktop only) -->
-                        <div class="hidden md:flex items-center">
+                        <!-- Right side - Theme toggle and Chat icon (Desktop only) -->
+                        <div class="hidden md:flex items-center space-x-4">
+                            <!-- Theme Toggle Button -->
+                            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                                <svg class="sun-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                <svg class="moon-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                </svg>
+                            </button>
+                            <!-- Chat icon -->
                             <a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary' : 'text-gray-700 hover:text-primary'} transition-colors">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -143,9 +153,19 @@ class NavbarComponent {
                             </a>
                         </div>
 
-                        <!-- Mobile menu button with chat icon -->
+                        <!-- Mobile menu button with theme toggle and chat icon -->
                         <div class="md:hidden flex items-center space-x-4">
-                            <a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary' : 'text-gray-700 hover:text-primary'} transition-colors">
+                            <!-- Theme Toggle Button (Mobile) -->
+                            <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle theme">
+                                <svg class="sun-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                <svg class="moon-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                </svg>
+                            </button>
+                            <!-- Chat icon -->
+                            <a href="${this.pages.contact}" class="${this.currentPage === 'contact' ? 'text-primary' : 'hover:text-primary'} transition-colors" style="color: var(--text-color);">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
@@ -190,6 +210,13 @@ class NavbarComponent {
             setTimeout(() => {
                 initAnimatedMobileMenu();
             }, 100);
+            
+            // Setup theme toggle after navbar is mounted
+            if (window.setupThemeToggle) {
+                setTimeout(() => {
+                    window.setupThemeToggle();
+                }, 200);
+            }
         } else {
             console.error('Navbar container not found:', containerId);
         }
@@ -324,9 +351,13 @@ function initNavbarScrollEffect() {
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('nav');
         if (window.scrollY > 50) {
-            navbar.classList.add('bg-white/95', 'backdrop-blur-sm');
+            navbar.style.backgroundColor = 'var(--bg-color)';
+            navbar.style.backdropFilter = 'blur(8px)';
+            navbar.style.opacity = '0.95';
         } else {
-            navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            navbar.style.backgroundColor = 'var(--bg-color)';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.opacity = '1';
         }
     });
 }
@@ -341,13 +372,13 @@ function generateExperienceDetails(companyKey) {
             <svg class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span class="text-gray-700">${responsibility}</span>
+            <span style="color: var(--text-color);">${responsibility}</span>
         </li>`
     ).join('');
     
     return `
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
-        <p class="text-gray-500 mb-6">${experience.period}</p>
+        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-color);">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
+        <p class="mb-6" style="color: var(--text-secondary);">${experience.period}</p>
         <ul class="space-y-3">
             ${responsibilitiesHTML}
         </ul>
@@ -364,13 +395,13 @@ function generateMobileExperienceDetails(companyKey) {
             <svg class="w-4 h-4 text-primary mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span class="text-sm text-gray-700">${responsibility}</span>
+            <span class="text-sm" style="color: var(--text-color);">${responsibility}</span>
         </li>`
     ).join('');
     
     return `
-        <h3 class="text-xl font-bold text-gray-900 mb-2">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
-        <p class="text-gray-500 mb-4">${experience.period}</p>
+        <h3 class="text-xl font-bold mb-2" style="color: var(--text-color);">${experience.title} <span class="text-primary">@ ${experience.company}</span></h3>
+        <p class="mb-4" style="color: var(--text-secondary);">${experience.period}</p>
         <ul class="space-y-2">
             ${responsibilitiesHTML}
         </ul>
@@ -448,7 +479,7 @@ function initExperienceTabs() {
                 const text = i.querySelector('span');
                 if (text) {
                     text.classList.remove('text-primary', 'font-medium');
-                    text.classList.add('text-gray-600');
+                    text.style.color = 'var(--text-secondary)';
                 }
             });
             
@@ -459,7 +490,7 @@ function initExperienceTabs() {
             
             const text = item.querySelector('span');
             if (text) {
-                text.classList.remove('text-gray-600');
+                text.style.color = '';
                 text.classList.add('text-primary', 'font-medium');
                 console.log(`${company} text computed styles:`, {
                     color: window.getComputedStyle(text).color,
@@ -537,7 +568,7 @@ class FooterComponent {
 
     render() {
         const footerHTML = `
-            <footer class="bg-white py-10 pb-2">
+            <footer class="py-10 pb-2" style="background-color: var(--bg-color);">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-0 place-items-center">
                         <!-- Left Side -->
@@ -545,23 +576,23 @@ class FooterComponent {
                             <!-- Navigation Links -->
                             <div>
                                 <div class="flex flex-wrap gap-6 mb-8">
-                                    <a href="${this.pages.home}" class="${this.getLinkClass('home')}">Home</a>
-                                    <a href="${this.pages.projects}" class="${this.getLinkClass('projects')}">Projects</a>
-                                    <a href="${this.pages.about}" class="${this.getLinkClass('about')}">About</a>
-                                    <a href="${this.pages.contact}" class="${this.getLinkClass('contact')}">Contact</a>
+                                    <a href="${this.pages.home}" class="${this.getLinkClass('home')}" style="${this.currentPage !== 'home' ? 'color: var(--text-color);' : ''}">Home</a>
+                                    <a href="${this.pages.projects}" class="${this.getLinkClass('projects')}" style="${this.currentPage !== 'projects' ? 'color: var(--text-color);' : ''}">Projects</a>
+                                    <a href="${this.pages.about}" class="${this.getLinkClass('about')}" style="${this.currentPage !== 'about' ? 'color: var(--text-color);' : ''}">About</a>
+                                    <a href="${this.pages.contact}" class="${this.getLinkClass('contact')}" style="${this.currentPage !== 'contact' ? 'color: var(--text-color);' : ''}">Contact</a>
                                 </div>
                             </div>
                             
                             <!-- Call to Action -->
                             <div>
-                                <h3 class="text-5xl md:text-3xl font-bold text-gray-900 mb-4">Interested in work<span class="m-0" style="margin: 0px; color: var(--primary-color);">ing together?</span></h3>
+                                <h3 class="text-5xl md:text-3xl font-bold mb-4" style="color: var(--text-color);">Interested in work<span class="m-0" style="margin: 0px; color: var(--primary-color);">ing together?</span></h3>
                                 <div class="flex flex-col sm:flex-row gap-3">
                                  <a href="${this.pages.contact}" 
    class="bg-primary text-white border border-transparent hover:bg-transparent hover:text-white hover:border-primary font-semibold py-3 px-12 rounded-full transition-colors text-center">
     <span>Get In Touch</span>
 </a>
 
-                                    <a href="${this.pages.projects}" class="border border-gray-300 text-gray-700 hover:border-primary hover:text-slate-900 font-semibold py-3 px-12 rounded-full transition-colors text-center ">
+                                    <a href="${this.pages.projects}" class="border font-semibold py-3 px-12 rounded-full transition-colors text-center" style="border-color: var(--border-color); color: var(--text-color);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.color='var(--text-color)';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.color='var(--text-color)';">
                                         <span>Browse Projects</span>
                                     </a>
                                 </div>
@@ -577,7 +608,7 @@ class FooterComponent {
          <a href="https://www.linkedin.com/in/hassan-rashid-61136823b/" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-primary transition-colors" 
+   style="color: var(--text-color);" class="hover:text-primary transition-colors" 
    aria-label="LinkedIn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="h-8 w-8" fill="currentColor">
         <path d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z"/>
@@ -590,26 +621,30 @@ class FooterComponent {
                                <a href="https://instagram.com/yourprofile" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-primary transition-colors" 
+   style="color: var(--text-color);" class="hover:text-primary transition-colors" 
    aria-label="Instagram">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-7 w-7" fill="currentColor">
         <path d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
     </svg>
 </a>
-
-                                    
-                                    <!-- GitHub -->
-                                    <a href="https://github.com/HassanRashid15" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-primary transition-colors" aria-label="GitHub">
-                                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<a href="https://github.com/HassanRashid15" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   style="color: var(--text-color);" class="hover:text-primary transition-colors" 
+   aria-label="GitHub">
+    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                         </svg>
-                                    </a>
+</a>
+
+                                    
+                            
                                     
                                     <!-- X (Twitter) -->
                               <a href="https://x.com/yourusername" 
    target="_blank" 
    rel="noopener noreferrer" 
-   class="text-gray-700 hover:text-primary transition-colors" 
+   style="color: var(--text-color);" class="hover:text-primary transition-colors" 
    aria-label="X (Twitter)">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="h-8 w-8" fill="currentColor">
         <path d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/>
@@ -621,7 +656,7 @@ class FooterComponent {
                             
                             <!-- Copyright -->
                             <div class="text-right">
-                                <p class="text-gray-600 font-medium mb-0">&copy; ${new Date().getFullYear()} All Rights Reserved.Made by <span class="text-primary font-bold"> HRTECH.</span></p>
+                                <p class="font-medium mb-0" style="color: var(--text-secondary);">&copy; ${new Date().getFullYear()} All Rights Reserved.Made by <span class="text-primary font-bold"> HRTECH.</span></p>
                                
                                    
                           
@@ -642,7 +677,7 @@ class FooterComponent {
         
         return this.currentPage === page 
             ? 'text-primary font-bold' 
-            : 'text-gray-700 link transition-colors font-bold';
+            : 'link transition-colors font-bold';
     }
 
     mount(containerId) {
@@ -3365,5 +3400,79 @@ function renderStackItems() {
 document.addEventListener('DOMContentLoaded', function() {
     renderStackItems();
 });
+
+// Theme Management
+(function() {
+    'use strict';
+    
+    // Get saved theme from localStorage or default to 'light'
+    function getTheme() {
+        return localStorage.getItem('theme') || 'light';
+    }
+    
+    // Set theme
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+    
+    // Initialize theme on page load
+    function initTheme() {
+        const theme = getTheme();
+        setTheme(theme);
+        // Update icons after a short delay to ensure navbar is mounted
+        setTimeout(() => {
+            updateThemeIcons(theme);
+        }, 600);
+    }
+    
+    // Toggle theme
+    function toggleTheme() {
+        const currentTheme = getTheme();
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        updateThemeIcons(newTheme);
+    }
+    
+    // Update theme icons visibility (CSS handles most of this, but we ensure sync)
+    function updateThemeIcons(theme) {
+        // The CSS will handle the display/opacity based on data-theme attribute
+        // This function ensures icons are properly synced after theme change
+        const sunIcons = document.querySelectorAll('.sun-icon');
+        const moonIcons = document.querySelectorAll('.moon-icon');
+        
+        // Force a reflow to ensure CSS transitions work
+        if (sunIcons.length > 0 || moonIcons.length > 0) {
+            document.body.offsetHeight; // Trigger reflow
+        }
+    }
+    
+    // Initialize theme when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+    } else {
+        initTheme();
+    }
+    
+    // Add event listeners to theme toggle buttons after navbar is mounted
+    function setupThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (themeToggleMobile) {
+            themeToggleMobile.addEventListener('click', toggleTheme);
+        }
+    }
+    
+    // Setup theme toggle after a short delay to ensure navbar is mounted
+    setTimeout(setupThemeToggle, 500);
+    
+    // Also setup when navbar is mounted (if navbar component calls this)
+    window.setupThemeToggle = setupThemeToggle;
+})();
 
 
